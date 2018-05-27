@@ -8,7 +8,7 @@
     
       
       <item>
-        <title>Using the Ghost editor</title>
+        <title>Powerplants seek justice</title>
         
           <description>&lt;p&gt;Ghost uses a language called &lt;strong&gt;Markdown&lt;/strong&gt; to format text.&lt;/p&gt;
 &lt;p&gt;When you go to edit a post and see special characters and colours intertwined between the words, those are Markdown shortcuts which tell Ghost what to do with the words in your document. The biggest benefit of Markdown is that you can quickly apply formatting as you type, without needing to pause.&lt;/p&gt;
@@ -63,7 +63,7 @@
     
       
       <item>
-        <title>Setting up your own Ghost theme</title>
+        <title>Not the bees!</title>
         
           <description>&lt;p&gt;Creating a totally custom design for your publication&lt;/p&gt;
 &lt;p&gt;Ghost comes with a beautiful default theme called Casper, which is designed to be a clean, readable publication layout and can be easily adapted for most purposes. However, Ghost can also be completely themed to suit your needs. Rather than just giving you a few basic settings which act as a poor proxy for code, we just let you write code.&lt;/p&gt;
