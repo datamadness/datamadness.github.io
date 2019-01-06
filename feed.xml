@@ -1,9 +1,9 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.6.2">Jekyll</generator><link href="/feed.xml" rel="self" type="application/atom+xml" /><link href="/" rel="alternate" type="text/html" /><updated>2019-01-06T12:30:33-08:00</updated><id>/</id><title type="html">DATAmadness</title><subtitle>Exploring the world through data analysis and machine learning</subtitle><entry><title type="html">Planning Support Team Resources in Start-ups Using Statistics</title><link href="/Team-Plannning" rel="alternate" type="text/html" title="Planning Support Team Resources in Start-ups Using Statistics" /><published>2018-06-24T03:32:00-07:00</published><updated>2018-06-24T03:32:00-07:00</updated><id>/Team-Plannning</id><content type="html" xml:base="/Team-Plannning">Planning staff allocation for customer support can be challenging since great support is essential for company success but it can consume large portion of usually limited budget. This can be particularly true in smaller companies and start-ups where the case volume significantly fluctuates and the staff also needs to work on other projects besides support.
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.6.2">Jekyll</generator><link href="/feed.xml" rel="self" type="application/atom+xml" /><link href="/" rel="alternate" type="text/html" /><updated>2019-01-06T12:54:56-08:00</updated><id>/</id><title type="html">DATAmadness</title><subtitle>Exploring the world through data analysis and machine learning</subtitle><entry><title type="html">Planning Support Team Resources in Start-ups Using Statistics</title><link href="/Team-Plannning" rel="alternate" type="text/html" title="Planning Support Team Resources in Start-ups Using Statistics" /><published>2018-06-24T03:32:00-07:00</published><updated>2018-06-24T03:32:00-07:00</updated><id>/Team-Plannning</id><content type="html" xml:base="/Team-Plannning">Planning staff allocation for customer support can be challenging since great support is essential for company success but it can consume large portion of usually limited budget. This can be particularly true in smaller companies and start-ups where the case volume significantly fluctuates and the staff also needs to work on other projects besides support.
 
 Disclaimer: Data used in this example are made up using formulas
 
 
-Fortunately, basics statistics can help to guide your staffing and time allocation decisions by using readily available data from your CRM system.</content><author><name>DATAmadness</name></author><category term="Statistics" /><summary type="html">Planning staff allocation for customer support can be challenging since great support is essential for company success but it can consume large portion of usually limited budget. This can be particularly true in smaller companies and start-ups where the case volume significantly fluctuates and the staff also needs to work on other projects besides support.</summary></entry><entry><title type="html">Support Data Generator in Python</title><link href="/Support-Data-Generator" rel="alternate" type="text/html" title="Support Data Generator in Python" /><published>2018-05-27T01:00:00-07:00</published><updated>2018-05-27T01:00:00-07:00</updated><id>/Support-Data-Generator</id><content type="html" xml:base="/Support-Data-Generator">&lt;p&gt;We all have been there - it is Sunday evening, you have couple of fresh ideas for a new customer centric strategy and you want to test how it would hold up in the real world. Unfortunately, it might be hard to get real or at least somewhat realistic customer support ticket datasets for specific business models and company size. &lt;/p&gt;
+Fortunately, basics statistics can help to guide your staffing and time allocation decisions by using readily available data from your CRM system.</content><author><name>DATAmadness</name></author><category term="Statistics" /><summary type="html">Planning staff allocation for customer support can be challenging since great support is essential for company success but it can consume large portion of usually limited budget. This can be particularly true in smaller companies and start-ups where the case volume significantly fluctuates and the staff also needs to work on other projects besides support.</summary></entry><entry><title type="html">Support Data Generator in Python</title><link href="/Support-Data-Generator" rel="alternate" type="text/html" title="Support Data Generator in Python" /><published>2018-05-27T01:00:00-07:00</published><updated>2018-05-27T01:00:00-07:00</updated><id>/Support-Data-Generator</id><content type="html" xml:base="/Support-Data-Generator">&lt;p&gt;We all have been there - it is Sunday evening, you have couple of fresh ideas for a new customer centric strategy and you want to test how it would hold up in the real world. Unfortunately, it might be hard to get real or at least somewhat realistic customer support ticket datasets for specific business models and company size.&lt;/p&gt;
 
 &lt;p&gt;If this issue plagues you on regular basis, head to &lt;a href=&quot;https://github.com/datamadness/Support-ticket-data-generator.git&quot;&gt;this repository on my GitHub&lt;/a&gt; and download the two python files:&lt;/p&gt;
 
@@ -12,7 +12,7 @@ Fortunately, basics statistics can help to guide your staffing and time allocati
 
 &lt;p&gt;This code will allow you to input few numeric parameters and quickly generate custom support ticket datasets that reflect what you could expect in real world business operations. &lt;br /&gt;The remainder of this post aims to provide feature documentation and couple of examples how to quickly model the support data for two distinct company profiles.&lt;/p&gt;
 
-&lt;h1 id=&quot;feature-overview&quot;&gt;Feature Overview&lt;/h1&gt;
+&lt;p&gt;##Feature Overview# ##&lt;/p&gt;
 
 &lt;p&gt;A python function to generate one year worth of support data(call repeatedly for x years worth of data)
 Generates varied, but statistically relevant number of support tickets for each day of the year&lt;/p&gt;
@@ -24,9 +24,9 @@ Generates varied, but statistically relevant number of support tickets for each 
   &lt;li&gt;Control number of customer accounts to capture desired support volume vs customer base size&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;h1 id=&quot;input-parameters-summary&quot;&gt;Input parameters summary&lt;/h1&gt;
+&lt;p&gt;##Input parameters summary##&lt;/p&gt;
 
-&lt;p&gt;&lt;strong&gt;Daily ticket volume through the year controls:&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;###Daily ticket volume through the year controls:&lt;/p&gt;
 
 &lt;ul&gt;
   &lt;li&gt;Seasonal peaks&lt;/li&gt;
@@ -34,7 +34,7 @@ Generates varied, but statistically relevant number of support tickets for each 
   &lt;li&gt;Daily volume range (population mean, approximate min and max outliers)&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;p&gt;&lt;strong&gt;Effort / logged time per ticket controls:&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;###Effort / logged time per ticket controls:&lt;/p&gt;
 
 &lt;ul&gt;
   &lt;li&gt;Median&lt;/li&gt;
@@ -45,7 +45,7 @@ Advanced / Optional:&lt;/li&gt;
   &lt;li&gt;Non-centrality (impacts variance and kurtosis)&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;p&gt;&lt;strong&gt;Customer base controls:&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;###Customer base controls:&lt;/p&gt;
 
 &lt;ul&gt;
   &lt;li&gt;Number of unique accounts&lt;/li&gt;
@@ -53,23 +53,27 @@ Advanced / Optional:&lt;/li&gt;
 
 &lt;h1 id=&quot;modelling-daily-tickets-volumes-through-the-year&quot;&gt;Modelling daily tickets volumes through the year&lt;/h1&gt;
 &lt;p&gt;The number of daily tickets is typically random variable that has reasonably defined mean and variance. Moreover, the mean is likely to move through the year to reflect seasonal effects such as major holidays or annual business cycles. 
-To model this behaviour, the code is using truncated normal continuous variable function from scipy package:
+To model this behaviour, the code is using truncated normal continuous variable function from scipy package to generate the number of tickets on given day:
 &lt;script src=&quot;https://gist.github.com/datamadness/be938b009f1dc6b26c36e6599c41ffdb.js&quot;&gt;&lt;/script&gt;&lt;/p&gt;
 
-&lt;p&gt;Simply specify the approximate minimum and maximum number of cases per day through the year. The mean and variance will be calculated based on these factors together with the seasonal effect.
-The seasonal effect requires you to input the peak months as integer values. Here is an example for two seasonal peaks in February and November:
+&lt;p&gt;Simply specify the approximate minimum and maximum number of cases per day through the year. The mean &lt;code class=&quot;highlighter-rouge&quot;&gt;mu&lt;/code&gt; and variance &lt;code class=&quot;highlighter-rouge&quot;&gt;sigma&lt;/code&gt; for given day then will be calculated based on these factors together with the seasonal effect function.
+The seasonal effect requires you to input the peak months as integer values. Here is an example for simulating two seasonal peaks in February and November:
 busy_months = np.array([2,11])&lt;/p&gt;
 
-&lt;p&gt;Moreover, input “seasonal_factor” (float &amp;lt;0,1&amp;gt;) to signify the magnitude of seasonal effects:
-0 - no seasonal effects
-1 - maximum seasonal effects&lt;/p&gt;
+&lt;p&gt;Moreover, input &lt;code class=&quot;highlighter-rouge&quot;&gt;seasonal_factor&lt;/code&gt; (float &amp;lt;0,1&amp;gt;) allows you to control the magnitude of seasonal effects:&lt;/p&gt;
 
-&lt;p&gt;Let’s demonstrate the annual volumes and seasonality on a small example with fixed:
-    annual_minimum = 5		# ~ annual daily minimum of tickets
-    annual_maximum = 50       	# ~ annual daily maximum of tickets         &lt;br /&gt;
-    busy_months = np.array([2,7])       # February and July are busy months&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;0 no seasonal effects&lt;/li&gt;
+  &lt;li&gt;1 maximum seasonal effects&lt;/li&gt;
+&lt;/ul&gt;
 
-&lt;p&gt;Seasonal factor impact:&lt;/p&gt;
+&lt;p&gt;Let’s demonstrate the annual volumes and seasonality on a small example with fixed:&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;nohighlight&quot;&gt;    annual_minimum = 5		# ~ annual daily minimum of tickets
+    annual_maximum = 50       	# ~ annual daily maximum of tickets           
+    busy_months = np.array([2,7])       # February and July are busy months
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;###Seasonal factor impact comparison:
+&lt;img src=&quot;&amp;quot;support_data_generator_weekly_ticket_totals_comparison.png&amp;quot;&quot; alt=&quot;image test&quot; /&gt;&lt;/p&gt;
 
 &lt;p&gt;Impacts of weekends:
 Weekends can have a major impact on your ticket volumes. This can be particularly pronounced if your company is B2B oriented and your clients are off work while having little to no impact if you are in B2C model. To model is, select appropriate value of the weekend_factor parameter:
@@ -97,7 +101,17 @@ skewness_factor - [0,1] value;  0 for default chi^2 distribution; 1 for large po
 k - degrees of freedom
 nonc - non-centrality (stats typically uses lambda letter)&lt;/p&gt;
 
-&lt;p&gt;The following plot shows histogram and kernel density estimation(KDE) for the logged time data of ~8000 tickets over 12 months:&lt;/p&gt;</content><author><name>DATAmadness</name></author><category term="Statistics" /><summary type="html">We all have been there - it is Sunday evening, you have couple of fresh ideas for a new customer centric strategy and you want to test how it would hold up in the real world. Unfortunately, it might be hard to get real or at least somewhat realistic customer support ticket datasets for specific business models and company size.</summary></entry><entry><title type="html">First Test Post</title><link href="/Test-Post" rel="alternate" type="text/html" title="First Test Post" /><published>2018-05-27T01:00:00-07:00</published><updated>2018-05-27T01:00:00-07:00</updated><id>/Test-Post</id><content type="html" xml:base="/Test-Post">&lt;p&gt;TEST POST iFrame 2 goes here&lt;/p&gt;
+&lt;p&gt;The following plot shows histogram and kernel density estimation(KDE) for the logged time data of ~8000 tickets over 12 months:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&quot;nohighlight&quot;&gt;        #Calculate mean 
+        mu = (annual_maximum - annual_minimum)/2 + seasonal_factor * (busy_level - 0.5) * ((annual_maximum - annual_minimum)/2) 
+        #Calculate standard deviation
+        sigma = (annual_maximum - annual_minimum) * 0.1
+        #Calculate distribution fundtion
+        dist = stats.truncnorm((annual_minimum - mu) / sigma, (annual_maximum - mu) / sigma, loc=mu, scale=sigma)
+        #Generate number of tickets for given day
+        ticket_num = int(dist.rvs())
+&lt;/code&gt;&lt;/pre&gt;</content><author><name>DATAmadness</name></author><category term="Statistics" /><summary type="html">We all have been there - it is Sunday evening, you have couple of fresh ideas for a new customer centric strategy and you want to test how it would hold up in the real world. Unfortunately, it might be hard to get real or at least somewhat realistic customer support ticket datasets for specific business models and company size.</summary></entry><entry><title type="html">First Test Post</title><link href="/Test-Post" rel="alternate" type="text/html" title="First Test Post" /><published>2018-05-27T01:00:00-07:00</published><updated>2018-05-27T01:00:00-07:00</updated><id>/Test-Post</id><content type="html" xml:base="/Test-Post">&lt;p&gt;TEST POST iFrame 2 goes here&lt;/p&gt;
 
 &lt;div style=&quot;width: 100%&quot;&gt;&lt;iframe width=&quot;100%&quot; height=&quot;600&quot; src=&quot;https://maps.google.com/maps?width=100%&amp;amp;height=600&amp;amp;hl=en&amp;amp;q=1%20Grafton%20Street%2C%20Dublin%2C%20Ireland+(My%20Business%20Name)&amp;amp;ie=UTF8&amp;amp;t=&amp;amp;z=14&amp;amp;iwloc=B&amp;amp;output=embed&quot; frameborder=&quot;0&quot; scrolling=&quot;no&quot; marginheight=&quot;0&quot; marginwidth=&quot;0&quot;&gt;&lt;a href=&quot;https://www.maps.ie/create-google-map/&quot;&gt;Embed Google Map&lt;/a&gt;&lt;/iframe&gt;&lt;/div&gt;&lt;br /&gt;
 
