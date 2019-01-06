@@ -191,21 +191,14 @@ into the {body} of the default.hbs template -->
                 <div class="kg-card-markdown">
                     <p>We all have been there - it is Sunday evening, you have couple of fresh ideas for a new customer centric strategy and you want to test how it would hold up in the real world. Unfortunately, it might be hard to get real or at least somewhat realistic customer support ticket datasets for specific business models and company size.</p>
 
-<h1>hello</h1>
-<h2>hello</h2>
-<h3>hello</h3>
-<h4>hello</h4>
-<h5>hello</h5>
-<h6>hello</h6>
-
 <p>If this issue plagues you on regular basis, head to <a href="https://github.com/datamadness/Support-ticket-data-generator.git">this repository on my GitHub</a> and download the two python files:</p>
 
 <p><code class="highlighter-rouge">main_generate_ticket_data.py</code><br />
 <code class="highlighter-rouge">generate_daily_data.py</code></p>
 
-<html>This code will allow you to input few numeric parameters and quickly generate custom support ticket datasets that reflect what you could expect in real world business operations. <br />The remainder of this post aims to provide feature documentation and couple of examples how to quickly model the support data for two distinct company profiles.</html>
+<p>This code will allow you to input few numeric parameters and quickly generate custom support ticket datasets that reflect what you could expect in real world business operations. <br />The remainder of this post aims to provide feature documentation and couple of examples how to quickly model the support data for two distinct company profiles.</p>
 
-<h2 id="feature-overview">Feature Overview</h2>
+<h5 id="feature-overview">Feature Overview</h5>
 
 <p>A python function to generate one year worth of support data(call repeatedly for x years worth of data)
 Generates varied, but statistically relevant number of support tickets for each day of the year</p>
@@ -217,9 +210,9 @@ Generates varied, but statistically relevant number of support tickets for each 
   <li>Control number of customer accounts to capture desired support volume vs customer base size</li>
 </ul>
 
-<h2 id="input-parameters-summary">Input parameters summary</h2>
+<h5 id="input-parameters-summary">Input parameters summary</h5>
 
-<h3 id="daily-ticket-volume-through-the-year-controls">Daily ticket volume through the year controls:</h3>
+<h6 id="daily-ticket-volume-through-the-year-controls">Daily ticket volume through the year controls:</h6>
 
 <ul>
   <li>Seasonal peaks</li>
@@ -227,7 +220,7 @@ Generates varied, but statistically relevant number of support tickets for each 
   <li>Daily volume range (population mean, approximate min and max outliers)</li>
 </ul>
 
-<h3 id="effort--logged-time-per-ticket-controls">Effort / logged time per ticket controls:</h3>
+<h6 id="effort--logged-time-per-ticket-controls">Effort / logged time per ticket controls:</h6>
 
 <ul>
   <li>Median</li>
@@ -238,14 +231,14 @@ Advanced / Optional:</li>
   <li>Non-centrality (impacts variance and kurtosis)</li>
 </ul>
 
-<p><em>Customer base controls:</em></p>
+<h6 id="customer-base-controls">Customer base controls:</h6>
 
 <ul>
   <li>Number of unique accounts</li>
 </ul>
 
-<p>##Modelling daily tickets volumes through the year##
-The number of daily tickets is typically random variable that has reasonably defined mean and variance. Moreover, the mean is likely to move through the year to reflect seasonal effects such as major holidays or annual business cycles. 
+<h5 id="modelling-daily-tickets-volumes-through-the-year">Modelling daily tickets volumes through the year</h5>
+<p>The number of daily tickets is typically random variable that has reasonably defined mean and variance. Moreover, the mean is likely to move through the year to reflect seasonal effects such as major holidays or annual business cycles. 
 To model this behaviour, the code is using truncated normal continuous variable function from scipy package to generate the number of tickets on given day:
 <script src="https://gist.github.com/datamadness/be938b009f1dc6b26c36e6599c41ffdb.js"></script></p>
 
