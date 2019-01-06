@@ -198,7 +198,7 @@ into the {body} of the default.hbs template -->
 
 <p>This code will allow you to input few numeric parameters and quickly generate custom support ticket datasets that reflect what you could expect in real world business operations. <br />The remainder of this post aims to provide feature documentation and couple of examples how to quickly model the support data for two distinct company profiles.</p>
 
-<p>##Feature Overview</p>
+<p>##Feature Overview##</p>
 
 <p>A python function to generate one year worth of support data(call repeatedly for x years worth of data)
 Generates varied, but statistically relevant number of support tickets for each day of the year</p>
@@ -210,9 +210,9 @@ Generates varied, but statistically relevant number of support tickets for each 
   <li>Control number of customer accounts to capture desired support volume vs customer base size</li>
 </ul>
 
-<p>##Input parameters summary</p>
+<p>##Input parameters summary##</p>
 
-<p>###Daily ticket volume through the year controls:</p>
+<p>###Daily ticket volume through the year controls:###</p>
 
 <ul>
   <li>Seasonal peaks</li>
@@ -259,7 +259,7 @@ busy_months = np.array([2,11])</p>
     busy_months = np.array([2,7])       # February and July are busy months
 </code></pre>
 <p>###Seasonal factor impact comparison:###
-<img src="&quot;/images/support_data_generator_weekly_ticket_totals_comparison.png&quot;" alt="image test" /></p>
+<img src="/assets/images/support_data_generator_weekly_ticket_totals_comparison.png" alt="image test" /></p>
 
 <p>Impacts of weekends:
 Weekends can have a major impact on your ticket volumes. This can be particularly pronounced if your company is B2B oriented and your clients are off work while having little to no impact if you are in B2C model. To model is, select appropriate value of the weekend_factor parameter:
