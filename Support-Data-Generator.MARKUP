@@ -189,7 +189,7 @@ into the {body} of the default.hbs template -->
 
             <section class="post-full-content">
                 <div class="kg-card-markdown">
-                    We all have been there - it is Sunday evening, you have couple of fresh ideas for a new customer centric strategy and you want to test how it would hold up in the real world. Unfortunately, it might be hard to get real or at least somewhat realistic customer support ticket datasets for specific business models and company size. 
+                    <p>We all have been there - it is Sunday evening, you have couple of fresh ideas for a new customer centric strategy and you want to test how it would hold up in the real world. Unfortunately, it might be hard to get real or at least somewhat realistic customer support ticket datasets for specific business models and company size. </p>
 
 If this issue plagues you on regular basis, head to [this repository on my GitHub](https://github.com/datamadness/Support-ticket-data-generator.git) and download the two python files:
 
@@ -198,7 +198,7 @@ If this issue plagues you on regular basis, head to [this repository on my GitHu
 
  This code will allow you to input few numeric parameters and quickly generate custom support ticket datasets that reflect what you could expect in real world business operations. <br>The remainder of this post aims to provide feature documentation and couple of examples how to quickly model the support data for two distinct company profiles.
 
-# Feature Overview #
+# Feature Overview
 
 A python function to generate one year worth of support data(call repeatedly for x years worth of data)
 Generates varied, but statistically relevant number of support tickets for each day of the year
@@ -232,7 +232,7 @@ Advanced / Optional:
 # Modelling daily tickets volumes through the year #
 The number of daily tickets is typically random variable that has reasonably defined mean and variance. Moreover, the mean is likely to move through the year to reflect seasonal effects such as major holidays or annual business cycles. 
 To model this behaviour, the code is using truncated normal continuous variable function from scipy package:
-<div class="gistLoad" data-id="be938b009f1dc6b26c36e6599c41ffdb" id="gist-be938b009f1dc6b26c36e6599c41ffdb">Loading https://gist.github.com/be938b009f1dc6b26c36e6599c41ffdb....</div>
+<script src="https://gist.github.com/datamadness/be938b009f1dc6b26c36e6599c41ffdb.js"></script> 
 
 Simply specify the approximate minimum and maximum number of cases per day through the year. The mean and variance will be calculated based on these factors together with the seasonal effect.
 The seasonal effect requires you to input the peak months as integer values. Here is an example for two seasonal peaks in February and November:
@@ -288,12 +288,6 @@ nonc - non-centrality (stats typically uses lambda letter)
 
 
 The following plot shows histogram and kernel density estimation(KDE) for the logged time data of ~8000 tickets over 12 months:
-
-
-
-
-<script src="https://gist.github.com/datamadness/be938b009f1dc6b26c36e6599c41ffdb.js"></script> 
-
                 </div>
             </section>
 
