@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.6.2">Jekyll</generator><link href="/feed.xml" rel="self" type="application/atom+xml" /><link href="/" rel="alternate" type="text/html" /><updated>2019-01-06T12:58:00-08:00</updated><id>/</id><title type="html">DATAmadness</title><subtitle>Exploring the world through data analysis and machine learning</subtitle><entry><title type="html">Planning Support Team Resources in Start-ups Using Statistics</title><link href="/Team-Plannning" rel="alternate" type="text/html" title="Planning Support Team Resources in Start-ups Using Statistics" /><published>2018-06-24T03:32:00-07:00</published><updated>2018-06-24T03:32:00-07:00</updated><id>/Team-Plannning</id><content type="html" xml:base="/Team-Plannning">Planning staff allocation for customer support can be challenging since great support is essential for company success but it can consume large portion of usually limited budget. This can be particularly true in smaller companies and start-ups where the case volume significantly fluctuates and the staff also needs to work on other projects besides support.
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.6.2">Jekyll</generator><link href="/feed.xml" rel="self" type="application/atom+xml" /><link href="/" rel="alternate" type="text/html" /><updated>2019-01-06T13:01:24-08:00</updated><id>/</id><title type="html">DATAmadness</title><subtitle>Exploring the world through data analysis and machine learning</subtitle><entry><title type="html">Planning Support Team Resources in Start-ups Using Statistics</title><link href="/Team-Plannning" rel="alternate" type="text/html" title="Planning Support Team Resources in Start-ups Using Statistics" /><published>2018-06-24T03:32:00-07:00</published><updated>2018-06-24T03:32:00-07:00</updated><id>/Team-Plannning</id><content type="html" xml:base="/Team-Plannning">Planning staff allocation for customer support can be challenging since great support is essential for company success but it can consume large portion of usually limited budget. This can be particularly true in smaller companies and start-ups where the case volume significantly fluctuates and the staff also needs to work on other projects besides support.
 
 Disclaimer: Data used in this example are made up using formulas
 
@@ -51,7 +51,7 @@ Advanced / Optional:&lt;/li&gt;
   &lt;li&gt;Number of unique accounts&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;p&gt;##Modelling daily tickets volumes through the year
+&lt;p&gt;##Modelling daily tickets volumes through the year##
 The number of daily tickets is typically random variable that has reasonably defined mean and variance. Moreover, the mean is likely to move through the year to reflect seasonal effects such as major holidays or annual business cycles. 
 To model this behaviour, the code is using truncated normal continuous variable function from scipy package to generate the number of tickets on given day:
 &lt;script src=&quot;https://gist.github.com/datamadness/be938b009f1dc6b26c36e6599c41ffdb.js&quot;&gt;&lt;/script&gt;&lt;/p&gt;
@@ -72,8 +72,8 @@ busy_months = np.array([2,11])&lt;/p&gt;
     annual_maximum = 50       	# ~ annual daily maximum of tickets           
     busy_months = np.array([2,7])       # February and July are busy months
 &lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;###Seasonal factor impact comparison:
-&lt;img src=&quot;&amp;quot;/assets/images/support_data_generator_weekly_ticket_totals_comparison.png&amp;quot;&quot; alt=&quot;image test&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;###Seasonal factor impact comparison:###
+&lt;img src=&quot;&amp;quot;/images/support_data_generator_weekly_ticket_totals_comparison.png&amp;quot;&quot; alt=&quot;image test&quot; /&gt;&lt;/p&gt;
 
 &lt;p&gt;Impacts of weekends:
 Weekends can have a major impact on your ticket volumes. This can be particularly pronounced if your company is B2B oriented and your clients are off work while having little to no impact if you are in B2C model. To model is, select appropriate value of the weekend_factor parameter:
