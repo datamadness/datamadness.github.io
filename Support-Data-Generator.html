@@ -198,7 +198,7 @@ into the {body} of the default.hbs template -->
 
 <p>This code will allow you to input few numeric parameters and quickly generate custom support ticket datasets that reflect what you could expect in real world business operations. <br />The remainder of this post aims to provide feature documentation and couple of examples how to quickly model the support data for two distinct company profiles.</p>
 
-<h5 id="feature-overview">Feature Overview</h5>
+<h4 id="feature-overview">Feature Overview</h4>
 
 <p>A python function to generate one year worth of support data(call repeatedly for x years worth of data)
 Generates varied, but statistically relevant number of support tickets for each day of the year</p>
@@ -210,7 +210,7 @@ Generates varied, but statistically relevant number of support tickets for each 
   <li>Control number of customer accounts to capture desired support volume vs customer base size</li>
 </ul>
 
-<h5 id="input-parameters-summary">Input parameters summary</h5>
+<h4 id="input-parameters-summary">Input parameters summary</h4>
 
 <h6 id="daily-ticket-volume-through-the-year-controls">Daily ticket volume through the year controls:</h6>
 
@@ -220,7 +220,7 @@ Generates varied, but statistically relevant number of support tickets for each 
   <li>Daily volume range (population mean, approximate min and max outliers)</li>
 </ul>
 
-<h6 id="effort--logged-time-per-ticket-controls">Effort / logged time per ticket controls:</h6>
+<h5 id="effort--logged-time-per-ticket-controls">Effort / logged time per ticket controls:</h5>
 
 <ul>
   <li>Median</li>
@@ -237,67 +237,78 @@ Advanced / Optional:</li>
   <li>Number of unique accounts</li>
 </ul>
 
-<h5 id="modelling-daily-tickets-volumes-through-the-year">Modelling daily tickets volumes through the year</h5>
+<h4 id="modelling-daily-tickets-volumes-through-the-year">Modelling daily tickets volumes through the year</h4>
 <p>The number of daily tickets is typically random variable that has reasonably defined mean and variance. Moreover, the mean is likely to move through the year to reflect seasonal effects such as major holidays or annual business cycles. 
-To model this behaviour, the code is using truncated normal continuous variable function from scipy package to generate the number of tickets on given day:
-<script src="https://gist.github.com/datamadness/be938b009f1dc6b26c36e6599c41ffdb.js"></script></p>
-
-<p>Simply specify the approximate minimum and maximum number of cases per day through the year. The mean <code class="highlighter-rouge">mu</code> and variance <code class="highlighter-rouge">sigma</code> for given day then will be calculated based on these factors together with the seasonal effect function.
+To model this behaviour, the code is using truncated normal continuous variable function from scipy package to generate the number of tickets on given day:</p>
+<pre><code class="nohighlight">        #Calculate distribution function
+        dist = stats.truncnorm((annual_minimum - mu) / sigma, (annual_maximum - mu) / sigma, loc=mu, scale=sigma)
+        #Generate number of tickets for given day
+        ticket_num = int(dist.rvs())
+&lt;/pre&gt;</code>
+Simply specify the approximate minimum and maximum number of cases per day through the year. The mean `mu` and variance `sigma` for given day then will be calculated based the seasonal effect function:
+<pre><code class="nohighlight">        #Calculate mean for given day
+        mu = (annual_maximum - annual_minimum)/2 + seasonal_factor * (busy_level - 0.5) * ((annual_maximum - annual_minimum)/2) 
+        #Calculate standard deviation for given day
+        sigma = (annual_maximum - annual_minimum) * 0.1
+&lt;/pre&gt;</code>
 The seasonal effect requires you to input the peak months as integer values. Here is an example for simulating two seasonal peaks in February and November:
-busy_months = np.array([2,11])</p>
+busy_months = np.array([2,11])
 
-<p>Moreover, input <code class="highlighter-rouge">seasonal_factor</code> (float &lt;0,1&gt;) allows you to control the magnitude of seasonal effects:</p>
+Moreover, input `seasonal_factor` (float &lt;0,1&gt;) allows you to control the magnitude of seasonal effects:
 
-<ul>
-  <li>0 no seasonal effects</li>
-  <li>1 maximum seasonal effects</li>
-</ul>
+* 0 no seasonal effects
+* 1 maximum seasonal effects
 
-<p>Let’s demonstrate the annual volumes and seasonality on a small example with fixed:</p>
+The following plot demonstrates the annual volumes and seasonality dependency with all other parameters being constant:
 <pre><code class="nohighlight">    annual_minimum = 5		# ~ annual daily minimum of tickets
     annual_maximum = 50       	# ~ annual daily maximum of tickets           
     busy_months = np.array([2,7])       # February and July are busy months
 </code></pre>
-<p><em>Seasonal factor impact comparison:</em>
-<img src="/assets/images/support_data_generator/weekly_ticket_totals_comparison.png" alt="image test" /></p>
+*Seasonal factor impact comparison:*
+![image test](/assets/images/support_data_generator/weekly_ticket_totals_comparison.png)
 
-<p>Impacts of weekends:
-Weekends can have a major impact on your ticket volumes. This can be particularly pronounced if your company is B2B oriented and your clients are off work while having little to no impact if you are in B2C model. To model is, select appropriate value of the weekend_factor parameter:
-0 - no ticket volume on weekends
-1 - weekends are the same as business days</p>
 
-<p>Modelling logged time for each opened ticket
-Crucial part of planning your operations is to have an understanding of how much time is spent on each ticket. Unfortunately, this data cannot be simulated by a simple normal distribution function. While you will be able to find reasonable mean in your real world data, you will see few large outliers due to complex support problems and more or less pronounced positive skew. Fortunately, this can be quite well approximated by the non-central chi-squared distribution(wiki_link: https://en.wikipedia.org/wiki/Noncentral_chi-squared_distribution ) that can generalize the k - degrees of freedom of chi-squared function via noncentrality parameter.</p>
 
-<p>Probability Density Function(PDF) for vanila non-central chi-squared function:
-<script type="math/tex">f_{X}(x;k,\lambda )=\sum _{i=0}^{\infty }{\frac {e^{-\lambda /2}(\lambda /2)^{i}}{i!}}f_{Y_{k+2i}}(x)</script></p>
 
-<p>Non-central chi-squared PDF visualization (source en.wikipedia.com)
-https://en.wikipedia.org/wiki/Noncentral_chi-squared_distribution#/media/File:Chi-Squared-(nonCentral)-pdf.png</p>
 
-<p>In the proposed python code, the logged time data is generated by function daily_data imported from generate_daily_data.py. This function is called by the main function with the following parameters:</p>
 
-<p>Mandatory:
-size - automatically determined by the main function
-logged_time_median_desired - median logged time for the population in minutes
-Logged_time_minimum - minimum logged time in minutes</p>
 
-<p>Optional:
-skewness_factor - [0,1] value;  0 for default chi^2 distribution; 1 for large positive skew
-k - degrees of freedom
-nonc - non-centrality (stats typically uses lambda letter)</p>
+###### Impacts of weekends:
+Weekends can have a major impact on your ticket volumes. This can be particularly pronounced if your company is B2B oriented and your clients are off work while having little to no impact if you are operating in B2C model. To model this, select the appropriate value of the weekend_factor parameter (float - &lt;0,1&gt;):
+* 0 - no ticket volume on weekends
+* 1 - weekends are the same as business days
 
-<p>The following plot shows histogram and kernel density estimation(KDE) for the logged time data of ~8000 tickets over 12 months:</p>
 
-<pre><code class="nohighlight">        #Calculate mean 
-        mu = (annual_maximum - annual_minimum)/2 + seasonal_factor * (busy_level - 0.5) * ((annual_maximum - annual_minimum)/2) 
-        #Calculate standard deviation
-        sigma = (annual_maximum - annual_minimum) * 0.1
-        #Calculate distribution fundtion
-        dist = stats.truncnorm((annual_minimum - mu) / sigma, (annual_maximum - mu) / sigma, loc=mu, scale=sigma)
-        #Generate number of tickets for given day
-        ticket_num = int(dist.rvs())
-</code></pre>
+
+
+###### Modelling logged time for each opened ticket
+Crucial part of planning your operations is to have an understanding of how much time is spent on each ticket. Unfortunately, this data cannot be simulated by a simple normal distribution function. While you will be able to find reasonable mean in your real world data, you will see few large outliers due to complex support problems and more or less pronounced positive skew. Fortunately, this can be quite well approximated by the non-central chi-squared distribution([Wikipedia](https://en.wikipedia.org/wiki/Noncentral_chi-squared_distribution )) that can generalize the k - degrees of freedom of chi-squared function via noncentrality parameter.
+
+**Probability Density Function(PDF) for vanila non-central chi-squared function:**
+
+$$f_{X}(x;k,\lambda )=\sum _{i=0}^{\infty }{\frac {e^{-\lambda /2}(\lambda /2)^{i}}{i!}}f_{Y_{k+2i}}(x)$$
+
+Non-central chi-squared PDF visualization (source [en.wikipedia.com](https://en.wikipedia.org/wiki/Noncentral_chi-squared_distribution#/media/File:Chi-Squared-(nonCentral)-pdf.png)):
+![image test](/assets/images/support_data_generator/Chi-Squared-(nonCentral)-pdf.png)
+
+
+In the proposed python code, the logged time data is generated by function daily_data imported from generate_daily_data.py. This function is called by the main function with the following parameters:
+
+######Mandatory:
+* size - automatically determined by the main function
+* logged_time_median_desired - median logged time for the population in minutes
+* Logged_time_minimum - minimum logged time in minutes
+
+######Optional:
+* skewness_factor - [0,1] value;  0 for default chi^2 distribution; 1 for large positive skew
+* k - degrees of freedom
+* nonc - non-centrality (stats typically uses lambda letter) 
+
+
+
+The following plot shows histogram and kernel density estimation(KDE) for the logged time data of ~8000 tickets over 12 months:
+![image test](/assets/images/support_data_generator/logged_time_distribution_plot.png)
+</pre></pre>
 
                 </div>
             </section>
