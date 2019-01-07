@@ -277,7 +277,7 @@ busy_months = np.array([2,11])</p>
 <h6 id="modelling-logged-time-for-each-opened-ticket">Modelling logged time for each opened ticket</h6>
 <p>Crucial part of planning your operations is to have an understanding of how much time is spent on each ticket. Unfortunately, this data cannot be simulated by a simple normal distribution function. While you will be able to find reasonable mean in your real world data, you will see few large outliers due to complex support problems and more or less pronounced positive skew. Fortunately, this can be quite well approximated by the non-central chi-squared distribution(<a href="https://en.wikipedia.org/wiki/Noncentral_chi-squared_distribution">Wikipedia</a>) that can generalize the k - degrees of freedom of chi-squared function via noncentrality parameter.</p>
 
-<p><strong>Probability Density Function(PDF) for vanila non-central chi-squared function:</strong></p>
+<p>Probability Density Function(PDF) for vanila non-central chi-squared function:</p>
 
 <script type="math/tex; mode=display">f_{X}(x;k,\lambda )=\sum _{i=0}^{\infty }{\frac {e^{-\lambda /2}(\lambda /2)^{i}}{i!}}f_{Y_{k+2i}}(x)</script>
 
