@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.6.2">Jekyll</generator><link href="/feed.xml" rel="self" type="application/atom+xml" /><link href="/" rel="alternate" type="text/html" /><updated>2019-01-06T16:09:03-08:00</updated><id>/</id><title type="html">DATAmadness</title><subtitle>Exploring the world through data analysis and machine learning</subtitle><entry><title type="html">Planning Support Team Resources in Start-ups Using Statistics</title><link href="/Team-Plannning" rel="alternate" type="text/html" title="Planning Support Team Resources in Start-ups Using Statistics" /><published>2018-06-24T03:32:00-07:00</published><updated>2018-06-24T03:32:00-07:00</updated><id>/Team-Plannning</id><content type="html" xml:base="/Team-Plannning">Planning staff allocation for customer support can be challenging since great support is essential for company success but it can consume large portion of usually limited budget. This can be particularly true in smaller companies and start-ups where the case volume significantly fluctuates and the staff also needs to work on other projects besides support.
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.6.2">Jekyll</generator><link href="/feed.xml" rel="self" type="application/atom+xml" /><link href="/" rel="alternate" type="text/html" /><updated>2019-01-06T16:11:55-08:00</updated><id>/</id><title type="html">DATAmadness</title><subtitle>Exploring the world through data analysis and machine learning</subtitle><entry><title type="html">Planning Support Team Resources in Start-ups Using Statistics</title><link href="/Team-Plannning" rel="alternate" type="text/html" title="Planning Support Team Resources in Start-ups Using Statistics" /><published>2018-06-24T03:32:00-07:00</published><updated>2018-06-24T03:32:00-07:00</updated><id>/Team-Plannning</id><content type="html" xml:base="/Team-Plannning">Planning staff allocation for customer support can be challenging since great support is essential for company success but it can consume large portion of usually limited budget. This can be particularly true in smaller companies and start-ups where the case volume significantly fluctuates and the staff also needs to work on other projects besides support.
 
 Disclaimer: Data used in this example are made up using formulas
 
@@ -10,8 +10,7 @@ Fortunately, basics statistics can help to guide your staffing and time allocati
 &lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;main_generate_ticket_data.py&lt;/code&gt;&lt;br /&gt;
 &lt;code class=&quot;highlighter-rouge&quot;&gt;generate_daily_data.py&lt;/code&gt;&lt;/p&gt;
 
-&lt;p&gt;This code will allow you to input few numeric parameters and quickly generate custom support ticket datasets that reflect what you could expect in real world business operations. &lt;br /&gt;The remainder of this post aims to provide feature documentation and couple of examples how to quickly model the support data for two distinct company profiles.&lt;/p&gt;
-
+&lt;p&gt;This code will allow you to input few numeric parameters and quickly generate custom support ticket datasets that reflect what you could expect in real world business operations.&lt;/p&gt;
 &lt;h4 id=&quot;feature-overview&quot;&gt;Feature Overview&lt;/h4&gt;
 
 &lt;ul&gt;
@@ -57,71 +56,66 @@ To model this behavior, the code is using truncated normal continuous variable f
         dist = stats.truncnorm((annual_minimum - mu) / sigma, (annual_maximum - mu) / sigma, loc=mu, scale=sigma)
         #Generate number of tickets for given day
         ticket_num = int(dist.rvs())
-&amp;lt;/pre&amp;gt;&lt;/code&gt;
-Simply specify the approximate minimum and maximum number of cases per day through the year. The mean `mu` and variance `sigma` for given day then will be calculated based the seasonal effect function:
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Simply specify the approximate minimum and maximum number of cases per day through the year. The mean &lt;code class=&quot;highlighter-rouge&quot;&gt;mu&lt;/code&gt; and variance &lt;code class=&quot;highlighter-rouge&quot;&gt;sigma&lt;/code&gt; for given day then will be calculated based the seasonal effect function:&lt;/p&gt;
 &lt;pre&gt;&lt;code class=&quot;nohighlight&quot;&gt;        #Calculate mean for given day
         mu = (annual_maximum - annual_minimum)/2 + seasonal_factor * (busy_level - 0.5) * ((annual_maximum - annual_minimum)/2) 
         #Calculate standard deviation for given day
         sigma = (annual_maximum - annual_minimum) * 0.1
-&amp;lt;/pre&amp;gt;&lt;/code&gt;
-The seasonal effect requires you to input the peak months as integer values. Here is an example for simulating two seasonal peaks in February and November:
-busy_months = np.array([2,11])
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;The seasonal effect requires you to input the peak months as integer values. Here is an example for simulating two seasonal peaks in February and November:
+busy_months = np.array([2,11])&lt;/p&gt;
 
-Moreover, input `seasonal_factor` (float &amp;lt;0,1&amp;gt;) allows you to control the magnitude of seasonal effects:
+&lt;p&gt;Moreover, input &lt;code class=&quot;highlighter-rouge&quot;&gt;seasonal_factor&lt;/code&gt; (float &amp;lt;0,1&amp;gt;) allows you to control the magnitude of seasonal effects:&lt;/p&gt;
 
-* 0 no seasonal effects
-* 1 maximum seasonal effects
+&lt;ul&gt;
+  &lt;li&gt;0 no seasonal effects&lt;/li&gt;
+  &lt;li&gt;1 maximum seasonal effects&lt;/li&gt;
+&lt;/ul&gt;
 
-The following plot demonstrates the annual volumes and seasonality dependency with all other parameters being constant:
+&lt;p&gt;The following plot demonstrates the annual volumes and seasonality dependency with all other parameters being constant:&lt;/p&gt;
 &lt;pre&gt;&lt;code class=&quot;nohighlight&quot;&gt;    annual_minimum = 5		# ~ annual daily minimum of tickets
     annual_maximum = 50       	# ~ annual daily maximum of tickets           
     busy_months = np.array([2,7])       # February and July are busy months
-&amp;lt;/pre&amp;gt;&lt;/code&gt;
-*Seasonal factor impact comparison:*
-![image test](/assets/images/support_data_generator/weekly_ticket_totals_comparison.png)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;em&gt;Seasonal factor impact comparison:&lt;/em&gt;
+&lt;img src=&quot;/assets/images/support_data_generator/weekly_ticket_totals_comparison.png&quot; alt=&quot;image test&quot; /&gt;&lt;/p&gt;
 
+&lt;h6 id=&quot;impacts-of-weekends&quot;&gt;Impacts of weekends:&lt;/h6&gt;
+&lt;p&gt;Weekends can have a major impact on your ticket volumes. This can be particularly pronounced if your company is B2B oriented and your clients are off work while having little to no impact if you are operating in B2C model. To model this, select the appropriate value of the weekend_factor parameter (float - &amp;lt;0,1&amp;gt;):&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;0 - no ticket volume on weekends&lt;/li&gt;
+  &lt;li&gt;1 - weekends are the same as business days&lt;/li&gt;
+&lt;/ul&gt;
 
+&lt;h6 id=&quot;modelling-logged-time-for-each-opened-ticket&quot;&gt;Modelling logged time for each opened ticket&lt;/h6&gt;
+&lt;p&gt;Crucial part of planning your operations is to have an understanding of how much time is spent on each ticket. Unfortunately, this data cannot be simulated by a simple normal distribution function. While you will be able to find reasonable mean in your real world data, you will see few large outliers due to complex support problems and more or less pronounced positive skew. Fortunately, this can be quite well approximated by the non-central chi-squared distribution(&lt;a href=&quot;https://en.wikipedia.org/wiki/Noncentral_chi-squared_distribution&quot;&gt;Wikipedia&lt;/a&gt;) that can generalize the k - degrees of freedom of chi-squared function via noncentrality parameter.&lt;/p&gt;
 
+&lt;p&gt;&lt;strong&gt;Probability Density Function(PDF) for vanila non-central chi-squared function:&lt;/strong&gt;&lt;/p&gt;
 
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;f_{X}(x;k,\lambda )=\sum _{i=0}^{\infty }{\frac {e^{-\lambda /2}(\lambda /2)^{i}}{i!}}f_{Y_{k+2i}}(x)&lt;/script&gt;
 
+&lt;p&gt;Non-central chi-squared PDF visualization (source &lt;a href=&quot;https://en.wikipedia.org/wiki/Noncentral_chi-squared_distribution#/media/File:Chi-Squared-(nonCentral)-pdf.png&quot;&gt;en.wikipedia.com&lt;/a&gt;):
+&lt;img src=&quot;/assets/images/support_data_generator/Chi-Squared-(nonCentral)-pdf.png&quot; alt=&quot;image test&quot; /&gt;&lt;/p&gt;
 
+&lt;p&gt;In the proposed python code, the logged time data is generated by function daily_data imported from generate_daily_data.py. This function is called by the main function with the following parameters:&lt;/p&gt;
 
-###### Impacts of weekends:
-Weekends can have a major impact on your ticket volumes. This can be particularly pronounced if your company is B2B oriented and your clients are off work while having little to no impact if you are operating in B2C model. To model this, select the appropriate value of the weekend_factor parameter (float - &amp;lt;0,1&amp;gt;):
-* 0 - no ticket volume on weekends
-* 1 - weekends are the same as business days
+&lt;p&gt;######Mandatory:&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;size - automatically determined by the main function&lt;/li&gt;
+  &lt;li&gt;logged_time_median_desired - median logged time for the population in minutes&lt;/li&gt;
+  &lt;li&gt;Logged_time_minimum - minimum logged time in minutes&lt;/li&gt;
+&lt;/ul&gt;
 
+&lt;p&gt;######Optional:&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;skewness_factor - [0,1] value;  0 for default chi^2 distribution; 1 for large positive skew&lt;/li&gt;
+  &lt;li&gt;k - degrees of freedom&lt;/li&gt;
+  &lt;li&gt;nonc - non-centrality (stats typically uses lambda letter)&lt;/li&gt;
+&lt;/ul&gt;
 
-
-
-###### Modelling logged time for each opened ticket
-Crucial part of planning your operations is to have an understanding of how much time is spent on each ticket. Unfortunately, this data cannot be simulated by a simple normal distribution function. While you will be able to find reasonable mean in your real world data, you will see few large outliers due to complex support problems and more or less pronounced positive skew. Fortunately, this can be quite well approximated by the non-central chi-squared distribution([Wikipedia](https://en.wikipedia.org/wiki/Noncentral_chi-squared_distribution )) that can generalize the k - degrees of freedom of chi-squared function via noncentrality parameter.
-
-**Probability Density Function(PDF) for vanila non-central chi-squared function:**
-
-$$f_{X}(x;k,\lambda )=\sum _{i=0}^{\infty }{\frac {e^{-\lambda /2}(\lambda /2)^{i}}{i!}}f_{Y_{k+2i}}(x)$$
-
-Non-central chi-squared PDF visualization (source [en.wikipedia.com](https://en.wikipedia.org/wiki/Noncentral_chi-squared_distribution#/media/File:Chi-Squared-(nonCentral)-pdf.png)):
-![image test](/assets/images/support_data_generator/Chi-Squared-(nonCentral)-pdf.png)
-
-
-In the proposed python code, the logged time data is generated by function daily_data imported from generate_daily_data.py. This function is called by the main function with the following parameters:
-
-######Mandatory:
-* size - automatically determined by the main function
-* logged_time_median_desired - median logged time for the population in minutes
-* Logged_time_minimum - minimum logged time in minutes
-
-######Optional:
-* skewness_factor - [0,1] value;  0 for default chi^2 distribution; 1 for large positive skew
-* k - degrees of freedom
-* nonc - non-centrality (stats typically uses lambda letter) 
-
-
-
-The following plot shows histogram and kernel density estimation(KDE) for the logged time data of ~8000 tickets over 12 months:
-![image test](/assets/images/support_data_generator/logged_time_distribution_plot.png)
-&lt;/pre&gt;&lt;/pre&gt;&lt;/pre&gt;</content><author><name>DATAmadness</name></author><category term="Statistics" /><summary type="html">We all have been there - it is Sunday evening, you have couple of fresh ideas for a new customer centric strategy and you want to test how it would hold up in the real world. Unfortunately, it might be hard to get real or at least somewhat realistic customer support ticket datasets for specific business models and company size.</summary></entry><entry><title type="html">First Test Post</title><link href="/Test-Post" rel="alternate" type="text/html" title="First Test Post" /><published>2018-05-27T01:00:00-07:00</published><updated>2018-05-27T01:00:00-07:00</updated><id>/Test-Post</id><content type="html" xml:base="/Test-Post">&lt;p&gt;TEST POST iFrame 2 goes here&lt;/p&gt;
+&lt;p&gt;The following plot shows histogram and kernel density estimation(KDE) for the logged time data of ~8000 tickets over 12 months:
+&lt;img src=&quot;/assets/images/support_data_generator/logged_time_distribution_plot.png&quot; alt=&quot;image test&quot; /&gt;&lt;/p&gt;</content><author><name>DATAmadness</name></author><category term="Statistics" /><summary type="html">We all have been there - it is Sunday evening, you have couple of fresh ideas for a new customer centric strategy and you want to test how it would hold up in the real world. Unfortunately, it might be hard to get real or at least somewhat realistic customer support ticket datasets for specific business models and company size.</summary></entry><entry><title type="html">First Test Post</title><link href="/Test-Post" rel="alternate" type="text/html" title="First Test Post" /><published>2018-05-27T01:00:00-07:00</published><updated>2018-05-27T01:00:00-07:00</updated><id>/Test-Post</id><content type="html" xml:base="/Test-Post">&lt;p&gt;TEST POST iFrame 2 goes here&lt;/p&gt;
 
 &lt;div style=&quot;width: 100%&quot;&gt;&lt;iframe width=&quot;100%&quot; height=&quot;600&quot; src=&quot;https://maps.google.com/maps?width=100%&amp;amp;height=600&amp;amp;hl=en&amp;amp;q=1%20Grafton%20Street%2C%20Dublin%2C%20Ireland+(My%20Business%20Name)&amp;amp;ie=UTF8&amp;amp;t=&amp;amp;z=14&amp;amp;iwloc=B&amp;amp;output=embed&quot; frameborder=&quot;0&quot; scrolling=&quot;no&quot; marginheight=&quot;0&quot; marginwidth=&quot;0&quot;&gt;&lt;a href=&quot;https://www.maps.ie/create-google-map/&quot;&gt;Embed Google Map&lt;/a&gt;&lt;/iframe&gt;&lt;/div&gt;&lt;br /&gt;
 
