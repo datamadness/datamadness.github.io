@@ -23,6 +23,21 @@
     
       
       <item>
+        <title>Python function to automatically transform skewed data in Pandas DataFrame</title>
+        
+          <description>&lt;p&gt;When I stumble on a new exciting dataset, I often find myself excitedly prototyping a quick machine learning models to see what I can get out of the latest find. This is mostly easy thanks to plenty awesome packages such as scikit-learn or Keras. As a result, I spend most of my prototyping effort on cleaning and transforming the data.&lt;/p&gt;
+
+</description>
+        
+        <pubDate>Sun, 27 May 2018 08:00:00 +0000</pubDate>
+        <link>
+        /Skewness_Auto_Transform</link>
+        <guid isPermaLink="true">/Skewness_Auto_Transform</guid>
+      </item>
+      
+    
+      
+      <item>
         <title>Support Data Generator in Python</title>
         
           <description>&lt;p&gt;We all have been there - it is Sunday evening, you have couple of fresh ideas for a new customer centric strategy and you want to test how it would hold up in the real world. Unfortunately, it might be hard to get real or at least somewhat realistic customer support ticket datasets for specific business models and company size.&lt;/p&gt;
