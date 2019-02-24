@@ -25,7 +25,7 @@
       <item>
         <title>Python function to automatically transform skewed data in Pandas DataFrame</title>
         
-          <description>&lt;p&gt;When I stumble on a cool new dataset, I often find myself excitedly prototyping a quick machine learning models to see what I can get out of the latest find. This is mostly easy thanks to plenty awesome packages such as scikit-learn or Keras. As a result, I spend most of my prototyping effort on cleaning and transforming the data.&lt;/p&gt;
+          <description>&lt;p&gt;When I stumble on an interesting new dataset, I often find myself excitedly prototyping a quick machine learning models to see what type of insights I could get out of the latest find. Since hacking together a quick model can be fast thanks to plenty awesome packages such as scikit-learn or Keras, I happen to spend most of my prototyping effort on cleaning and transforming the data. (I always like to start with the simplest regressors / classifiers)&lt;/p&gt;
 
 </description>
         

@@ -32,7 +32,7 @@
     <meta property="og:site_name" content="DATAmadness" />
     <meta property="og:type" content="website" />
     <meta property="og:title" content="Python function to automatically transform skewed data in Pandas DataFrame" />
-    <meta property="og:description" content="When I stumble on a cool new dataset, I often find myself excitedly prototyping a quick machine learning models to see what I can get out of the latest find. This is mostly easy thanks to plenty awesome packages such as scikit-learn or Keras. As a result, I spend most" />
+    <meta property="og:description" content="When I stumble on an interesting new dataset, I often find myself excitedly prototyping a quick machine learning models to see what type of insights I could get out of the latest find. Since hacking together a quick model can be fast thanks to plenty awesome packages such as scikit-learn" />
     <meta property="og:url" content="/Skewness_Auto_Transform" />
     <meta property="og:image" content="/assets/images/Skew_autotransform/header_spyder.png" />
     <meta property="article:publisher" content="https://www.facebook.com/ghost" />
@@ -42,7 +42,7 @@
     <meta property="article:tag" content="Python" />
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content="Python function to automatically transform skewed data in Pandas DataFrame" />
-    <meta name="twitter:description" content="When I stumble on a cool new dataset, I often find myself excitedly prototyping a quick machine learning models to see what I can get out of the latest find. This is mostly easy thanks to plenty awesome packages such as scikit-learn or Keras. As a result, I spend most" />
+    <meta name="twitter:description" content="When I stumble on an interesting new dataset, I often find myself excitedly prototyping a quick machine learning models to see what type of insights I could get out of the latest find. Since hacking together a quick model can be fast thanks to plenty awesome packages such as scikit-learn" />
     <meta name="twitter:url" content="/" />
     <meta name="twitter:image" content="/assets/images/Skew_autotransform/header_spyder.png" />
     <meta name="twitter:label1" content="Written by" />
@@ -74,7 +74,7 @@
         "@type": "WebPage",
         "@id": "/Skewness_Auto_Transform"
     },
-    "description": "When I stumble on a cool new dataset, I often find myself excitedly prototyping a quick machine learning models to see what I can get out of the latest find. This is mostly easy thanks to plenty awesome packages such as scikit-learn or Keras. As a result, I spend most"
+    "description": "When I stumble on an interesting new dataset, I often find myself excitedly prototyping a quick machine learning models to see what type of insights I could get out of the latest find. Since hacking together a quick model can be fast thanks to plenty awesome packages such as scikit-learn"
 }
     </script>
 
@@ -189,9 +189,9 @@ into the {body} of the default.hbs template -->
 
             <section class="post-full-content">
                 <div class="kg-card-markdown">
-                    <p>When I stumble on a cool new dataset, I often find myself excitedly prototyping a quick machine learning models to see what I can get out of the latest find. This is mostly easy thanks to plenty awesome packages such as scikit-learn or Keras. As a result, I spend most of my prototyping effort on cleaning and transforming the data.</p>
+                    <p>When I stumble on an interesting new dataset, I often find myself excitedly prototyping a quick machine learning models to see what type of insights I could get out of the latest find. Since hacking together a quick model can be fast thanks to plenty awesome packages such as scikit-learn or Keras, I happen to spend most of my prototyping effort on cleaning and transforming the data. (I always like to start with the simplest regressors / classifiers)</p>
 
-<p>To speed up the initial transformation, I wrote a small python function that takes a Pandas DataFrame and automatically transforms any columns that exceed specified skewness. You can get it from <a href="https://github.com/datamadness/Automatic-skewness-transformation-for-Pandas-DataFrame">my GitHub repo</a>. Specifically these two python files:</p>
+<p>To help speeding up the initial transformation pipe, I wrote a small general python function that takes a Pandas DataFrame and automatically transforms any columns that exceed specified skewness. You can get it from <a href="https://github.com/datamadness/Automatic-skewness-transformation-for-Pandas-DataFrame">my GitHub repo</a>. Specifically, you’ll find these two python files:</p>
 
 <p><code class="highlighter-rouge">skew_autotransform.py</code><br />
 <code class="highlighter-rouge">TEST_skew_autotransform.py</code></p>
@@ -208,16 +208,17 @@ into the {body} of the default.hbs template -->
   <li>Allows to specify list of columns that should be processed or excluded</li>
   <li>Selection between Box-Cox transformation or log / exponential transformation</li>
   <li>Recognizes positive / negative skewness and applies appropriate transform (log / exp)</li>
-  <li>Plots before and after comparison</li>
+  <li>Handles negative values</li>
+  <li>Plots before and after comparison of the data</li>
 </ul>
 
 <h4 id="input-parameters-summary">Input parameters summary</h4>
 <ul>
-  <li><strong>DF</strong>: Pandas DataFrame, mandatory</li>
-  <li><strong>threshold</strong>: skewness threshold, default value = 1, optional</li>
-  <li><strong>include</strong>: list of columns to process, optional</li>
-  <li><strong>exclude</strong>: list of columns to exclude, optional</li>
-  <li><strong>exp</strong>: If true, applies log / exponential transformation, default value is False that applies Box-Cox transformation, optional</li>
+  <li><strong>DF</strong>: Pandas DataFrame, <em>mandatory</em></li>
+  <li><strong>threshold</strong>: skewness threshold, default value = 1, <em>optional</em></li>
+  <li><strong>include</strong>: list of columns to process, <em>optional</em></li>
+  <li><strong>exclude</strong>: list of columns to exclude, <em>optional</em></li>
+  <li><strong>exp</strong>: If true, applies log / exponential transformation, default value is False that applies Box-Cox transformation, <em>optional</em></li>
 </ul>
 
 <h4 id="example-1">Example #1</h4>
@@ -225,10 +226,9 @@ into the {body} of the default.hbs template -->
 
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="n">pd</span>
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="n">np</span>
-<span class="kn">from</span> <span class="nn">skew_autotransform</span> <span class="kn">import</span> <span class="n">skew_autotransform</span>
-
-<span class="c">#Import test dataset - Boston huosing data</span>
 <span class="kn">from</span> <span class="nn">sklearn.datasets</span> <span class="kn">import</span> <span class="n">load_boston</span>
+
+<span class="kn">from</span> <span class="nn">skew_autotransform</span> <span class="kn">import</span> <span class="n">skew_autotransform</span>
 
 <span class="n">exampleDF</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">load_boston</span><span class="p">()[</span><span class="s">'data'</span><span class="p">],</span> <span class="n">columns</span> <span class="o">=</span> <span class="n">load_boston</span><span class="p">()[</span><span class="s">'feature_names'</span><span class="p">]</span><span class="o">.</span><span class="n">tolist</span><span class="p">())</span>
 
@@ -312,10 +312,9 @@ Average skewness after transformation is 0.74
 
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="n">pd</span>
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="n">np</span>
-<span class="kn">from</span> <span class="nn">skew_autotransform</span> <span class="kn">import</span> <span class="n">skew_autotransform</span>
-
-<span class="c">#Import test dataset - Boston huosing data</span>
 <span class="kn">from</span> <span class="nn">sklearn.datasets</span> <span class="kn">import</span> <span class="n">load_boston</span>
+
+<span class="kn">from</span> <span class="nn">skew_autotransform</span> <span class="kn">import</span> <span class="n">skew_autotransform</span>
 
 <span class="n">exampleDF</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">load_boston</span><span class="p">()[</span><span class="s">'data'</span><span class="p">],</span> <span class="n">columns</span> <span class="o">=</span> <span class="n">load_boston</span><span class="p">()[</span><span class="s">'feature_names'</span><span class="p">]</span><span class="o">.</span><span class="n">tolist</span><span class="p">())</span>
 
@@ -394,8 +393,9 @@ Original average skewness value was 1.55
 Average skewness after transformation is 0.92
 </code></pre>
 
-<p>You can see on these examples that both cases allowed me to very quickly improve the skewness of the data from 1.5 to more reasonable 0.7 and 0.9 respective. While it is not perfect, it is generally good enough for a first prototype. 
-I would also recommend to quickly check which transformation works better for your specific dataset.</p>
+<p>The examples demonstrate that both cases allowed me to improve the skewness of the data from 1.5 to more reasonable 0.7 and 0.9 respective using only two lines of code. While the function is not perfect, it is generally good enough for a first prototype.</p>
+
+<p>Note: I would recommend to quickly check which transformation works better for your specific dataset. The Box-Cox works well in most situations, but log/exponential can return better results in some cases.</p>
 
 <p>Enjoy!</p>
 
