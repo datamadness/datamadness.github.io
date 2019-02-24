@@ -32,7 +32,7 @@
     <meta property="og:site_name" content="DATAmadness" />
     <meta property="og:type" content="website" />
     <meta property="og:title" content="Python function to automatically transform skewed data in Pandas DataFrame" />
-    <meta property="og:description" content="When I stumble on a new exciting dataset, I often find myself excitedly prototyping a quick machine learning models to see what I can get out of the latest find. This is mostly easy thanks to plenty awesome packages such as scikit-learn or Keras. As a result, I spend most" />
+    <meta property="og:description" content="When I stumble on a cool new dataset, I often find myself excitedly prototyping a quick machine learning models to see what I can get out of the latest find. This is mostly easy thanks to plenty awesome packages such as scikit-learn or Keras. As a result, I spend most" />
     <meta property="og:url" content="/Skewness_Auto_Transform" />
     <meta property="og:image" content="/assets/images/Skew_autotransform/header_spyder.png" />
     <meta property="article:publisher" content="https://www.facebook.com/ghost" />
@@ -42,7 +42,7 @@
     <meta property="article:tag" content="Python" />
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content="Python function to automatically transform skewed data in Pandas DataFrame" />
-    <meta name="twitter:description" content="When I stumble on a new exciting dataset, I often find myself excitedly prototyping a quick machine learning models to see what I can get out of the latest find. This is mostly easy thanks to plenty awesome packages such as scikit-learn or Keras. As a result, I spend most" />
+    <meta name="twitter:description" content="When I stumble on a cool new dataset, I often find myself excitedly prototyping a quick machine learning models to see what I can get out of the latest find. This is mostly easy thanks to plenty awesome packages such as scikit-learn or Keras. As a result, I spend most" />
     <meta name="twitter:url" content="/" />
     <meta name="twitter:image" content="/assets/images/Skew_autotransform/header_spyder.png" />
     <meta name="twitter:label1" content="Written by" />
@@ -74,7 +74,7 @@
         "@type": "WebPage",
         "@id": "/Skewness_Auto_Transform"
     },
-    "description": "When I stumble on a new exciting dataset, I often find myself excitedly prototyping a quick machine learning models to see what I can get out of the latest find. This is mostly easy thanks to plenty awesome packages such as scikit-learn or Keras. As a result, I spend most"
+    "description": "When I stumble on a cool new dataset, I often find myself excitedly prototyping a quick machine learning models to see what I can get out of the latest find. This is mostly easy thanks to plenty awesome packages such as scikit-learn or Keras. As a result, I spend most"
 }
     </script>
 
@@ -189,14 +189,14 @@ into the {body} of the default.hbs template -->
 
             <section class="post-full-content">
                 <div class="kg-card-markdown">
-                    <p>When I stumble on a new exciting dataset, I often find myself excitedly prototyping a quick machine learning models to see what I can get out of the latest find. This is mostly easy thanks to plenty awesome packages such as scikit-learn or Keras. As a result, I spend most of my prototyping effort on cleaning and transforming the data.</p>
+                    <p>When I stumble on a cool new dataset, I often find myself excitedly prototyping a quick machine learning models to see what I can get out of the latest find. This is mostly easy thanks to plenty awesome packages such as scikit-learn or Keras. As a result, I spend most of my prototyping effort on cleaning and transforming the data.</p>
 
 <p>To speed up the initial transformation, I wrote a small python function that takes a Pandas DataFrame and automatically transforms any columns that exceed specified skewness. You can get it from <a href="https://github.com/datamadness/Automatic-skewness-transformation-for-Pandas-DataFrame">my GitHub repo</a>. Specifically these two python files:</p>
 
 <p><code class="highlighter-rouge">skew_autotransform.py</code><br />
 <code class="highlighter-rouge">TEST_skew_autotransform.py</code></p>
 
-<p>The first file lets you import the skew_atotransform() function and use it in your project:</p>
+<p>The first file lets you import the <em>skew_autotransform()</em> function and use it in your project:</p>
 <pre><code class="nohighlight">from skew_autotransform import skew_autotransform
 skew_autotransform(DF, include = None, exclude = None, plot = False, threshold = 1, exp = False)
 </code></pre>
@@ -207,17 +207,17 @@ skew_autotransform(DF, include = None, exclude = None, plot = False, threshold =
   <li>Analyzes all columns in Pandas DataFrame and transforms the data to improve skewness if the original skewness exceeds specified threshold</li>
   <li>Allows to specify list of columns that should be processed or excluded</li>
   <li>Selection between Box-Cox transformation or log / exponential transformation</li>
-  <li>Recognizes positive / negative skewness and applies appropriate transform</li>
+  <li>Recognizes positive / negative skewness and applies appropriate transform (log / exp)</li>
   <li>Plots before and after comparison</li>
 </ul>
 
 <h4 id="input-parameters-summary">Input parameters summary</h4>
 <ul>
-  <li>DF: Pandas DataFrame, mandatory</li>
-  <li>threshold: skewness threshold, default value = 1, optional</li>
-  <li>include: list of columns to process, optional</li>
-  <li>exclude: list of columns to exclude, optional</li>
-  <li>exp: If true, applies log / exponential transformation, default i Box-Cox, optional</li>
+  <li><strong>DF</strong>: Pandas DataFrame, mandatory</li>
+  <li><strong>threshold</strong>: skewness threshold, default value = 1, optional</li>
+  <li><strong>include</strong>: list of columns to process, optional</li>
+  <li><strong>exclude</strong>: list of columns to exclude, optional</li>
+  <li><strong>exp</strong>: If true, applies log / exponential transformation, default value is False that applies Box-Cox transformation, optional</li>
 </ul>
 
 <h4 id="example-1">Example #1</h4>
@@ -238,7 +238,8 @@ print('Original average skewness value was %2.2f' %(np.mean(abs(exampleDF.skew()
 print('Average skewness after transformation is %2.2f' %(np.mean(abs(transformedDF.skew()))))
 </code></pre>
 
-<p>Output:</p>
+<p>Output:
+<img src="/assets/images/Skew_autotransform/example1_CRIM.png" alt="image post" /></p>
 
 <pre><code class="nohighlight"> 'CRIM' had 'positive' skewness of 5.22
 
