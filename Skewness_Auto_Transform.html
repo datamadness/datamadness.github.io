@@ -238,81 +238,70 @@ print('Original average skewness value was %2.2f' %(np.mean(abs(exampleDF.skew()
 print('Average skewness after transformation is %2.2f' %(np.mean(abs(transformedDF.skew()))))
 </code></pre>
 
-<p>Output:
-<img src="/assets/images/Skew_autotransform/example1_CRIM.png" alt="image post" /></p>
+<p>Output:</p>
 
+<p>Couple samples of the Before and After histograms that are automatically generated for each column(out of 13):
+<img src="/assets/images/Skew_autotransform/example1_CRIM.png" alt="image post" />
+<img src="/assets/images/Skew_autotransform/example1_DIS.png" alt="image post" /></p>
 <pre><code class="nohighlight"> 'CRIM' had 'positive' skewness of 5.22
 
  Transformation yielded skewness of 0.41
-![image post](/assets/images/Skew_autotransform/example1_CRIM.png)
  ------------------------------------------------------
 
  'ZN' had 'positive' skewness of 2.23
 
  Transformation yielded skewness of 1.10
-![image post](/assets/images/Skew_autotransform/example1_ZN.png)
  ------------------------------------------------------
 
  NO TRANSFORMATION APPLIED FOR 'INDUS' . Skewness = 0.30
-![image post](/assets/images/Skew_autotransform/example1_INDUS.png)
  ------------------------------------------------------
 
  'CHAS' had 'positive' skewness of 3.41
 
  Transformation yielded skewness of 3.41
-![image post](/assets/images/Skew_autotransform/example1_CHAS.png)
  ------------------------------------------------------
 
  'NOX' had 'positive' skewness of 0.73
 
  Transformation yielded skewness of 0.36
-![image post](/assets/images/Skew_autotransform/example1_NOX.png)
  ------------------------------------------------------
 
  NO TRANSFORMATION APPLIED FOR 'RM' . Skewness = 0.40
-![image post](/assets/images/Skew_autotransform/example1_RM.png)
  ------------------------------------------------------
 
  'AGE' had 'negative' skewness of -0.60
 
  Transformation yielded skewness of 0.94
-![image post](/assets/images/Skew_autotransform/example1_AGE.png)
  ------------------------------------------------------
 
  'DIS' had 'positive' skewness of 1.01
 
  Transformation yielded skewness of 0.15
-![image post](/assets/images/Skew_autotransform/example1_DIS.png)
  ------------------------------------------------------
 
  'RAD' had 'positive' skewness of 1.00
 
  Transformation yielded skewness of 0.29
-![image post](/assets/images/Skew_autotransform/example1_RAD.png)
  ------------------------------------------------------
 
  'TAX' had 'positive' skewness of 0.67
 
  Transformation yielded skewness of 0.33
-![image post](/assets/images/Skew_autotransform/example1_TAX.png)
  ------------------------------------------------------
 
  'PTRATIO' had 'negative' skewness of -0.80
 
  Transformation yielded skewness of 0.52
-![image post](/assets/images/Skew_autotransform/example1_PTRATIO.png)
  ------------------------------------------------------
 
  'B' had 'negative' skewness of -2.89
 
  Transformation yielded skewness of -1.13
-![image post](/assets/images/Skew_autotransform/example1_B.png)
  ------------------------------------------------------
 
  'LSTAT' had 'positive' skewness of 0.91
 
  Transformation yielded skewness of -0.32
-![image post](/assets/images/Skew_autotransform/example1_LSTAT.png)
  ------------------------------------------------------
 Original average skewness value was 1.55
 Average skewness after transformation is 0.74
@@ -338,6 +327,9 @@ print('Average skewness after transformation is %2.2f' %(np.mean(abs(transformed
 
 <p>Output:</p>
 
+<p>Couple samples of the Before and After histograms that are automatically generated for each column(out of 13):
+<img src="/assets/images/Skew_autotransform/example1_DIS_exp.png" alt="image post" />
+<img src="/assets/images/Skew_autotransform/example1_PTRATIO_exp.png" alt="image post" /></p>
 <pre><code class="nohighlight">------------------------------------------------------
 
  'CRIM' had 'positive' skewness of 5.22
@@ -401,7 +393,8 @@ Original average skewness value was 1.55
 Average skewness after transformation is 0.92
 </code></pre>
 
-<p>You can see on these examples that both cases allowed me to very quickly improve the skewness of the data from 1.5 to more reasonable 0.7 and 0.9 respective. While it is not perfect, it is generally good enough for a first prototype.</p>
+<p>You can see on these examples that both cases allowed me to very quickly improve the skewness of the data from 1.5 to more reasonable 0.7 and 0.9 respective. While it is not perfect, it is generally good enough for a first prototype. 
+I would also recommend to quickly check which transformation works better for your specific dataset.</p>
 
 <p>Enjoy!</p>
 
