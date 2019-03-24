@@ -8,6 +8,22 @@
     
       
       <item>
+        <title>TensorFlow Tip - input_fn with custom parameters</title>
+        
+          <description>&lt;p&gt;TensorFlow Estimators API is great for quickly building your custom models, but you might have noticed that the input_fn does not have an obvious way to pass custom parameters. That can be a limiting factor when building more complicated input functions with data pipline in them(&lt;a href=&quot;https://datamadness.github.io/tensorflow_estimator_large_dataset_feed&quot;&gt;see this post&lt;/a&gt;).
+This short posts shows a quick tip how to use pythonic lambda function to solve the problem on a single line of code.&lt;/p&gt;
+
+</description>
+        
+        <pubDate>Sun, 24 Mar 2019 12:00:00 +0000</pubDate>
+        <link>
+        /tensorflow_input_funtion_tip</link>
+        <guid isPermaLink="true">/tensorflow_input_funtion_tip</guid>
+      </item>
+      
+    
+      
+      <item>
         <title>TensorFlow Estimators API - Feeding large datasets from drive via TFRecords (MNIST example)</title>
         
           <description>&lt;p&gt;It is easy to hit resource limits when working with large datasets. In particular, the available memory becomes quickly a limiting factor when training your neural networks on swaths of data. The solution is to create a continuous stream of data that will sequentially read batch data from drive(s). Using this approach, the memory needs to hold only one batch of data while pre-loading the data for the next batch, allowing us to operate with datasets of virtually unlimited size.&lt;/p&gt;
@@ -63,21 +79,6 @@
         <link>
         /Support-Data-Generator</link>
         <guid isPermaLink="true">/Support-Data-Generator</guid>
-      </item>
-      
-    
-      
-      <item>
-        <title>First Test Post</title>
-        
-          <description>&lt;p&gt;TEST POST iFrame 2 goes here&lt;/p&gt;
-
-</description>
-        
-        <pubDate>Sun, 27 May 2018 08:00:00 +0000</pubDate>
-        <link>
-        /Test-Post</link>
-        <guid isPermaLink="true">/Test-Post</guid>
       </item>
       
     
