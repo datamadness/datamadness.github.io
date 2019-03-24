@@ -204,7 +204,7 @@ into the {body} of the default.hbs template -->
   <li>Serialize the data into list(s)</li>
   <li>Save the data on drive in TFRecord format</li>
   <li>Create Estimator API input function that builds dataset from TFRecords using an iterator</li>
-  <li>Train Convolutional Neural Network streaming the data via the custom input function</li>
+  <li>Train Convolutional Neural Network streaming the data via a custom input function</li>
 </ol>
 
 <h4 id="saving-data-in-tfrecord-format">Saving Data in TFRecord format</h4>
@@ -218,7 +218,7 @@ into the {body} of the default.hbs template -->
   <li>Individual dictionary values should be flattened into scalars or 1D arrays suitable for storing as series</li>
 </ul>
 
-<p>The following function tranforms a single 28x28 MNIST digit into the desired format. Notice that the dictionary can have arbitrary number of keys which is useful for storing any metadata such as original data dimension or training labels:</p>
+<p>The following function tranforms a single 28x28 MNIST digit into the desired format. Notice that the dictionary can have an arbitrary number of keys which is useful for storing any metadata such as original data dimension or training labels:</p>
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">get_observation</span><span class="p">(</span><span class="n">observation_id</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
     <span class="n">img_data</span> <span class="o">=</span> <span class="n">train_data</span><span class="p">[</span><span class="n">observation_id</span><span class="p">,:,:]</span>
     <span class="n">shape</span> <span class="o">=</span> <span class="n">img_data</span><span class="o">.</span><span class="n">shape</span>
@@ -232,7 +232,7 @@ into the {body} of the default.hbs template -->
     <span class="k">return</span> <span class="n">observation_data</span>
 </code></pre></div></div>
 
-<p>The next step in generating the TFRecords is to transform the dictionary into an object where all values from the dictionary are saved into one of the three TensorFLow datatype lists:</p>
+<p>The next step in generating the TFRecords is to transform the dictionary into an object where all values from the dictionary are saved into one of the three TensorFlow datatype lists:</p>
 
 <ul>
   <li>Int64List</li>
@@ -278,7 +278,7 @@ into the {body} of the default.hbs template -->
 
 <h4 id="builing-an-input-function-for-estimators-api-usign-tensorflow-data-api">Builing an input function for Estimators API usign TensorFlow Data API</h4>
 <p>Once we have the data saved into TFRecords on a drive, the next step is to write an input fucntion for the Estimators API that will stream the data into your model. 
-The easiest way to accomplish this is via the Data API, specifically the TFRecordDataset class that will directly create a dataset from list of TFRecord files.
+The easiest way to accomplish this is via the Data API, specifically the TFRecordDataset class that will directly create a dataset from list of TFRecord files. The Estimators and Data APIs are designed to work together, so you do not even have to initialize the iterator for your dataset.
 The only trick to this is that you have to write a parser that will transform the serialized data in lists back into format suitable for your model. As such this is also a perfect place to build your pipeline for further data preprocessing, transformation and feature engineering.</p>
 
 <p>Here is the input function for our MNIST dataset:</p>
@@ -311,7 +311,7 @@ The only trick to this is that you have to write a parser that will transform th
     
     <span class="c">#Shuffle data if in training mode</span>
     <span class="k">if</span> <span class="n">train</span><span class="p">:</span>
-        <span class="n">dataset</span> <span class="o">=</span> <span class="n">dataset</span><span class="o">.</span><span class="n">shuffle</span><span class="p">(</span><span class="n">buffer_size</span><span class="o">=</span><span class="n">batch_size</span><span class="o">*</span><span class="mi">2</span><span class="p">)</span>  <span class="c">#Shuffles along first dimension(rows)(!)  and selects from buffer</span>
+        <span class="n">dataset</span> <span class="o">=</span> <span class="n">dataset</span><span class="o">.</span><span class="n">shuffle</span><span class="p">(</span><span class="n">buffer_size</span><span class="o">=</span><span class="n">batch_size</span><span class="o">*</span><span class="mi">2</span><span class="p">)</span>
     <span class="n">dataset</span> <span class="o">=</span> <span class="n">dataset</span><span class="o">.</span><span class="n">batch</span><span class="p">(</span><span class="n">batch_size</span><span class="p">)</span>
     <span class="n">dataset</span> <span class="o">=</span> <span class="n">dataset</span><span class="o">.</span><span class="n">repeat</span><span class="p">(</span><span class="n">num_epochs</span><span class="p">)</span>
     
@@ -321,7 +321,7 @@ The only trick to this is that you have to write a parser that will transform th
     <span class="k">return</span> <span class="n">dataset</span>
 </code></pre></div></div>
 
-<h4 id="plugging-it-all-together-training-cnn-on-stream-from-tfr-files">Plugging it all together: Training CNN on stream from TFR files</h4>
+<h4 id="plugging-it-all-together-training-your-cnn-on-a-data-stream-from-tfr-files">Plugging it all together: Training your CNN on a data stream from TFR files</h4>
 
 <p>Now when we have all the bits ready, we can put it all together and train our MNIST CNN on a data streaming from TFRecord files saved on your drive. Here is the complete modified <a href="https://www.tensorflow.org/tutorials/estimators/cnn">MNIST CNN example from TensorFlow page</a>:</p>
 
@@ -415,7 +415,8 @@ The only trick to this is that you have to write a parser that will transform th
 
 <span class="k">def</span> <span class="nf">dataset_input_fn</span><span class="p">(</span><span class="n">subfolder</span><span class="p">,</span> <span class="n">batch_size</span><span class="p">,</span> <span class="n">train</span> <span class="o">=</span> <span class="bp">False</span><span class="p">,</span> <span class="n">num_epochs</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
          
-    <span class="n">filenames</span> <span class="o">=</span> <span class="p">[</span><span class="nb">file</span> <span class="k">for</span> <span class="nb">file</span> <span class="ow">in</span> <span class="n">os</span><span class="o">.</span><span class="n">listdir</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">getcwd</span><span class="p">(),</span> <span class="n">subfolder</span><span class="p">))</span> <span class="k">if</span> <span class="nb">file</span><span class="o">.</span><span class="n">endswith</span><span class="p">(</span><span class="s">'.tfrecord'</span><span class="p">)]</span>
+    <span class="n">filenames</span> <span class="o">=</span> <span class="p">[</span><span class="nb">file</span> <span class="k">for</span> <span class="nb">file</span> <span class="ow">in</span> <span class="n">os</span><span class="o">.</span><span class="n">listdir</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">getcwd</span><span class="p">(),</span> 
+		<span class="n">subfolder</span><span class="p">))</span> <span class="k">if</span> <span class="nb">file</span><span class="o">.</span><span class="n">endswith</span><span class="p">(</span><span class="s">'.tfrecord'</span><span class="p">)]</span>
     <span class="n">filenames</span> <span class="o">=</span> <span class="p">[</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">subfolder</span><span class="p">,</span> <span class="nb">file</span><span class="p">)</span> <span class="k">for</span> <span class="nb">file</span> <span class="ow">in</span> <span class="n">filenames</span><span class="p">]</span>
     <span class="n">dataset</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">TFRecordDataset</span><span class="p">(</span><span class="n">filenames</span><span class="p">)</span>
 
@@ -441,7 +442,7 @@ The only trick to this is that you have to write a parser that will transform th
     
     <span class="c">#Shuffle data if in training mode</span>
     <span class="k">if</span> <span class="n">train</span><span class="p">:</span>
-        <span class="n">dataset</span> <span class="o">=</span> <span class="n">dataset</span><span class="o">.</span><span class="n">shuffle</span><span class="p">(</span><span class="n">buffer_size</span><span class="o">=</span><span class="n">batch_size</span><span class="o">*</span><span class="mi">2</span><span class="p">)</span>  <span class="c">#Shuffles along first dimension(rows)(!)  and selects from buffer</span>
+        <span class="n">dataset</span> <span class="o">=</span> <span class="n">dataset</span><span class="o">.</span><span class="n">shuffle</span><span class="p">(</span><span class="n">buffer_size</span><span class="o">=</span><span class="n">batch_size</span><span class="o">*</span><span class="mi">2</span><span class="p">)</span>
     <span class="n">dataset</span> <span class="o">=</span> <span class="n">dataset</span><span class="o">.</span><span class="n">batch</span><span class="p">(</span><span class="n">batch_size</span><span class="p">)</span>
     <span class="n">dataset</span> <span class="o">=</span> <span class="n">dataset</span><span class="o">.</span><span class="n">repeat</span><span class="p">(</span><span class="n">num_epochs</span><span class="p">)</span>
     
@@ -465,7 +466,8 @@ The only trick to this is that you have to write a parser that will transform th
     <span class="n">hooks</span><span class="o">=</span><span class="p">[</span><span class="n">logging_hook</span><span class="p">])</span>
 <span class="c">#%% Evaluate the model</span>
 <span class="n">eval_results</span> <span class="o">=</span> <span class="n">mnist_classifier</span><span class="o">.</span><span class="n">evaluate</span><span class="p">(</span>
-        <span class="n">input_fn</span><span class="o">=</span><span class="k">lambda</span> <span class="p">:</span> <span class="n">dataset_input_fn</span><span class="p">(</span><span class="n">eval_folder</span><span class="p">,</span> <span class="n">train</span> <span class="o">=</span> <span class="bp">False</span><span class="p">,</span> <span class="n">batch_size</span> <span class="o">=</span> <span class="n">batch_size</span><span class="p">,</span> <span class="n">num_epochs</span><span class="o">=</span><span class="mi">1</span><span class="p">))</span>
+        <span class="n">input_fn</span><span class="o">=</span><span class="k">lambda</span> <span class="p">:</span> <span class="n">dataset_input_fn</span><span class="p">(</span><span class="n">eval_folder</span><span class="p">,</span> <span class="n">train</span> <span class="o">=</span> <span class="bp">False</span><span class="p">,</span> <span class="n">batch_size</span> <span class="o">=</span> <span class="n">batch_size</span><span class="p">,</span>
+			<span class="n">num_epochs</span><span class="o">=</span><span class="mi">1</span><span class="p">))</span>
         <span class="c">#input_fn=dataset_eval_input_fn)</span>
 <span class="k">print</span><span class="p">(</span><span class="n">eval_results</span><span class="p">)</span>
 
