@@ -8,6 +8,21 @@
     
       
       <item>
+        <title>TensorFlow Estimators API - Feeding large datasets from drive via TFRecords (MNIST example)</title>
+        
+          <description>&lt;p&gt;It is easy to hit resource limits when working with large datasets. In particular, the available memory becomes quickly a limiting factor when training your neural networks on swaths of data. The solution is to create a continuous stream of data that will sequentially read batch data from drive(s). Using this approach, the memory needs to hold only one batch of data while pre-loading the data for the next batch, allowing us to operate with datasets of virtually unlimited size.&lt;/p&gt;
+
+</description>
+        
+        <pubDate>Sat, 23 Mar 2019 10:35:00 +0000</pubDate>
+        <link>
+        /tensorflow_estimator_large_dataset_feed</link>
+        <guid isPermaLink="true">/tensorflow_estimator_large_dataset_feed</guid>
+      </item>
+      
+    
+      
+      <item>
         <title>Planning Support Team Resources in Start-ups Using Statistics</title>
         
           <description>Planning staff allocation for customer support can be challenging since great support is essential for company success but it can consume large portion of usually limited budget. This can be particularly true in smaller companies and start-ups where the case volume significantly fluctuates and the staff also needs to work on other projects besides support.
