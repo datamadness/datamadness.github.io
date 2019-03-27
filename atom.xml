@@ -10,7 +10,7 @@
       <item>
         <title>Time signal classification using Convolutional Neural Network in TensorFlow - Part 1</title>
         
-          <description>&lt;p&gt;This example explores the possibility to use Convolutional Neural Network(CNN) to classify time domain signal. The fundamental thesis of this work is that arbitrarily long sampled time domain signal can be divided into short segments using a window function. These segments can be further converted to frequency domain data via &lt;a href=&quot;https://en.wikipedia.org/wiki/Short-time_Fourier_transform&quot;&gt;Short Time Fourier Transform(STFT)&lt;/a&gt;	. This approach is well known from acoustics, but it is easily applicable at any frequency spectrum.
+          <description>&lt;p&gt;This example explores the possibility to use Convolutional Neural Network(CNN) to classify time domain signal. The fundamental thesis of this work is that arbitrarily long sampled time domain signal can be divided into short segments using a window function. These segments can be further converted to frequency domain data via &lt;a href=&quot;https://en.wikipedia.org/wiki/Short-time_Fourier_transform&quot;&gt;Short Time Fourier Transform(STFT)&lt;/a&gt;	. This approach is well known from acoustics, but it is easily applicable on any frequency spectrum.
 The goal of this work is to add an alternative tool to ensemble of classifiers for time signal predictions. As an example, this specific classifier example was developed on &lt;a href=&quot;https://www.kaggle.com/c/vsb-power-line-fault-detection/data&quot;&gt;VSB Power Line Fault Detection dataset&lt;/a&gt; where I aimed to combine three classifiers:&lt;/p&gt;
 
 </description>

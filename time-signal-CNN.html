@@ -34,7 +34,7 @@
     <meta property="og:title" content="Time signal classification using Convolutional Neural Network in TensorFlow - Part 1" />
     <meta property="og:description" content="This example explores the possibility to use Convolutional Neural Network(CNN) to classify time domain signal. The fundamental thesis of this work is that arbitrarily long sampled time domain signal can be divided into short segments using a window function. These segments can be further converted to frequency domain data via" />
     <meta property="og:url" content="/time-signal-CNN" />
-    <meta property="og:image" content="/assets/images/time_signal_CNN/1920px-digital_signal.png" />
+    <meta property="og:image" content="/assets/images/time_signal_CNN/1280px-sampled_signal.png" />
     <meta property="article:publisher" content="https://www.facebook.com/ghost" />
     <meta property="article:author" content="https://www.facebook.com/ghost" />
     <meta property="article:published_time" content="2019-03-25T15:00:00-07:00" />
@@ -44,7 +44,7 @@
     <meta name="twitter:title" content="Time signal classification using Convolutional Neural Network in TensorFlow - Part 1" />
     <meta name="twitter:description" content="This example explores the possibility to use Convolutional Neural Network(CNN) to classify time domain signal. The fundamental thesis of this work is that arbitrarily long sampled time domain signal can be divided into short segments using a window function. These segments can be further converted to frequency domain data via" />
     <meta name="twitter:url" content="/" />
-    <meta name="twitter:image" content="/assets/images/time_signal_CNN/1920px-digital_signal.png" />
+    <meta name="twitter:image" content="/assets/images/time_signal_CNN/1280px-sampled_signal.png" />
     <meta name="twitter:label1" content="Written by" />
     <meta name="twitter:data1" content="DATAmadness" />
     <meta name="twitter:label2" content="Filed under" />
@@ -66,7 +66,7 @@
     "url": "/time-signal-CNN",
     "image": {
         "@type": "ImageObject",
-        "url": "/assets/images/time_signal_CNN/1920px-digital_signal.png",
+        "url": "/assets/images/time_signal_CNN/1280px-sampled_signal.png",
         "width": 2000,
         "height": 666
     },
@@ -183,13 +183,13 @@ into the {body} of the default.hbs template -->
             </header>
 
             
-            <figure class="post-full-image" style="background-image: url(/assets/images/time_signal_CNN/1920px-digital_signal.png)">
+            <figure class="post-full-image" style="background-image: url(/assets/images/time_signal_CNN/1280px-sampled_signal.png)">
             </figure>
             
 
             <section class="post-full-content">
                 <div class="kg-card-markdown">
-                    <p>This example explores the possibility to use Convolutional Neural Network(CNN) to classify time domain signal. The fundamental thesis of this work is that arbitrarily long sampled time domain signal can be divided into short segments using a window function. These segments can be further converted to frequency domain data via <a href="https://en.wikipedia.org/wiki/Short-time_Fourier_transform">Short Time Fourier Transform(STFT)</a>	. This approach is well known from acoustics, but it is easily applicable at any frequency spectrum.
+                    <p>This example explores the possibility to use Convolutional Neural Network(CNN) to classify time domain signal. The fundamental thesis of this work is that arbitrarily long sampled time domain signal can be divided into short segments using a window function. These segments can be further converted to frequency domain data via <a href="https://en.wikipedia.org/wiki/Short-time_Fourier_transform">Short Time Fourier Transform(STFT)</a>	. This approach is well known from acoustics, but it is easily applicable on any frequency spectrum.
 The goal of this work is to add an alternative tool to ensemble of classifiers for time signal predictions. As an example, this specific classifier example was developed on <a href="https://www.kaggle.com/c/vsb-power-line-fault-detection/data">VSB Power Line Fault Detection dataset</a> where I aimed to combine three classifiers:</p>
 
 <ul>
@@ -198,41 +198,41 @@ The goal of this work is to add an alternative tool to ensemble of classifiers f
   <li>Convolutional Neural Network(CNN)</li>
 </ul>
 
-<p>These three methods are based on very different principles and therefore, they can well complement each other with different sets of strengths and weaknesses.</p>
+<p>These three methods are based on very different principles and therefore, they can complement each other with different sets of strengths and weaknesses.</p>
 
-<p>####Full example repo on GitHub
-If you want to get the files for the full example, you can get it from <a href="https://github.com/datamadness/Time-signal-classification-using-Convolutional-Neural-Network">this GitHub repo</a>. You’ll find two files:
+<h4 id="full-example-repo-on-github">Full example repo on GitHub</h4>
+<p>If you want to get the files for the full example, you can get it from <a href="https://github.com/datamadness/Time-signal-classification-using-Convolutional-Neural-Network">this GitHub repo</a>. You’ll find two files:
 <code class="highlighter-rouge">frequency domain TFRecord transformation.py</code><br />
 <code class="highlighter-rouge">CNN_TFR_discharge_detection.py</code></p>
 
-<p>###Signal Processing
-####The Raw Data
-The raw dataset contains time domain measurements of 3 phase transmission line. Each measurement contains three individual phase signals with 800 000 discrete data points covering 20ms (or one cycle at 50Hz). The following plot shows the data for single measurement:
+<h3 id="signal-processing">Signal Processing</h3>
+<h4 id="the-raw-data">The Raw Data</h4>
+<p>The raw dataset contains time domain measurements of 3 phase transmission line. Each measurement contains three individual phase signals with 800 000 discrete data points covering 20ms (or one cycle at 50Hz). The following plot shows the data for single measurement:
 <img src="/assets/images/time_signal_CNN/raw_data_visualization.png" alt="image post" /></p>
 
 <p>Each phase can have one class:</p>
 
 <ul>
   <li><strong>0</strong>: no fault / discharge</li>
-  <li><strong>1</strong>: fault / discharge</li>
+  <li><strong>1</strong>: fault / discharge present</li>
 </ul>
 
-<p>Therefore, for the purposes of this particular classifier, we take each indivudual phase signal as a single independent sample. As a result, in the raw form we have 800k features per sample and a binary classification problem.</p>
+<p>Therefore, for the purposes of this particular classifier, we take each individual phase signal as a single independent sample. As a result, in the raw form we have 800k features per sample and a binary classification problem.</p>
 
 <p><em>Warning: We still must split the data into train/test based on measurements. Having different phases from a single measurement in both train and test dataset would most certainly lead to information leak!</em></p>
 
-<p>####Data Transformation
-Here is a summary what we know about the raw signal data:</p>
+<h4 id="data-transformation">Data Transformation</h4>
+<p>Here is a summary what we know about the raw signal data:</p>
 
 <ul>
   <li>1D tensor with length $800e5$</li>
   <li>Measurement length of $20ms$ gives us</li>
-  <li>Sampling frequency &amp;f_s=40MHz$</li>
-  <li>STFT can reliably resolve frequency domain features up to &amp;20MHz&amp; as per <a href="https://en.wikipedia.org/wiki/Nyquist–Shannon_sampling_theorem">sampling theorem</a></li>
+  <li>Sampling frequency $f_s=40MHz$</li>
+  <li>STFT can reliably resolve frequency domain features up to $20MHz$ as per <a href="https://en.wikipedia.org/wiki/Nyquist–Shannon_sampling_theorem">sampling theorem</a></li>
 </ul>
 
-<p>With this knowledge, we can use scipy stft to transform the 1D time domain data into 2D tensor of frequency domain features. That being said, the overall length of the data is still going to amount to $800e5&amp; datapoints.
-As an example STFT with $nperseg=2000$ will return 2D array with shape $1000x800$.
+<p>With this knowledge, we can use scipy stft to transform the 1D time domain data into 2D tensor of frequency domain features. That being said, the overall length of the data is still going to amount to $800e5$ datapoints.
+As an example STFT with $nperseg=2000$ will return 2D array with shape 1000x800.
 To reduce the data size, we can use block_reduce with stride of 4 and np.max function(works just like pooling in CNN).</p>
 
 <p>Here is the complete function to execute this two step transformation:</p>
@@ -256,12 +256,13 @@ To reduce the data size, we can use block_reduce with stride of 4 and np.max fun
 </code></pre></div></div>
 <p>The following image plot shows the output spectrogram from a single 20ms signal:
 <img src="/assets/images/time_signal_CNN/spectrogram.png" alt="image post" />
-The final dimension is 250x200 points, which is considerable reduction with reasonable information loss. Additionally, the resulting 2D tensor is considerably more favorable to CNN architectures that most of us are familiar with from image classification.</p>
+The final dimension is 250x200 points, which is considerable reduction with acceptable information loss. Additionally, the resulting 2D tensor is more favorable to CNN architectures that most of us are familiar with from image classification.</p>
 
-<p>####TFrecords
-Since the transformed training data still require gigabytes of memory, I save them into smaller TFRecords that will allow smooth data streaming during CNN training in TensorFlow. This is described in more detail in <a href="https://datamadness.github.io/tensorflow_estimator_large_dataset_feed">this post</a>.</p>
+<h4 id="upsampling-and-tfrecords-for-data-streaming">Upsampling and TFrecords for Data Streaming</h4>
+<p>Since the transformed training data still require gigabytes of memory, I save them into smaller TFRecords that will allow smooth data streaming during CNN training in TensorFlow. This is described in more detail in <a href="https://datamadness.github.io/tensorflow_estimator_large_dataset_feed">this post</a>.</p>
 
-<p>The following code will split the measurement ids into train/test datasets while protecting phase signals from single measurement being split. Since the classes are also highly unbalanced(about 14:1), the code will also upsample the minor class using permutation operations to avoid having duplicated samples.
+<p>The following code will split the measurement ids into train/test datasets while protecting phase signals from single measurement being split. 
+Since the classes are also highly unbalanced(about 14:1), the code will also upsample the minor class using permutation operations to avoid having duplicated samples.
 Note: Only train data are upsampled.</p>
 
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="n">pd</span>
