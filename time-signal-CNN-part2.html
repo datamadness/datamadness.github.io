@@ -492,9 +492,8 @@ to accommodate this solution, the input function uses TensorFlow Data API and TF
 
 <p><img src="/assets/images/time_signal_CNN/CNN architecture 2048.png" alt="image post" /></p>
 
-<p><strong>Performance Evaluation</strong></p>
-
-<p><img src="/assets/images/time_signal_CNN/Learning_plot_2048_35.png" alt="image post" />
+<p><strong>Performance Evaluation</strong>
+<img src="/assets/images/time_signal_CNN/Learning_plot_2048_35.png" alt="image post" />
 <strong>Hyper-parameters:</strong></p>
 
 <ul>
@@ -512,19 +511,18 @@ The main difference between the two architectures was in the training time where
 Looking at the evaluation plots vs training epoch, we can also estimate that there is very little to no improvement in running the training beyond epoch #30 and we only increase the risk of overfitting.</p>
 
 <p><strong>Example results:</strong></p>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">Confusion</span> <span class="n">matrix</span>
 
-<blockquote>
-  <p>Confusion matrix</p>
+                 <span class="n">Score</span> <span class="n">positive</span>    <span class="n">Score</span> <span class="n">negative</span>
+<span class="n">Actual</span> <span class="n">positive</span>        <span class="mi">90</span>                <span class="mi">18</span>
+<span class="n">Actual</span> <span class="n">negative</span>       <span class="mi">118</span>              <span class="mi">1952</span>
 
-  <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>             Score positive    Score negative Actual positive        90                18 Actual negative       118              1952
-</code></pre></div>  </div>
+<span class="n">Accuracy</span>  <span class="mf">0.94</span>
+<span class="n">MCC</span> <span class="o">=</span> <span class="mf">0.57</span>
 
-  <p>Accuracy  0.94
-MCC = 0.57</p>
-
-  <p>INFO:tensorflow:loss = 0.08221432, step = 10556 (150.680 sec)
-INFO:tensorflow:global_step/sec: 0.241183</p>
-</blockquote>
+<span class="n">INFO</span><span class="p">:</span><span class="n">tensorflow</span><span class="p">:</span><span class="n">loss</span> <span class="o">=</span> <span class="mf">0.08221432</span><span class="p">,</span> <span class="n">step</span> <span class="o">=</span> <span class="mi">10556</span> <span class="p">(</span><span class="mf">150.680</span> <span class="n">sec</span><span class="p">)</span>
+<span class="n">INFO</span><span class="p">:</span><span class="n">tensorflow</span><span class="p">:</span><span class="n">global_step</span><span class="o">/</span><span class="n">sec</span><span class="p">:</span> <span class="mf">0.241183</span>
+</code></pre></div></div>
 
                 </div>
             </section>
