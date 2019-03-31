@@ -505,10 +505,11 @@ to accommodate this solution, the input function uses TensorFlow Data API and TF
 
 <h4 id="conclusion">Conclusion</h4>
 
-<p>Both architectures that mostly differed in the number of features and nodes showed similar prediction power achieving accuracy(AUC) of ~0.94 and Mathews Correlation Coefficient close to 0.6. For comparison, this is very similar to what we were able to achieve with gradient boosted trees on data from statistical analysis of the time signal. Nevertheless, the construction of the CNN solution was considerably less effort intensive as the CNN automatically extracts the features at a cost of longer training time. If we consider that human capital is more expensive than computing power, this metrics still comes in favour of the CNN.
-That being said, the ultimate goal is to use ensemble of classifiers that will take a vote on the final class and further increase the predictive power.
-The main difference between the two architectures was in the training time where the model #1 required 255 seconds per 100 steps and model #2 required 150 seconds. Therefore, all other metrics being the same, the model #2 would be more favorable as it is faster and requires less computing resources.
-Looking at the evaluation plots vs training epoch, we can also estimate that there is very little to no improvement in running the training beyond epoch #30 and we only increase the risk of overfitting.</p>
+<p>Both architectures that mostly differed in the number of features and nodes showed similar prediction power achieving accuracy(AUC) of ~0.94 and Mathews Correlation Coefficient around 0.57. For comparison, this is very similar to what we were able to achieve with gradient boosted trees on data from statistical analysis of the time signal. Nevertheless, the construction of the CNN solution was considerably less effort intensive as the CNN automatically extracts the features at a cost of longer training time. If we consider that human capital is more expensive than computing power, this metrics still comes in favour of the CNN.That being said, the ultimate goal is to use ensemble of classifiers that will take a vote on the final class and further increase the predictive power.</p>
+
+<p>The main difference between the two architectures was in the training time where the model #1 required 255 seconds per 100 steps and model #2 required 150 seconds. Therefore, all other metrics being the same, the model #2 would be more favorable as it is faster and requires less computing resources.</p>
+
+<p>Looking at the evaluation plots vs training epoch, we can also estimate that there is very little to no improvement in running the training beyond epoch #30 and we only increase the risk of overfitting.</p>
 
 <p><strong>Example results:</strong></p>
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">Confusion</span> <span class="n">matrix</span>
