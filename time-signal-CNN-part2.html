@@ -218,7 +218,7 @@ to accommodate this solution, the input function uses TensorFlow Data API and TF
   <li>Establish pipeline for data transformation before feeding it to the model</li>
 </ul>
 
-<p>The input_fn receives three parameters:</p>
+<p>The input_fn receives four parameters:</p>
 
 <ul>
   <li>path to TFRecords</li>
@@ -304,8 +304,9 @@ to accommodate this solution, the input function uses TensorFlow Data API and TF
         <span class="k">return</span> <span class="p">{</span><span class="s">"signal_data"</span><span class="p">:</span> <span class="n">signal_data</span><span class="p">,</span> <span class="s">"bw_data"</span><span class="p">:</span> <span class="n">bw_data</span><span class="p">,</span> <span class="s">"signal_ID"</span><span class="p">:</span> <span class="n">parsed</span><span class="p">[</span><span class="s">"signal_ID"</span><span class="p">]},</span> <span class="n">label</span>
 </code></pre></div></div>
 
-<p>Tip: Manually extracting information from TFRecords
-You can easily extract specific parameters from TFRecords without running the Estimator API. Here is an example code snippet that extracts labels from the evaluation set:
+<p><strong>Tip: Manually extracting information from TFRecords</strong></p>
+
+<p>You can easily extract specific parameters from TFRecords without running the Estimator API. Here is an example code snippet that extracts labels from the evaluation set:
 #%% Get labels from TFR files</p>
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">with</span> <span class="n">tf</span><span class="o">.</span><span class="n">Session</span><span class="p">()</span> <span class="k">as</span> <span class="n">sess</span><span class="p">:</span>
     <span class="n">dataset</span> <span class="o">=</span> <span class="n">dataset_input_fn</span><span class="p">(</span><span class="n">eval_folder</span><span class="p">,</span> <span class="n">train</span> <span class="o">=</span> <span class="bp">False</span><span class="p">,</span> <span class="n">batch_size</span> <span class="o">=</span> <span class="mi">2178</span><span class="p">,</span> <span class="n">num_epochs</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
@@ -316,8 +317,9 @@ You can easily extract specific parameters from TFRecords without running the Es
 </code></pre></div></div>
 
 <h4 id="cnn-model-1">CNN Model #1</h4>
-<p>The first model consists of four convolutional layer and two dense layers with relu activation functions. Most layers have dropout rates to reduce overfitting as we have limited training dataset and the trainig will have to be conducted using multiple epochs. The following visualizations shows the overall CNN architecture:
-<img src="/assets/images/time_signal_CNN/CNN architecture 4096.png" alt="image post" /></p>
+<p>The first model consists of four convolutional layer and two dense layers with relu activation functions. Most layers have dropout rates to reduce overfitting as we have limited training dataset and the trainig will have to be conducted using multiple epochs. The following visualizations shows the overall CNN architecture:</p>
+
+<p><img src="/assets/images/time_signal_CNN/CNN architecture 4096.png" alt="image post" /></p>
 
 <p>and here is the equivalent python code for TensorFlow estimators:</p>
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">#%% Building the CNN Classifier</span>
@@ -434,10 +436,11 @@ You can easily extract specific parameters from TFRecords without running the Es
 
 <p>Since we are dealing with highly imbalanced classes, the standard accuracy metrics for evaluation would be very unreliable. Therefore, custom evaluation using confusion matrix and Mathews Correlation Coefficient (MCC) is calculated based on the predicted probabilities.</p>
 
-<p>Mathews Correlation matrix:
-<script type="math/tex">MCC = {(TP*TN) - (FP*FN) \over \sqrt{(TP+FP)*(TP+FN)*(TN+FP)*(TN+FN)}}</script></p>
+<p>Mathews Correlation matrix:</p>
 
-<p>To do this, we first load the predicted probabilities for the evalueation set and assign classes based on an input threshold value determining the range for class = 1:</p>
+<script type="math/tex; mode=display">MCC = {(TP*TN) - (FP*FN) \over \sqrt{(TP+FP)*(TP+FN)*(TN+FP)*(TN+FN)}}</script>
+
+<p>To do this, we first load the predicted probabilities for the evaluation set and assign classes based on an input threshold value determining the range for class = 1:</p>
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">score_model_measurement</span><span class="p">(</span><span class="n">probs</span><span class="p">,</span><span class="n">threshold</span><span class="p">):</span>
     <span class="n">predicted</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">1</span> <span class="k">if</span> <span class="n">x</span> <span class="o">&gt;</span> <span class="n">threshold</span> <span class="k">else</span> <span class="mi">0</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">probs</span><span class="p">[:,</span><span class="mi">0</span><span class="p">]])</span>           
     <span class="k">return</span> <span class="n">predicted</span>
@@ -491,9 +494,8 @@ You can easily extract specific parameters from TFRecords without running the Es
 
 <p><strong>Performance Evaluation</strong></p>
 
-<p><img src="/assets/images/time_signal_CNN/Learning_plot_2048_35.png" alt="image post" /></p>
-
-<p><strong>Hyper-parameters:</strong></p>
+<p><img src="/assets/images/time_signal_CNN/Learning_plot_2048_35.png" alt="image post" />
+<strong>Hyper-parameters:</strong></p>
 
 <ul>
   <li>Epochs: 35</li>
@@ -502,10 +504,12 @@ You can easily extract specific parameters from TFRecords without running the Es
   <li>Shuffle: Yes</li>
 </ul>
 
-<p>Conclusion
-Both architectures that mostly differed in the number of features and nodes showed similar prediction power achieving accuracy(AUC) of ~0.94 and Mathews Correlation Coefficient close to 0.6. For comparison, this is very similar to what we were able to achieve with gradient boosted trees on data from statistical analysis of the time signal. Nevertheless, the construction of the CNN solution was considerably less effort intensive as the CNN automatically extracts the features at a cost of longer training time. If we consider that human capital is more expensive than computing power, this metrics still comes in favour of the CNN.
+<h4 id="conclusion">Conclusion</h4>
+
+<p>Both architectures that mostly differed in the number of features and nodes showed similar prediction power achieving accuracy(AUC) of ~0.94 and Mathews Correlation Coefficient close to 0.6. For comparison, this is very similar to what we were able to achieve with gradient boosted trees on data from statistical analysis of the time signal. Nevertheless, the construction of the CNN solution was considerably less effort intensive as the CNN automatically extracts the features at a cost of longer training time. If we consider that human capital is more expensive than computing power, this metrics still comes in favour of the CNN.
 That being said, the ultimate goal is to use ensemble of classifiers that will take a vote on the final class and further increase the predictive power.
-The main difference between the two architectures was in the training time where the model #1 required 255 seconds per 100 steps and model #2 required 150 seconds. Therefore, all other metrics being the same, the model #2 would be more favorable as it is faster and requires less computing resources.</p>
+The main difference between the two architectures was in the training time where the model #1 required 255 seconds per 100 steps and model #2 required 150 seconds. Therefore, all other metrics being the same, the model #2 would be more favorable as it is faster and requires less computing resources.
+Looking at the evaluation plots vs training epoch, we can also estimate that there is very little to no improvement in running the training beyond epoch #30 and we only increase the risk of overfitting.</p>
 
 <p><strong>Example results:</strong></p>
 
