@@ -8,6 +8,21 @@
     
       
       <item>
+        <title>Time signal classification using Convolutional Neural Network in TensorFlow - Part 2</title>
+        
+          <description>&lt;p&gt;After transforming 1D time domain data series into frequency 2D maps in &lt;a href=&quot;https://datamadness.github.io/time-signal-CNN&quot;&gt;part 1&lt;/a&gt; of this miniseries, we’ll now focus on building the actual Convolutional Neural Network binary classification model. The goal is to detect whether the original time domain signal exhibits partial discharge and is likely to result in a power line failure in the future.&lt;/p&gt;
+
+</description>
+        
+        <pubDate>Thu, 28 Mar 2019 23:41:00 +0000</pubDate>
+        <link>
+        /time-signal-CNN-part2</link>
+        <guid isPermaLink="true">/time-signal-CNN-part2</guid>
+      </item>
+      
+    
+      
+      <item>
         <title>Time signal classification using Convolutional Neural Network in TensorFlow - Part 1</title>
         
           <description>&lt;p&gt;This example explores the possibility to use Convolutional Neural Network(CNN) to classify time domain signal. The fundamental thesis of this work is that arbitrarily long sampled time domain signal can be divided into short segments using a window function. These segments can be further converted to frequency domain data via &lt;a href=&quot;https://en.wikipedia.org/wiki/Short-time_Fourier_transform&quot;&gt;Short Time Fourier Transform(STFT)&lt;/a&gt;	. This approach is well known from acoustics, but it is easily applicable on any frequency spectrum.

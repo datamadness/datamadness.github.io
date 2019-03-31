@@ -1,0 +1,881 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+    <!-- Document Settings -->
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+    <!-- Base Meta -->
+    <!-- dynamically fixing the title for tag/author pages -->
+
+
+
+    <title>Time signal classification using Convolutional Neural Network in TensorFlow - Part 2</title>
+    <meta name="HandheldFriendly" content="True" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- Styles'n'Scripts -->
+    <link rel="stylesheet" type="text/css" href="/assets/built/screen.css" />
+    <link rel="stylesheet" type="text/css" href="/assets/built/screen.edited.css" />
+    <link rel="stylesheet" type="text/css" href="/assets/built/syntax.css" />
+    <!-- highlight.js -->
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css">
+    <style>.hljs { background: none; }</style>
+
+    <!-- This tag outputs SEO meta+structured data and other important settings -->
+    <meta name="description" content="Exploring the world through data analysis and machine learning" />
+    <link rel="shortcut icon" href="/assets/images/favicon.png" type="image/png" />
+    <link rel="canonical" href="/time-signal-CNN-part2" />
+    <meta name="referrer" content="no-referrer-when-downgrade" />
+
+     <!--title below is coming from _includes/dynamic_title-->
+    <meta property="og:site_name" content="DATAmadness" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Time signal classification using Convolutional Neural Network in TensorFlow - Part 2" />
+    <meta property="og:description" content="After transforming 1D time domain data series into frequency 2D maps in part 1 of this miniseries, we’ll now focus on building the actual Convolutional Neural Network binary classification model. The goal is to detect whether the original time domain signal exhibits partial discharge and is likely to result in" />
+    <meta property="og:url" content="/time-signal-CNN-part2" />
+    <meta property="og:image" content="/assets/images/time_signal_CNN/spectrogram2.png" />
+    <meta property="article:publisher" content="https://www.facebook.com/ghost" />
+    <meta property="article:author" content="https://www.facebook.com/ghost" />
+    <meta property="article:published_time" content="2019-03-28T16:41:00-07:00" />
+    <meta property="article:modified_time" content="2019-03-28T16:41:00-07:00" />
+    <meta property="article:tag" content="Python" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Time signal classification using Convolutional Neural Network in TensorFlow - Part 2" />
+    <meta name="twitter:description" content="After transforming 1D time domain data series into frequency 2D maps in part 1 of this miniseries, we’ll now focus on building the actual Convolutional Neural Network binary classification model. The goal is to detect whether the original time domain signal exhibits partial discharge and is likely to result in" />
+    <meta name="twitter:url" content="/" />
+    <meta name="twitter:image" content="/assets/images/time_signal_CNN/spectrogram2.png" />
+    <meta name="twitter:label1" content="Written by" />
+    <meta name="twitter:data1" content="DATAmadness" />
+    <meta name="twitter:label2" content="Filed under" />
+    <meta name="twitter:data2" content="Python" />
+    <meta name="twitter:site" content="@Mr_Bubble_Wrap" />
+    <meta name="twitter:creator" content="@Mr_Bubble_Wrap" />
+    <meta property="og:image:width" content="1400" />
+    <meta property="og:image:height" content="933" />
+
+    <script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "Website",
+    "publisher": {
+        "@type": "Organization",
+        "name": "DATAmadness",
+        "logo": "/assets/images/blog-icon.png"
+    },
+    "url": "/time-signal-CNN-part2",
+    "image": {
+        "@type": "ImageObject",
+        "url": "/assets/images/time_signal_CNN/spectrogram2.png",
+        "width": 2000,
+        "height": 666
+    },
+    "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "/time-signal-CNN-part2"
+    },
+    "description": "After transforming 1D time domain data series into frequency 2D maps in part 1 of this miniseries, we’ll now focus on building the actual Convolutional Neural Network binary classification model. The goal is to detect whether the original time domain signal exhibits partial discharge and is likely to result in"
+}
+    </script>
+
+    <!-- <script type="text/javascript" src="https://demo.ghost.io/public/ghost-sdk.min.js?v=724281a32e"></script>
+    <script type="text/javascript">
+    ghost.init({
+    	clientId: "ghost-frontend",
+    	clientSecret: "f84a07a72b17"
+    });
+    </script> -->
+
+    <meta name="generator" content="Jekyll 3.6.2" />
+    <link rel="alternate" type="application/rss+xml" title="Time signal classification using Convolutional Neural Network in TensorFlow - Part 2" href="/feed.xml" />
+
+
+</head>
+<body class="post-template">
+
+    <div class="site-wrapper">
+        <!-- All the main content gets inserted here, index.hbs, post.hbs, etc -->
+        <!-- default -->
+
+<!-- The tag above means: insert everything in this file
+into the {body} of the default.hbs template -->
+
+<header class="site-header outer">
+    <div class="inner">
+        <nav class="site-nav">
+    <div class="site-nav-left">
+        
+            
+                <a class="site-nav-logo" href="/"><img src="/assets/images/blog-icon.png" alt="DATAmadness" /></a>
+            
+        
+        
+            <ul class="nav" role="menu">
+    <li class="nav-home" role="menuitem"><a href="/">Home</a></li>
+    <li class="nav-about" role="menuitem"><a href="/about/">About</a></li>
+    <li class="nav-Statistics" role="menuitem"><a href="/tag/statistics/">Statistics</a></li>
+    <li class="nav-Python" role="menuitem"><a href="/tag/python/">Python</a></li>
+</ul>
+
+        
+    </div>
+    <div class="site-nav-right">
+        <div class="social-links">
+            
+                <a class="social-link social-link-fb" href="https://facebook.com/ghost" target="_blank" rel="noopener"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32"><path d="M19 6h5V0h-5c-3.86 0-7 3.14-7 7v3H8v6h4v16h6V16h5l1-6h-6V7c0-.542.458-1 1-1z"/></svg>
+</a>
+            
+            
+                <a class="social-link social-link-tw" href="https://twitter.com/Mr_Bubble_Wrap" target="_blank" rel="noopener"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32"><path d="M30.063 7.313c-.813 1.125-1.75 2.125-2.875 2.938v.75c0 1.563-.188 3.125-.688 4.625a15.088 15.088 0 0 1-2.063 4.438c-.875 1.438-2 2.688-3.25 3.813a15.015 15.015 0 0 1-4.625 2.563c-1.813.688-3.75 1-5.75 1-3.25 0-6.188-.875-8.875-2.625.438.063.875.125 1.375.125 2.688 0 5.063-.875 7.188-2.5-1.25 0-2.375-.375-3.375-1.125s-1.688-1.688-2.063-2.875c.438.063.813.125 1.125.125.5 0 1-.063 1.5-.25-1.313-.25-2.438-.938-3.313-1.938a5.673 5.673 0 0 1-1.313-3.688v-.063c.813.438 1.688.688 2.625.688a5.228 5.228 0 0 1-1.875-2c-.5-.875-.688-1.813-.688-2.75 0-1.063.25-2.063.75-2.938 1.438 1.75 3.188 3.188 5.25 4.25s4.313 1.688 6.688 1.813a5.579 5.579 0 0 1 1.5-5.438c1.125-1.125 2.5-1.688 4.125-1.688s3.063.625 4.188 1.813a11.48 11.48 0 0 0 3.688-1.375c-.438 1.375-1.313 2.438-2.563 3.188 1.125-.125 2.188-.438 3.313-.875z"/></svg>
+</a>
+            
+        </div>
+        
+    </div>
+</nav>
+
+		
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true
+    }
+  });
+</script>
+<script
+  type="text/javascript"
+  charset="utf-8"
+  src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"
+>
+</script>
+<script
+  type="text/javascript"
+  charset="utf-8"
+  src="https://vincenttam.github.io/javascripts/MathJaxLocal.js"
+>
+</script>
+
+    </div>
+</header>
+
+<!-- Everything inside the #post tags pulls data from the post -->
+<!-- #post -->
+
+<main id="site-main" class="site-main outer" role="main">
+    <div class="inner">
+
+        <article class="post-full post tag-Python ">
+
+            <header class="post-full-header">
+                <section class="post-full-meta">
+                    <time class="post-full-meta-date" datetime="28 March 2019">28 March 2019</time>
+                    
+                        <span class="date-divider">/</span>
+                        
+                            
+                               <a href='/tag/python/'>PYTHON</a>
+                            
+                        
+                    
+                </section>
+                <h1 class="post-full-title">Time signal classification using Convolutional Neural Network in TensorFlow - Part 2</h1>
+            </header>
+
+            
+            <figure class="post-full-image" style="background-image: url(/assets/images/time_signal_CNN/spectrogram2.png)">
+            </figure>
+            
+
+            <section class="post-full-content">
+                <div class="kg-card-markdown">
+                    <p>After transforming 1D time domain data series into frequency 2D maps in <a href="https://datamadness.github.io/time-signal-CNN">part 1</a> of this miniseries, we’ll now focus on building the actual Convolutional Neural Network binary classification model. The goal is to detect whether the original time domain signal exhibits partial discharge and is likely to result in a power line failure in the future.</p>
+
+<p>Two CNN models of various depth and complexity are presented to discuss the hyperparameters, results and suitability for given dataset that presents challenges related to limited size and highly unbalanced classes.</p>
+
+<h4 id="full-example-repo-on-github">Full example repo on GitHub</h4>
+<p>If you want to get the files for the full example, you can get it from <a href="https://github.com/datamadness/Time-signal-classification-using-Convolutional-Neural-Network">this GitHub repo</a>. You’ll find two files:
+<code class="highlighter-rouge">frequency domain TFRecord transformation.py</code><br />
+<code class="highlighter-rouge">CNN_TFR_discharge_detection.py</code></p>
+
+<h4 id="dataset-overview">Dataset Overview</h4>
+<ul>
+  <li>Individual sample format: <a href="https://datamadness.github.io/time-signal-CNN">250 x 200 2D tensor</a></li>
+  <li>Train: 8160 samples with upsampled minority class using custom permutations</li>
+  <li>Evaluation: 2178 samples</li>
+  <li>Storage: TFRecords with 30 samples per file</li>
+</ul>
+
+<h4 id="tensorflow-approach">TensorFlow Approach</h4>
+<p>The CNN models are built using TensorFlow Estimators API as it provides good flexibility and control over building custom models while allowing more robust data streaming and resource solution. This is highly desirable as we work with fairly large dataset and wish to reduce the cost related to computing resources. As a result, the input function for the custom estimators will stream the data batch by batch, which allows us to use arbitrary computing resources and the only limitation is time we are willing to dedicate to training the CNN.
+to accommodate this solution, the input function uses TensorFlow Data API and TFRecord iterator. This is extremely convenient solution ans the Estimators API will take care of initializing the iterator and setting up thee graph.</p>
+
+<h4 id="input-function-and-pipeline">Input function and Pipeline</h4>
+<p>The input_fn of estimator API serve for two purposes:</p>
+
+<ul>
+  <li>Create a dataset to stream parsed data via an iterator</li>
+  <li>Establish pipeline for data transformation before feeding it to the model</li>
+</ul>
+
+<p>The input_fn receives three parameters:</p>
+
+<ul>
+  <li>path to TFRecords</li>
+  <li>batch size</li>
+  <li>mode (Train = True/False)</li>
+  <li>number of epochs</li>
+</ul>
+
+<p><strong>Initiating the dataset</strong></p>
+
+<p>The first step is to initialize the dataset using a data API TFRecordDataset class:</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">dataset_input_fn</span><span class="p">(</span><span class="n">subfolder</span><span class="p">,</span> <span class="n">batch_size</span><span class="p">,</span> <span class="n">train</span> <span class="o">=</span> <span class="bp">False</span><span class="p">,</span> <span class="n">num_epochs</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
+         
+    <span class="n">filenames</span> <span class="o">=</span> <span class="p">[</span><span class="nb">file</span> <span class="k">for</span> <span class="nb">file</span> <span class="ow">in</span> <span class="n">os</span><span class="o">.</span><span class="n">listdir</span><span class="p">(</span><span class="n">subfolder</span><span class="p">)</span> <span class="k">if</span> <span class="nb">file</span><span class="o">.</span><span class="n">endswith</span><span class="p">(</span><span class="s">'.tfrecord'</span><span class="p">)]</span>
+    <span class="n">filenames</span> <span class="o">=</span> <span class="p">[</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">subfolder</span><span class="p">,</span> <span class="nb">file</span><span class="p">)</span> <span class="k">for</span> <span class="nb">file</span> <span class="ow">in</span> <span class="n">filenames</span><span class="p">]</span>
+    <span class="n">dataset</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">TFRecordDataset</span><span class="p">(</span><span class="n">filenames</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p>Note that the Estimator API will take care of intializing the iterator so we do not have to worry about it here as opposed to manually building a graph where you would have to do something like this:</p>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    <span class="n">iterator</span> <span class="o">=</span> <span class="n">dataset</span><span class="o">.</span><span class="n">make_initializable_iterator</span><span class="p">()</span>
+    <span class="n">sess</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">iterator</span><span class="o">.</span><span class="n">initializer</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p><strong>Parsing the TFRecords</strong></p>
+
+<p>The second step in the input_fn is to parse the data from TFRecords, where the data is stored as lists with one of the three datatypes (float-, byte- and int64- list):</p>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code>        <span class="n">features</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="s">'signal'</span><span class="p">:</span> <span class="n">tf</span><span class="o">.</span><span class="n">FixedLenFeature</span><span class="p">([</span><span class="mi">50000</span><span class="p">],</span> <span class="n">dtype</span><span class="o">=</span><span class="n">tf</span><span class="o">.</span><span class="n">float32</span><span class="p">),</span>
+            <span class="s">'signal_ID'</span><span class="p">:</span> <span class="n">tf</span><span class="o">.</span><span class="n">FixedLenFeature</span><span class="p">([],</span> <span class="n">dtype</span><span class="o">=</span><span class="n">tf</span><span class="o">.</span><span class="n">int64</span><span class="p">),</span>
+            <span class="s">'measurement_ID'</span><span class="p">:</span> <span class="n">tf</span><span class="o">.</span><span class="n">FixedLenFeature</span><span class="p">([],</span> <span class="n">dtype</span><span class="o">=</span><span class="n">tf</span><span class="o">.</span><span class="n">int64</span><span class="p">),</span>
+            <span class="s">'label'</span><span class="p">:</span> <span class="n">tf</span><span class="o">.</span><span class="n">FixedLenFeature</span><span class="p">([],</span> <span class="n">dtype</span><span class="o">=</span><span class="n">tf</span><span class="o">.</span><span class="n">int64</span><span class="p">)}</span>
+        <span class="n">parsed</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">parse_single_example</span><span class="p">(</span><span class="n">record</span><span class="p">,</span> <span class="n">features</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p><strong>Pipeline</strong></p>
+
+<p>The parsing and input_fn is an ideal place for building your pipeline. In this example, the pipeline consists of two operations. First, we can assume that any physical effects related to the partial discharge are exhibiting at higher frequencies. This is due to the fact that partial discharge lasts only very short time(order of microseconds). Therefore, we can easily reduce the feature size by dropping all datapoints representing lower frequencies without loosing any valuable information:</p>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code>        <span class="n">signal_data</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">parsed</span><span class="p">[</span><span class="s">'signal'</span><span class="p">],</span> <span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">250</span><span class="p">,</span> <span class="mi">200</span><span class="p">])</span>
+        <span class="c">#remove low frequency components</span>
+        <span class="n">signal_data</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="nb">slice</span><span class="p">(</span><span class="n">signal_data</span><span class="p">,</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">240</span><span class="p">,</span> <span class="mi">200</span><span class="p">])</span>
+</code></pre></div></div>
+<p>We could possibly experiment with removing even more of the low frequency datapoints and reducing the feature tensor dimension.</p>
+
+<p>The second step in the normalization is to scale the data. The following code demonstrates to types of scaling:</p>
+
+<ul>
+  <li>Min/Max with rounding to 0 or 1, creating black and white feature map</li>
+  <li>Scaling to a fixed value, creating float map where most values lie between 0 and 1, but outliers can reach higher values without reducing most of the information.</li>
+</ul>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code>        <span class="c"># Perform additional preprocessing on the parsed data.</span>
+        <span class="n">bw_data</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">tf</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">parsed</span><span class="p">[</span><span class="s">'signal'</span><span class="p">]),</span> <span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">250</span><span class="p">,</span> <span class="mi">200</span><span class="p">])</span>
+        <span class="n">bw_data</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="nb">slice</span><span class="p">(</span><span class="n">bw_data</span><span class="p">,</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">240</span><span class="p">,</span> <span class="mi">200</span><span class="p">])</span>
+        
+        <span class="c"># Min max normalization</span>
+        <span class="n">bw_data</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">div</span><span class="p">(</span>
+                <span class="n">tf</span><span class="o">.</span><span class="n">subtract</span><span class="p">(</span>
+                    <span class="n">bw_data</span><span class="p">,</span> 
+                    <span class="n">tf</span><span class="o">.</span><span class="n">reduce_min</span><span class="p">(</span><span class="n">bw_data</span><span class="p">)</span>
+                <span class="p">),</span> 
+                <span class="n">tf</span><span class="o">.</span><span class="n">subtract</span><span class="p">(</span>
+                    <span class="n">tf</span><span class="o">.</span><span class="n">reduce_max</span><span class="p">(</span><span class="n">bw_data</span><span class="p">),</span> 
+                    <span class="n">tf</span><span class="o">.</span><span class="n">reduce_min</span><span class="p">(</span><span class="n">bw_data</span><span class="p">)</span>
+                <span class="p">)</span>
+        <span class="p">)</span>
+        <span class="n">bw_data</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="nb">round</span><span class="p">(</span><span class="n">bw_data</span><span class="p">)</span>
+        
+        <span class="n">signal_data</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">parsed</span><span class="p">[</span><span class="s">'signal'</span><span class="p">],</span> <span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">250</span><span class="p">,</span> <span class="mi">200</span><span class="p">])</span>
+        <span class="c">#remove low frequency components</span>
+        <span class="n">signal_data</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="nb">slice</span><span class="p">(</span><span class="n">signal_data</span><span class="p">,</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">240</span><span class="p">,</span> <span class="mi">200</span><span class="p">])</span>
+        
+        <span class="c">#Normalize and scale data</span>
+        <span class="n">qube</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">fill</span><span class="p">([</span><span class="mi">240</span><span class="p">,</span><span class="mi">200</span><span class="p">],</span><span class="mi">1</span><span class="o">/</span><span class="mi">3</span><span class="p">)</span>
+        <span class="n">signal_data</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="nb">pow</span><span class="p">(</span><span class="n">signal_data</span><span class="p">,</span><span class="n">qube</span><span class="p">)</span>
+        <span class="n">signal_data</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">image</span><span class="o">.</span><span class="n">per_image_standardization</span><span class="p">(</span><span class="n">signal_data</span><span class="p">)</span>
+        
+        <span class="n">norm_max</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">fill</span><span class="p">([</span><span class="mi">240</span><span class="p">,</span><span class="mi">200</span><span class="p">],</span><span class="mf">6.0</span><span class="p">)</span>
+        <span class="n">signal_data</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">divide</span><span class="p">(</span><span class="n">signal_data</span><span class="p">,</span><span class="n">norm_max</span><span class="p">)</span>
+
+        <span class="n">label</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">cast</span><span class="p">(</span><span class="n">parsed</span><span class="p">[</span><span class="s">"label"</span><span class="p">],</span> <span class="n">tf</span><span class="o">.</span><span class="n">int32</span><span class="p">)</span>
+    
+        <span class="k">return</span> <span class="p">{</span><span class="s">"signal_data"</span><span class="p">:</span> <span class="n">signal_data</span><span class="p">,</span> <span class="s">"bw_data"</span><span class="p">:</span> <span class="n">bw_data</span><span class="p">,</span> <span class="s">"signal_ID"</span><span class="p">:</span> <span class="n">parsed</span><span class="p">[</span><span class="s">"signal_ID"</span><span class="p">]},</span> <span class="n">label</span>
+</code></pre></div></div>
+
+<p>Tip: Manually extracting information from TFRecords
+You can easily extract specific parameters from TFRecords without running the Estimator API. Here is an example code snippet that extracts labels from the evaluation set:
+#%% Get labels from TFR files</p>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">with</span> <span class="n">tf</span><span class="o">.</span><span class="n">Session</span><span class="p">()</span> <span class="k">as</span> <span class="n">sess</span><span class="p">:</span>
+    <span class="n">dataset</span> <span class="o">=</span> <span class="n">dataset_input_fn</span><span class="p">(</span><span class="n">eval_folder</span><span class="p">,</span> <span class="n">train</span> <span class="o">=</span> <span class="bp">False</span><span class="p">,</span> <span class="n">batch_size</span> <span class="o">=</span> <span class="mi">2178</span><span class="p">,</span> <span class="n">num_epochs</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+    <span class="n">iterator</span> <span class="o">=</span> <span class="n">dataset</span><span class="o">.</span><span class="n">make_initializable_iterator</span><span class="p">()</span>
+    <span class="n">sess</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">iterator</span><span class="o">.</span><span class="n">initializer</span><span class="p">)</span>
+    <span class="n">batch</span> <span class="o">=</span> <span class="n">iterator</span><span class="o">.</span><span class="n">get_next</span><span class="p">()</span>
+    <span class="n">labels</span> <span class="o">=</span> <span class="n">batch</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="nb">eval</span><span class="p">()</span>
+</code></pre></div></div>
+
+<h4 id="cnn-model-1">CNN Model #1</h4>
+<p>The first model consists of four convolutional layer and two dense layers with relu activation functions. Most layers have dropout rates to reduce overfitting as we have limited training dataset and the trainig will have to be conducted using multiple epochs. The following visualizations shows the overall CNN architecture:
+<img src="/assets/images/time_signal_CNN/CNN architecture 4096.png" alt="image post" /></p>
+
+<p>and here is the equivalent python code for TensorFlow estimators:</p>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">#%% Building the CNN Classifier</span>
+<span class="k">def</span> <span class="nf">cnn_model_fn</span><span class="p">(</span><span class="n">features</span><span class="p">,</span> <span class="n">labels</span><span class="p">,</span> <span class="n">mode</span><span class="p">):</span>
+  <span class="s">"""Model function for CNN."""</span>
+  <span class="k">if</span> <span class="n">mode</span> <span class="o">==</span> <span class="n">tf</span><span class="o">.</span><span class="n">estimator</span><span class="o">.</span><span class="n">ModeKeys</span><span class="o">.</span><span class="n">PREDICT</span><span class="p">:</span>
+      <span class="k">pass</span>
+  <span class="k">else</span><span class="p">:</span>    
+      <span class="n">labels</span><span class="o">=</span><span class="n">tf</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">labels</span><span class="p">,[</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">])</span>
+  <span class="n">input_layer</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">features</span><span class="p">[</span><span class="s">"signal_data"</span><span class="p">],</span> <span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">240</span><span class="p">,</span> <span class="mi">200</span><span class="p">,</span><span class="mi">1</span><span class="p">])</span>
+  <span class="k">print</span><span class="p">(</span><span class="n">input_layer</span><span class="p">)</span>
+  
+  <span class="c"># Convolutional Layer #1</span>
+  <span class="n">conv1</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">layers</span><span class="o">.</span><span class="n">conv2d</span><span class="p">(</span>
+      <span class="n">inputs</span><span class="o">=</span><span class="n">input_layer</span><span class="p">,</span>
+      <span class="n">filters</span><span class="o">=</span><span class="mi">32</span><span class="p">,</span>
+      <span class="n">kernel_size</span><span class="o">=</span><span class="p">[</span><span class="mi">5</span><span class="p">,</span> <span class="mi">5</span><span class="p">],</span>
+      <span class="n">strides</span><span class="o">=</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span>
+      <span class="n">padding</span><span class="o">=</span><span class="s">"same"</span><span class="p">,</span>
+      <span class="n">activation</span><span class="o">=</span><span class="n">tf</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">relu</span><span class="p">)</span>
+      <span class="c">#Output -1,120,100,32</span>
+  <span class="k">print</span><span class="p">(</span><span class="n">conv1</span><span class="p">)</span>
+
+  <span class="c"># Convolutional Layer #2 and Pooling Layer #2</span>
+  <span class="n">conv2</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">layers</span><span class="o">.</span><span class="n">conv2d</span><span class="p">(</span>
+      <span class="n">inputs</span><span class="o">=</span><span class="n">conv1</span><span class="p">,</span>
+      <span class="n">filters</span><span class="o">=</span><span class="mi">64</span><span class="p">,</span>
+      <span class="n">kernel_size</span><span class="o">=</span><span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span>
+      <span class="n">padding</span><span class="o">=</span><span class="s">"same"</span><span class="p">,</span>
+      <span class="n">activation</span><span class="o">=</span><span class="n">tf</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">relu</span><span class="p">)</span>
+  <span class="c">#Output -1,120,100,64</span>
+  <span class="n">pool2</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">layers</span><span class="o">.</span><span class="n">max_pooling2d</span><span class="p">(</span><span class="n">inputs</span><span class="o">=</span><span class="n">conv2</span><span class="p">,</span> <span class="n">pool_size</span><span class="o">=</span><span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span> <span class="n">strides</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+  <span class="c">#Output -1,60,50,64</span>
+  <span class="n">dropout</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">layers</span><span class="o">.</span><span class="n">dropout</span><span class="p">(</span>
+      <span class="n">inputs</span><span class="o">=</span><span class="n">pool2</span><span class="p">,</span> <span class="n">rate</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span> <span class="n">training</span><span class="o">=</span><span class="n">mode</span> <span class="o">==</span> <span class="n">tf</span><span class="o">.</span><span class="n">estimator</span><span class="o">.</span><span class="n">ModeKeys</span><span class="o">.</span><span class="n">TRAIN</span><span class="p">)</span>
+  
+  <span class="c"># Convolutional Layer #3 and Pooling Layer #3</span>
+  <span class="n">conv3</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">layers</span><span class="o">.</span><span class="n">conv2d</span><span class="p">(</span>
+      <span class="n">inputs</span><span class="o">=</span><span class="n">dropout</span><span class="p">,</span>
+      <span class="n">filters</span><span class="o">=</span><span class="mi">128</span><span class="p">,</span>
+      <span class="n">kernel_size</span><span class="o">=</span><span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span>
+      <span class="n">padding</span><span class="o">=</span><span class="s">"same"</span><span class="p">,</span>
+      <span class="n">activation</span><span class="o">=</span><span class="n">tf</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">relu</span><span class="p">)</span>
+  <span class="c">#Output -1,60,50,128</span>
+  <span class="n">pool3</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">layers</span><span class="o">.</span><span class="n">max_pooling2d</span><span class="p">(</span><span class="n">inputs</span><span class="o">=</span><span class="n">conv3</span><span class="p">,</span> <span class="n">pool_size</span><span class="o">=</span><span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span> <span class="n">strides</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+  <span class="c">#Output -1,30,25,128</span>
+  <span class="n">dropout2</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">layers</span><span class="o">.</span><span class="n">dropout</span><span class="p">(</span>
+      <span class="n">inputs</span><span class="o">=</span><span class="n">pool3</span><span class="p">,</span> <span class="n">rate</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span> <span class="n">training</span><span class="o">=</span><span class="n">mode</span> <span class="o">==</span> <span class="n">tf</span><span class="o">.</span><span class="n">estimator</span><span class="o">.</span><span class="n">ModeKeys</span><span class="o">.</span><span class="n">TRAIN</span><span class="p">)</span>
+  
+  <span class="c"># Convolutional and pooling Layer #4</span>
+  <span class="n">conv4</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">layers</span><span class="o">.</span><span class="n">conv2d</span><span class="p">(</span>
+      <span class="n">inputs</span><span class="o">=</span><span class="n">dropout2</span><span class="p">,</span>
+      <span class="n">filters</span><span class="o">=</span><span class="mi">200</span><span class="p">,</span>
+      <span class="n">kernel_size</span><span class="o">=</span><span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span>
+      <span class="n">padding</span><span class="o">=</span><span class="s">"same"</span><span class="p">,</span>
+      <span class="n">activation</span><span class="o">=</span><span class="n">tf</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">relu</span><span class="p">)</span>
+  <span class="c">#Output -1,30,25,200 </span>
+  <span class="n">pool4</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">layers</span><span class="o">.</span><span class="n">max_pooling2d</span><span class="p">(</span><span class="n">inputs</span><span class="o">=</span><span class="n">conv4</span><span class="p">,</span> <span class="n">pool_size</span><span class="o">=</span><span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span> <span class="n">strides</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+  <span class="c">#Output -1,15,12,200</span>
+
+  <span class="c"># Dense Layer</span>
+  <span class="n">pool4_flat</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">pool4</span><span class="p">,</span> <span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">15</span> <span class="o">*</span> <span class="mi">12</span> <span class="o">*</span> <span class="mi">200</span><span class="p">])</span>
+  <span class="n">dense</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">layers</span><span class="o">.</span><span class="n">dense</span><span class="p">(</span><span class="n">inputs</span><span class="o">=</span><span class="n">pool4_flat</span><span class="p">,</span> <span class="n">units</span><span class="o">=</span><span class="mi">4096</span><span class="p">,</span> <span class="n">activation</span><span class="o">=</span><span class="n">tf</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">relu</span><span class="p">)</span> 
+  
+  <span class="n">dropout3</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">layers</span><span class="o">.</span><span class="n">dropout</span><span class="p">(</span>
+      <span class="n">inputs</span><span class="o">=</span><span class="n">dense</span><span class="p">,</span> <span class="n">rate</span><span class="o">=</span><span class="mf">0.2</span><span class="p">,</span> <span class="n">training</span><span class="o">=</span><span class="n">mode</span> <span class="o">==</span> <span class="n">tf</span><span class="o">.</span><span class="n">estimator</span><span class="o">.</span><span class="n">ModeKeys</span><span class="o">.</span><span class="n">TRAIN</span><span class="p">)</span>
+  
+  <span class="n">dense2</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">layers</span><span class="o">.</span><span class="n">dense</span><span class="p">(</span><span class="n">inputs</span><span class="o">=</span><span class="n">dropout3</span><span class="p">,</span> <span class="n">units</span><span class="o">=</span><span class="mi">2048</span><span class="p">,</span> <span class="n">activation</span><span class="o">=</span><span class="n">tf</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">relu</span><span class="p">)</span>
+  
+  <span class="n">dropout4</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">layers</span><span class="o">.</span><span class="n">dropout</span><span class="p">(</span>
+      <span class="n">inputs</span><span class="o">=</span><span class="n">dense2</span><span class="p">,</span> <span class="n">rate</span><span class="o">=</span><span class="mf">0.2</span><span class="p">,</span> <span class="n">training</span><span class="o">=</span><span class="n">mode</span> <span class="o">==</span> <span class="n">tf</span><span class="o">.</span><span class="n">estimator</span><span class="o">.</span><span class="n">ModeKeys</span><span class="o">.</span><span class="n">TRAIN</span><span class="p">)</span>
+
+  <span class="c"># Logits Layer</span>
+  <span class="n">logits</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">layers</span><span class="o">.</span><span class="n">dense</span><span class="p">(</span><span class="n">inputs</span><span class="o">=</span><span class="n">dropout4</span><span class="p">,</span> <span class="n">units</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p>Since this is a binary classification problem, we use sigmoid function to get the prediction probabilities from logits and use a simple rounding function to assign classes based on the calculated probabilities. Similarly, we use sigmoid cross entropy loss function to navigate the gradients during training optimization:</p>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  <span class="n">predictions</span> <span class="o">=</span> <span class="p">{</span>
+      <span class="c"># Generate predictions (for PREDICT and EVAL mode)</span>
+      <span class="s">"classes"</span><span class="p">:</span> <span class="n">tf</span><span class="o">.</span><span class="nb">round</span><span class="p">(</span><span class="n">tf</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">sigmoid</span><span class="p">(</span><span class="n">logits</span><span class="p">)),</span>
+      <span class="s">"probabilities"</span><span class="p">:</span> <span class="n">tf</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">sigmoid</span><span class="p">(</span><span class="n">logits</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s">"probs_tensor"</span><span class="p">),</span>
+      <span class="s">"signal_id"</span><span class="p">:</span> <span class="n">tf</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">features</span><span class="p">[</span><span class="s">"signal_ID"</span><span class="p">],[</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">])</span>
+  <span class="p">}</span>
+  
+
+  <span class="k">if</span> <span class="n">mode</span> <span class="o">==</span> <span class="n">tf</span><span class="o">.</span><span class="n">estimator</span><span class="o">.</span><span class="n">ModeKeys</span><span class="o">.</span><span class="n">PREDICT</span><span class="p">:</span>
+    <span class="k">return</span> <span class="n">tf</span><span class="o">.</span><span class="n">estimator</span><span class="o">.</span><span class="n">EstimatorSpec</span><span class="p">(</span><span class="n">mode</span><span class="p">,</span> <span class="n">predictions</span><span class="o">=</span><span class="n">predictions</span><span class="p">)</span>
+
+  <span class="n">loss</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">losses</span><span class="o">.</span><span class="n">sigmoid_cross_entropy</span><span class="p">(</span><span class="n">multi_class_labels</span><span class="o">=</span><span class="n">labels</span><span class="p">,</span> <span class="n">logits</span><span class="o">=</span><span class="n">logits</span><span class="p">)</span>
+
+
+  <span class="c"># Configure the Training Op (for TRAIN mode)</span>
+  <span class="k">if</span> <span class="n">mode</span> <span class="o">==</span> <span class="n">tf</span><span class="o">.</span><span class="n">estimator</span><span class="o">.</span><span class="n">ModeKeys</span><span class="o">.</span><span class="n">TRAIN</span><span class="p">:</span>
+    
+    <span class="c"># Calculate Loss (for both TRAIN and EVAL modes) via cross entropy</span>
+    
+    <span class="n">optimizer</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">train</span><span class="o">.</span><span class="n">GradientDescentOptimizer</span><span class="p">(</span><span class="n">learning_rate</span><span class="o">=</span><span class="mf">0.001</span><span class="p">)</span>
+    <span class="n">train_op</span> <span class="o">=</span> <span class="n">optimizer</span><span class="o">.</span><span class="n">minimize</span><span class="p">(</span>
+        <span class="n">loss</span><span class="o">=</span><span class="n">loss</span><span class="p">,</span>
+        <span class="n">global_step</span><span class="o">=</span><span class="n">tf</span><span class="o">.</span><span class="n">train</span><span class="o">.</span><span class="n">get_global_step</span><span class="p">())</span>
+    <span class="k">return</span> <span class="n">tf</span><span class="o">.</span><span class="n">estimator</span><span class="o">.</span><span class="n">EstimatorSpec</span><span class="p">(</span><span class="n">mode</span><span class="o">=</span><span class="n">mode</span><span class="p">,</span> <span class="n">loss</span><span class="o">=</span><span class="n">loss</span><span class="p">,</span> <span class="n">train_op</span><span class="o">=</span><span class="n">train_op</span><span class="p">)</span>
+
+  <span class="c"># Add evaluation metrics (for EVAL mode)</span>
+  <span class="n">eval_metric_ops</span> <span class="o">=</span> <span class="p">{</span>
+          <span class="s">"accuracy"</span><span class="p">:</span> <span class="n">tf</span><span class="o">.</span><span class="n">metrics</span><span class="o">.</span><span class="n">auc</span><span class="p">(</span>
+          <span class="n">labels</span><span class="o">=</span><span class="n">labels</span><span class="p">,</span> <span class="n">predictions</span><span class="o">=</span><span class="n">predictions</span><span class="p">[</span><span class="s">"classes"</span><span class="p">])</span>
+    
+  <span class="p">}</span>
+  <span class="k">return</span> <span class="n">tf</span><span class="o">.</span><span class="n">estimator</span><span class="o">.</span><span class="n">EstimatorSpec</span><span class="p">(</span>
+      <span class="n">mode</span><span class="o">=</span><span class="n">mode</span><span class="p">,</span> <span class="n">loss</span><span class="o">=</span><span class="n">loss</span><span class="p">,</span> <span class="n">eval_metric_ops</span><span class="o">=</span><span class="n">eval_metric_ops</span><span class="p">)</span>
+</code></pre></div></div>
+
+<h4 id="training-and-evaluation">Training and Evaluation</h4>
+
+<p>Since we are dealing with highly imbalanced classes, the standard accuracy metrics for evaluation would be very unreliable. Therefore, custom evaluation using confusion matrix and Mathews Correlation Coefficient (MCC) is calculated based on the predicted probabilities.</p>
+
+<p>Mathews Correlation matrix:
+<script type="math/tex">MCC = {(TP*TN) - (FP*FN) \over \sqrt{(TP+FP)*(TP+FN)*(TN+FP)*(TN+FN)}}</script></p>
+
+<p>To do this, we first load the predicted probabilities for the evalueation set and assign classes based on an input threshold value determining the range for class = 1:</p>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">score_model_measurement</span><span class="p">(</span><span class="n">probs</span><span class="p">,</span><span class="n">threshold</span><span class="p">):</span>
+    <span class="n">predicted</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">1</span> <span class="k">if</span> <span class="n">x</span> <span class="o">&gt;</span> <span class="n">threshold</span> <span class="k">else</span> <span class="mi">0</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">probs</span><span class="p">[:,</span><span class="mi">0</span><span class="p">]])</span>           
+    <span class="k">return</span> <span class="n">predicted</span>
+</code></pre></div></div>
+
+<p>once classes are assigned, the corresponding confusion matrix and MCC is calculated:</p>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">#Print confusion matric and calculate Matthews correlation coefficient (MCC) </span>
+<span class="k">def</span> <span class="nf">print_metrics</span><span class="p">(</span><span class="n">labels</span><span class="p">,</span> <span class="n">scores</span><span class="p">):</span>
+    <span class="n">conf</span> <span class="o">=</span> <span class="n">confusion_matrix</span><span class="p">(</span><span class="n">labels</span><span class="p">,</span> <span class="n">scores</span><span class="p">)</span>
+    <span class="k">print</span><span class="p">(</span><span class="s">'                 Confusion matrix'</span><span class="p">)</span>
+    <span class="k">print</span><span class="p">(</span><span class="s">'                 Score positive    Score negative'</span><span class="p">)</span>
+    <span class="k">print</span><span class="p">(</span><span class="s">'Actual positive    </span><span class="si">%6</span><span class="s">d'</span> <span class="o">%</span> <span class="n">conf</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="s">'             </span><span class="si">%5</span><span class="s">d'</span> <span class="o">%</span> <span class="n">conf</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">])</span>
+    <span class="k">print</span><span class="p">(</span><span class="s">'Actual negative    </span><span class="si">%6</span><span class="s">d'</span> <span class="o">%</span> <span class="n">conf</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="s">'             </span><span class="si">%5</span><span class="s">d'</span> <span class="o">%</span> <span class="n">conf</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">])</span>
+    <span class="k">print</span><span class="p">(</span><span class="s">''</span><span class="p">)</span>
+    <span class="k">print</span><span class="p">(</span><span class="s">'Accuracy  </span><span class="si">%0.2</span><span class="s">f'</span> <span class="o">%</span> <span class="n">accuracy_score</span><span class="p">(</span><span class="n">labels</span><span class="p">,</span> <span class="n">scores</span><span class="p">))</span>
+    
+    <span class="n">TP</span> <span class="o">=</span> <span class="n">conf</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">]</span>
+    <span class="n">TN</span> <span class="o">=</span> <span class="n">conf</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">]</span>
+    <span class="n">FP</span> <span class="o">=</span> <span class="n">conf</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">]</span>
+    <span class="n">FN</span> <span class="o">=</span> <span class="n">conf</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">]</span>
+    <span class="n">MCC</span> <span class="o">=</span> <span class="p">((</span><span class="n">TP</span><span class="o">*</span><span class="n">TN</span><span class="p">)</span> <span class="o">-</span> <span class="p">(</span><span class="n">FP</span><span class="o">*</span><span class="n">FN</span><span class="p">))</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">((</span><span class="n">TP</span><span class="o">+</span><span class="n">FP</span><span class="p">)</span><span class="o">*</span><span class="p">(</span><span class="n">TP</span><span class="o">+</span><span class="n">FN</span><span class="p">)</span><span class="o">*</span><span class="p">(</span><span class="n">TN</span><span class="o">+</span><span class="n">FP</span><span class="p">)</span><span class="o">*</span><span class="p">(</span><span class="n">TN</span><span class="o">+</span><span class="n">FN</span><span class="p">))</span>
+    <span class="k">print</span><span class="p">(</span><span class="s">'MCC = </span><span class="si">%0.2</span><span class="s">f'</span> <span class="o">%</span><span class="n">MCC</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">MCC</span>
+</code></pre></div></div>
+
+<p>The evaluation routine runs every single epoch and plots the following as function of epoch number:</p>
+
+<ul>
+  <li>Training set loss (Sigmoid cross entropy)</li>
+  <li>Evaluation set accuracy determined by Area Under Curve (AUC)</li>
+  <li>Evaluation set MCC</li>
+</ul>
+
+<p>Following the development of these parameters during the training allows us to determine the predictive power for minority class, when further learning does not provide further improvement and when we start risking overfitting. 
+<img src="/assets/images/time_signal_CNN/Learning_plot_4096.png" alt="image post" /></p>
+
+<p><strong>Hyper-parameters:</strong></p>
+
+<ul>
+  <li>Epochs: 60</li>
+  <li>Training rate: 0.001</li>
+  <li>Batch size: 40</li>
+  <li>Shuffle: Yes</li>
+</ul>
+
+<h4 id="cnn-model-2">CNN Model #2</h4>
+
+<p><strong>Model Architecture</strong></p>
+
+<p><img src="/assets/images/time_signal_CNN/CNN architecture 2048.png" alt="image post" /></p>
+
+<p><strong>Performance Evaluation</strong></p>
+
+<p><img src="/assets/images/time_signal_CNN/Learning_plot_2048_35.png" alt="image post" /></p>
+
+<p><strong>Hyper-parameters:</strong></p>
+
+<ul>
+  <li>Epochs: 35</li>
+  <li>Training rate: 0.001</li>
+  <li>Batch size: 60</li>
+  <li>Shuffle: Yes</li>
+</ul>
+
+<p>Conclusion
+Both architectures that mostly differed in the number of features and nodes showed similar prediction power achieving accuracy(AUC) of ~0.94 and Mathews Correlation Coefficient close to 0.6. For comparison, this is very similar to what we were able to achieve with gradient boosted trees on data from statistical analysis of the time signal. Nevertheless, the construction of the CNN solution was considerably less effort intensive as the CNN automatically extracts the features at a cost of longer training time. If we consider that human capital is more expensive than computing power, this metrics still comes in favour of the CNN.
+That being said, the ultimate goal is to use ensemble of classifiers that will take a vote on the final class and further increase the predictive power.
+The main difference between the two architectures was in the training time where the model #1 required 255 seconds per 100 steps and model #2 required 150 seconds. Therefore, all other metrics being the same, the model #2 would be more favorable as it is faster and requires less computing resources.</p>
+
+<p><strong>Example results:</strong></p>
+
+<blockquote>
+  <p>Confusion matrix</p>
+
+  <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>             Score positive    Score negative Actual positive        90                18 Actual negative       118              1952
+</code></pre></div>  </div>
+
+  <p>Accuracy  0.94
+MCC = 0.57</p>
+
+  <p>INFO:tensorflow:loss = 0.08221432, step = 10556 (150.680 sec)
+INFO:tensorflow:global_step/sec: 0.241183</p>
+</blockquote>
+
+                </div>
+            </section>
+
+            <!-- Email subscribe form at the bottom of the page -->
+            
+
+            <footer class="post-full-footer">
+                <!-- Everything inside the #author tags pulls data from the author -->
+                <!-- #author-->
+                
+                    
+                        <section class="author-card">
+                            
+                                <img class="author-profile-image" src="/assets/images/DM_favicon.png" alt="DATAmadness" />
+                            
+                            <section class="author-card-content">
+                                <h4 class="author-card-name"><a href="/author/DATAmadness">DATAmadness</a></h4>
+                                
+                                    <p>An American pastor, activist, humanitarian. People know me for leading the African-American Civil Rights movement using nonviolent civil disobedience.</p>
+                                
+                            </section>
+                        </section>
+                        <div class="post-full-footer-right">
+                            <a class="author-card-button" href="/author/DATAmadness">Read More</a>
+                        </div>
+                    
+                
+                <!-- /author  -->
+            </footer>
+
+            <!-- If you use Disqus comments, just uncomment this block.
+            The only thing you need to change is "test-apkdzgmqhj" - which
+            should be replaced with your own Disqus site-id. -->
+            
+
+        </article>
+
+    </div>
+</main>
+
+<!-- Links to Previous/Next posts -->
+<aside class="read-next outer">
+    <div class="inner">
+        <div class="read-next-feed">
+            
+                
+                
+                
+                
+                    <article class="read-next-card"
+                        
+                            style="background-image: url(/assets/images/blog-cover.png)"
+                        
+                    >
+                        <header class="read-next-card-header">
+                            <small class="read-next-card-header-sitetitle">&mdash; DATAmadness &mdash;</small>
+                            
+                                <h3 class="read-next-card-header-title"><a href="/tag/python/">Python</a></h3>
+                            
+                        </header>
+                        <div class="read-next-divider"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 14.5s2 3 5 3 5.5-2.463 5.5-5.5S21 6.5 18 6.5c-5 0-7 11-12 11C2.962 17.5.5 15.037.5 12S3 6.5 6 6.5s4.5 3.5 4.5 3.5"/></svg>
+</div>
+                        <div class="read-next-card-content">
+                            <ul>
+                                
+                                
+                                  
+                                    
+                                  
+                                
+                                  
+                                    
+                                        
+                                        
+                                            <li><a href="/time-signal-CNN">Time signal classification using Convolutional Neural Network in TensorFlow - Part 1</a></li>
+                                        
+                                    
+                                  
+                                
+                                  
+                                    
+                                        
+                                        
+                                            <li><a href="/tensorflow_input_funtion_tip">TensorFlow Tip - input_fn with custom parameters</a></li>
+                                        
+                                    
+                                  
+                                
+                                  
+                                    
+                                        
+                                        
+                                            <li><a href="/tensorflow_estimator_large_dataset_feed">TensorFlow Estimators API - Feeding large datasets from drive via TFRecords (MNIST example)</a></li>
+                                        
+                                    
+                                  
+                                
+                                  
+                                
+                                  
+                                    
+                                        
+                                        
+                                    
+                                  
+                                
+                                  
+                                    
+                                        
+                                        
+                                    
+                                  
+                                
+                            </ul>
+                        </div>
+                        <footer class="read-next-card-footer">
+                            <a href="/tag/python/">
+                                
+                                    See all 5 posts  →
+                                
+                            </a>
+                        </footer>
+                    </article>
+                
+            
+
+            <!-- If there's a next post, display it using the same markup included from - partials/post-card.hbs -->
+            
+
+            <!-- If there's a previous post, display it using the same markup included from - partials/post-card.hbs -->
+            
+                
+    <article class="post-card post-template">
+        
+            <a class="post-card-image-link" href="/time-signal-CNN">
+                <div class="post-card-image" style="background-image: url(/assets/images/time_signal_CNN/1280px-sampled_signal.png)"></div>
+            </a>
+        
+        <div class="post-card-content">
+            <a class="post-card-content-link" href="/time-signal-CNN">
+                <header class="post-card-header">
+                    
+                        
+                            
+                                <span class="post-card-tags">Python</span>
+                            
+                        
+                    
+
+                    <h2 class="post-card-title">Time signal classification using Convolutional Neural Network in TensorFlow - Part 1</h2>
+                </header>
+                <section class="post-card-excerpt">
+                    <p>This example explores the possibility to use Convolutional Neural Network(CNN) to classify time domain signal. The fundamental thesis of this work is that arbitrarily long sampled time domain signal can be divided into</p>
+                </section>
+            </a>
+            <footer class="post-card-meta">
+                
+                    
+                        
+                        <img class="author-profile-image" src="/assets/images/DM_favicon.png" alt="DATAmadness" />
+                        
+                        <span class="post-card-author">
+                            <a href="/author/DATAmadness/">DATAmadness</a>
+                        </span>
+                    
+                
+            </footer>
+        </div>
+    </article>
+
+            
+
+        </div>
+    </div>
+</aside>
+
+<!-- Floating header which appears on-scroll, included from includes/floating-header.hbs -->
+<div class="floating-header">
+    <div class="floating-header-logo">
+        <a href="/">
+            
+                <img src="/assets/images/favicon.png" alt="DATAmadness icon" />
+            
+            <span>DATAmadness</span>
+        </a>
+    </div>
+    <span class="floating-header-divider">&mdash;</span>
+    <div class="floating-header-title">Time signal classification using Convolutional Neural Network in TensorFlow - Part 2</div>
+    <div class="floating-header-share">
+        <div class="floating-header-share-label">Share this <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+    <path d="M7.5 15.5V4a1.5 1.5 0 1 1 3 0v4.5h2a1 1 0 0 1 1 1h2a1 1 0 0 1 1 1H18a1.5 1.5 0 0 1 1.5 1.5v3.099c0 .929-.13 1.854-.385 2.748L17.5 23.5h-9c-1.5-2-5.417-8.673-5.417-8.673a1.2 1.2 0 0 1 1.76-1.605L7.5 15.5zm6-6v2m-3-3.5v3.5m6-1v2"/>
+</svg>
+</div>
+        <a class="floating-header-share-tw" href="https://twitter.com/share?text=Time+signal+classification+using+Convolutional+Neural+Network+in+TensorFlow+-+Part+2&amp;url=https://datamadness.github.io/time-signal-CNN-part2"
+            onclick="window.open(this.href, 'share-twitter', 'width=550,height=235');return false;">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32"><path d="M30.063 7.313c-.813 1.125-1.75 2.125-2.875 2.938v.75c0 1.563-.188 3.125-.688 4.625a15.088 15.088 0 0 1-2.063 4.438c-.875 1.438-2 2.688-3.25 3.813a15.015 15.015 0 0 1-4.625 2.563c-1.813.688-3.75 1-5.75 1-3.25 0-6.188-.875-8.875-2.625.438.063.875.125 1.375.125 2.688 0 5.063-.875 7.188-2.5-1.25 0-2.375-.375-3.375-1.125s-1.688-1.688-2.063-2.875c.438.063.813.125 1.125.125.5 0 1-.063 1.5-.25-1.313-.25-2.438-.938-3.313-1.938a5.673 5.673 0 0 1-1.313-3.688v-.063c.813.438 1.688.688 2.625.688a5.228 5.228 0 0 1-1.875-2c-.5-.875-.688-1.813-.688-2.75 0-1.063.25-2.063.75-2.938 1.438 1.75 3.188 3.188 5.25 4.25s4.313 1.688 6.688 1.813a5.579 5.579 0 0 1 1.5-5.438c1.125-1.125 2.5-1.688 4.125-1.688s3.063.625 4.188 1.813a11.48 11.48 0 0 0 3.688-1.375c-.438 1.375-1.313 2.438-2.563 3.188 1.125-.125 2.188-.438 3.313-.875z"/></svg>
+
+        </a>
+        <a class="floating-header-share-fb" href="https://www.facebook.com/sharer/sharer.php?u=https://datamadness.github.io/time-signal-CNN-part2"
+            onclick="window.open(this.href, 'share-facebook','width=580,height=296');return false;">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32"><path d="M19 6h5V0h-5c-3.86 0-7 3.14-7 7v3H8v6h4v16h6V16h5l1-6h-6V7c0-.542.458-1 1-1z"/></svg>
+
+        </a>
+    </div>
+    <progress class="progress" value="0">
+        <div class="progress-container">
+            <span class="progress-bar"></span>
+        </div>
+    </progress>
+</div>
+
+
+<!-- /post -->
+
+<!-- The #contentFor helper here will send everything inside it up to the matching #block helper found in default.hbs -->
+
+
+        <!-- Previous/next page links - displayed on every page -->
+        
+
+        <!-- The footer at the very bottom of the screen -->
+        <footer class="site-footer outer">
+            <div class="site-footer-content inner">
+                <section class="copyright"><a href="/">DATAmadness</a> &copy; 2019</section>
+                <section class="poweredby">Published with Jekyll</a> &
+                    <a href="https://pages.github.com/" target="_blank" rel="noopener">GitHub Pages</a> using
+                    <a href="https://github.com/jekyller/jasper2" target="_blank" rel="noopener">Jasper2</a></section>
+                <nav class="site-footer-nav">
+                    <a href="/">Latest Posts</a>
+                    <a href="https://facebook.com/ghost" target="_blank" rel="noopener">Facebook</a>
+                    <a href="https://twitter.com/Mr_Bubble_Wrap" target="_blank" rel="noopener">Twitter</a>
+                    <a href="https://www.nasa.gov/multimedia/nasatv#public" target="_blank" rel="noopener">Watch live stream from ISS to relax</a>
+                </nav>
+            </div>
+        </footer>
+
+    </div>
+
+    <!-- The big email subscribe modal content -->
+    
+
+    <!-- highlight.js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.10.0/components/prism-abap.min.js"></script>
+    <script>$(document).ready(function() {
+      $('pre code').each(function(i, block) {
+        hljs.highlightBlock(block);
+      });
+    });</script>
+
+    <!-- jQuery + Fitvids, which makes all video embeds responsive -->
+    <script
+        src="https://code.jquery.com/jquery-3.2.1.min.js"
+        integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+        crossorigin="anonymous">
+    </script>
+    <script type="text/javascript" src="/assets/js/jquery.fitvids.js"></script>
+    <script type="text/javascript" src="https://demo.ghost.io/assets/js/jquery.fitvids.js?v=724281a32e"></script>
+
+
+    <!-- Paginator increased to "infinit" in _config.yml -->
+    <!-- if paginator.posts  -->
+    <!-- <script>
+        var maxPages = parseInt('');
+    </script>
+    <script src="/assets/js/infinitescroll.js"></script> -->
+    <!-- /endif -->
+
+    
+
+
+    <!-- Add Google Analytics  -->
+    <!-- Google Analytics Tracking code -->
+ <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-121059326-1', 'auto');
+  ga('send', 'pageview');
+
+ </script>
+
+
+    <!-- The #block helper will pull in data from the #contentFor other template files. In this case, there's some JavaScript which we only want to use in post.hbs, but it needs to be included down here, after jQuery has already loaded. -->
+    
+        <script>
+
+// NOTE: Scroll performance is poor in Safari
+// - this appears to be due to the events firing much more slowly in Safari.
+//   Dropping the scroll event and using only a raf loop results in smoother
+//   scrolling but continuous processing even when not scrolling
+$(document).ready(function () {
+    // Start fitVids
+    var $postContent = $(".post-full-content");
+    $postContent.fitVids();
+    // End fitVids
+
+    var progressBar = document.querySelector('progress');
+    var header = document.querySelector('.floating-header');
+    var title = document.querySelector('.post-full-title');
+
+    var lastScrollY = window.scrollY;
+    var lastWindowHeight = window.innerHeight;
+    var lastDocumentHeight = $(document).height();
+    var ticking = false;
+
+    function onScroll() {
+        lastScrollY = window.scrollY;
+        requestTick();
+    }
+
+    function onResize() {
+        lastWindowHeight = window.innerHeight;
+        lastDocumentHeight = $(document).height();
+        requestTick();
+    }
+
+    function requestTick() {
+        if (!ticking) {
+            requestAnimationFrame(update);
+        }
+        ticking = true;
+    }
+
+    function update() {
+        var trigger = title.getBoundingClientRect().top + window.scrollY;
+        var triggerOffset = title.offsetHeight + 35;
+        var progressMax = lastDocumentHeight - lastWindowHeight;
+
+        // show/hide floating header
+        if (lastScrollY >= trigger + triggerOffset) {
+            header.classList.add('floating-active');
+        } else {
+            header.classList.remove('floating-active');
+        }
+
+        progressBar.setAttribute('max', progressMax);
+        progressBar.setAttribute('value', lastScrollY);
+
+        ticking = false;
+    }
+
+    window.addEventListener('scroll', onScroll, {passive: true});
+    window.addEventListener('resize', onResize, false);
+
+    update();
+});
+</script>
+
+    
+
+    <!-- Ghost outputs important scripts and data with this tag - it should always be the very last thing before the closing body tag -->
+    <!-- ghost_foot -->
+
+</body>
+</html>
