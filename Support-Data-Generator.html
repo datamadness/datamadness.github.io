@@ -243,15 +243,15 @@ Advanced / Optional:</li>
 <p>The number of daily tickets is typically random variable that has reasonably defined mean and variance. Moreover, the mean is likely to move through the year to reflect seasonal effects such as major holidays or annual business cycles. 
 To model this behavior, the code is using truncated normal continuous variable function from scipy package to generate the number of tickets on given day:</p>
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">#Calculate distribution function</span>
-        <span class="n">dist</span> <span class="o">=</span> <span class="n">stats</span><span class="o">.</span><span class="n">truncnorm</span><span class="p">((</span><span class="n">annual_minimum</span> <span class="o">-</span> <span class="n">mu</span><span class="p">)</span> <span class="o">/</span> <span class="n">sigma</span><span class="p">,</span> <span class="p">(</span><span class="n">annual_maximum</span> <span class="o">-</span> <span class="n">mu</span><span class="p">)</span> <span class="o">/</span> <span class="n">sigma</span><span class="p">,</span> <span class="n">loc</span><span class="o">=</span><span class="n">mu</span><span class="p">,</span> <span class="n">scale</span><span class="o">=</span><span class="n">sigma</span><span class="p">)</span>
-        <span class="c">#Generate number of tickets for given day</span>
-        <span class="n">ticket_num</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">dist</span><span class="o">.</span><span class="n">rvs</span><span class="p">())</span>
+<span class="n">dist</span> <span class="o">=</span> <span class="n">stats</span><span class="o">.</span><span class="n">truncnorm</span><span class="p">((</span><span class="n">annual_minimum</span> <span class="o">-</span> <span class="n">mu</span><span class="p">)</span> <span class="o">/</span> <span class="n">sigma</span><span class="p">,</span> <span class="p">(</span><span class="n">annual_maximum</span> <span class="o">-</span> <span class="n">mu</span><span class="p">)</span> <span class="o">/</span> <span class="n">sigma</span><span class="p">,</span> <span class="n">loc</span><span class="o">=</span><span class="n">mu</span><span class="p">,</span> <span class="n">scale</span><span class="o">=</span><span class="n">sigma</span><span class="p">)</span>
+<span class="c">#Generate number of tickets for given day</span>
+<span class="n">ticket_num</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">dist</span><span class="o">.</span><span class="n">rvs</span><span class="p">())</span>
 </code></pre></div></div>
 <p>Simply specify the approximate minimum and maximum number of cases per day through the year. The mean <code class="highlighter-rouge">mu</code> and variance <code class="highlighter-rouge">sigma</code> for given day then will be automatically calculated based the seasonal effect function:</p>
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">#Calculate mean for given day</span>
-        <span class="n">mu</span> <span class="o">=</span> <span class="p">(</span><span class="n">annual_maximum</span> <span class="o">-</span> <span class="n">annual_minimum</span><span class="p">)</span><span class="o">/</span><span class="mi">2</span> <span class="o">+</span> <span class="n">seasonal_factor</span> <span class="o">*</span> <span class="p">(</span><span class="n">busy_level</span> <span class="o">-</span> <span class="mf">0.5</span><span class="p">)</span> <span class="o">*</span> <span class="p">((</span><span class="n">annual_maximum</span> <span class="o">-</span> <span class="n">annual_minimum</span><span class="p">)</span><span class="o">/</span><span class="mi">2</span><span class="p">)</span> 
-        <span class="c">#Calculate standard deviation for given day</span>
-        <span class="n">sigma</span> <span class="o">=</span> <span class="p">(</span><span class="n">annual_maximum</span> <span class="o">-</span> <span class="n">annual_minimum</span><span class="p">)</span> <span class="o">*</span> <span class="mf">0.1</span>
+<span class="n">mu</span> <span class="o">=</span> <span class="p">(</span><span class="n">annual_maximum</span> <span class="o">-</span> <span class="n">annual_minimum</span><span class="p">)</span><span class="o">/</span><span class="mi">2</span> <span class="o">+</span> <span class="n">seasonal_factor</span> <span class="o">*</span> <span class="p">(</span><span class="n">busy_level</span> <span class="o">-</span> <span class="mf">0.5</span><span class="p">)</span> <span class="o">*</span> <span class="p">((</span><span class="n">annual_maximum</span> <span class="o">-</span> <span class="n">annual_minimum</span><span class="p">)</span><span class="o">/</span><span class="mi">2</span><span class="p">)</span> 
+<span class="c">#Calculate standard deviation for given day</span>
+<span class="n">sigma</span> <span class="o">=</span> <span class="p">(</span><span class="n">annual_maximum</span> <span class="o">-</span> <span class="n">annual_minimum</span><span class="p">)</span> <span class="o">*</span> <span class="mf">0.1</span>
 </code></pre></div></div>
 <p>The seasonal effect requires you to input the peak months as integer values. Here is an example for simulating two seasonal peaks in February and November:
 ‘busy_months = np.array([2,11])’</p>
@@ -265,8 +265,8 @@ To model this behavior, the code is using truncated normal continuous variable f
 
 <p>The following plot demonstrates the annual volumes and seasonality dependency with all other parameters being constant:</p>
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">annual_minimum</span> <span class="o">=</span> <span class="mi">5</span>		<span class="c"># ~ annual daily minimum of tickets</span>
-    <span class="n">annual_maximum</span> <span class="o">=</span> <span class="mi">50</span>       	<span class="c"># ~ annual daily maximum of tickets           </span>
-    <span class="n">busy_months</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">2</span><span class="p">,</span><span class="mi">7</span><span class="p">])</span>       <span class="c"># February and July are busy months</span>
+<span class="n">annual_maximum</span> <span class="o">=</span> <span class="mi">50</span>		<span class="c"># ~ annual daily maximum of tickets</span>
+<span class="n">busy_months</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">2</span><span class="p">,</span><span class="mi">7</span><span class="p">])</span>	<span class="c"># February and July are busy months</span>
 </code></pre></div></div>
 <p><em>Seasonal factor impact comparison:</em>
 <img src="/assets/images/support_data_generator/weekly_ticket_totals_comparison.png" alt="image test" /></p>
@@ -390,6 +390,15 @@ Fortunately, these effects can be quite well approximated by the non-central chi
                                     
                                         
                                         
+                                            <li><a href="/Team-Plannning">Forecasting Operations Team Resources Using Statistics</a></li>
+                                        
+                                    
+                                  
+                                
+                                  
+                                    
+                                        
+                                        
                                             <li><a href="/Team-Plannning">Planning Support Team Resources in Start-ups Using Statistics</a></li>
                                         
                                     
@@ -406,7 +415,7 @@ Fortunately, these effects can be quite well approximated by the non-central chi
                         <footer class="read-next-card-footer">
                             <a href="/tag/statistics/">
                                 
-                                    See all 1 posts  →
+                                    See all 2 posts  →
                                 
                             </a>
                         </footer>
