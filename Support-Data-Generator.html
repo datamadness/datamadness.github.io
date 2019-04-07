@@ -249,7 +249,8 @@ To model this behavior, the code is using truncated normal continuous variable f
 </code></pre></div></div>
 <p>Simply specify the approximate minimum and maximum number of cases per day through the year. The mean <code class="highlighter-rouge">mu</code> and variance <code class="highlighter-rouge">sigma</code> for given day then will be automatically calculated based the seasonal effect function:</p>
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">#Calculate mean for given day</span>
-<span class="n">mu</span> <span class="o">=</span> <span class="p">(</span><span class="n">annual_maximum</span> <span class="o">-</span> <span class="n">annual_minimum</span><span class="p">)</span><span class="o">/</span><span class="mi">2</span> <span class="o">+</span> <span class="n">seasonal_factor</span> <span class="o">*</span> <span class="p">(</span><span class="n">busy_level</span> <span class="o">-</span> <span class="mf">0.5</span><span class="p">)</span> <span class="o">*</span> <span class="p">((</span><span class="n">annual_maximum</span> <span class="o">-</span> <span class="n">annual_minimum</span><span class="p">)</span><span class="o">/</span><span class="mi">2</span><span class="p">)</span> 
+<span class="n">mu</span> <span class="o">=</span> <span class="p">(</span><span class="n">annual_maximum</span> <span class="o">-</span> <span class="n">annual_minimum</span><span class="p">)</span><span class="o">/</span><span class="mi">2</span> <span class="o">+</span> <span class="n">seasonal_factor</span> <span class="o">*</span> <span class="p">(</span><span class="n">busy_level</span> <span class="o">-</span> <span class="mf">0.5</span><span class="p">)</span> <span class="o">*</span> 
+	<span class="p">((</span><span class="n">annual_maximum</span> <span class="o">-</span> <span class="n">annual_minimum</span><span class="p">)</span><span class="o">/</span><span class="mi">2</span><span class="p">)</span> 
 <span class="c">#Calculate standard deviation for given day</span>
 <span class="n">sigma</span> <span class="o">=</span> <span class="p">(</span><span class="n">annual_maximum</span> <span class="o">-</span> <span class="n">annual_minimum</span><span class="p">)</span> <span class="o">*</span> <span class="mf">0.1</span>
 </code></pre></div></div>
@@ -396,15 +397,6 @@ Fortunately, these effects can be quite well approximated by the non-central chi
                                   
                                 
                                   
-                                    
-                                        
-                                        
-                                            <li><a href="/Team-Plannning">Planning Support Team Resources in Start-ups Using Statistics</a></li>
-                                        
-                                    
-                                  
-                                
-                                  
                                 
                                   
                                     
@@ -415,7 +407,7 @@ Fortunately, these effects can be quite well approximated by the non-central chi
                         <footer class="read-next-card-footer">
                             <a href="/tag/statistics/">
                                 
-                                    See all 2 posts  →
+                                    See all 1 posts  →
                                 
                             </a>
                         </footer>

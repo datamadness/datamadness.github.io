@@ -85,21 +85,6 @@ This short post shows a quick tip how to use the pythonic lambda function to sol
     
       
       <item>
-        <title>Planning Support Team Resources in Start-ups Using Statistics</title>
-        
-          <description>Planning staff allocation for customer support can be challenging since great support is essential for company success but it can consume large portion of usually limited budget. This can be particularly true in smaller companies and start-ups where the case volume significantly fluctuates and the staff also needs to work on other projects besides support.
-
-</description>
-        
-        <pubDate>Sun, 24 Jun 2018 10:32:00 +0000</pubDate>
-        <link>
-        /Team-Plannning</link>
-        <guid isPermaLink="true">/Team-Plannning</guid>
-      </item>
-      
-    
-      
-      <item>
         <title>Python function to automatically transform skewed data in Pandas DataFrame</title>
         
           <description>&lt;p&gt;When I stumble on an interesting new dataset, I often find myself excitedly prototyping a quick machine learning models to see what type of insights I could get out of the latest find. Since hacking together a quick model can be fast thanks to plenty awesome packages such as scikit-learn or Keras, I happen to spend most of my prototyping effort on cleaning and transforming the data. (I always like to start with the simplest regressors / classifiers)&lt;/p&gt;
