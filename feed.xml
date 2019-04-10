@@ -1,6 +1,6 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.6.2">Jekyll</generator><link href="/feed.xml" rel="self" type="application/atom+xml" /><link href="/" rel="alternate" type="text/html" /><updated>2019-04-09T21:35:04-07:00</updated><id>/</id><title type="html">DATAmadness</title><subtitle>Exploring the world through data analysis and machine learning</subtitle><entry><title type="html">Forecasting Operations Team Resources Using Statistics</title><link href="/Team-Plannning" rel="alternate" type="text/html" title="Forecasting Operations Team Resources Using Statistics" /><published>2019-04-01T03:32:00-07:00</published><updated>2019-04-01T03:32:00-07:00</updated><id>/Team-Plannning</id><content type="html" xml:base="/Team-Plannning">&lt;p&gt;Planning staff allocation in an environment geared heavily towards operations can be challenging due to the erratic nature of the demand from both internal or external clients. The predictability issues affect wide range of teams - from sales or support to development and data analytics departments. If your team is exposed to any type of ad-hoc requests on regular basis, you are likely familiar with having your carefully estimated project plans derailed by unexpected workload.&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.6.2">Jekyll</generator><link href="/feed.xml" rel="self" type="application/atom+xml" /><link href="/" rel="alternate" type="text/html" /><updated>2019-04-09T21:45:53-07:00</updated><id>/</id><title type="html">DATAmadness</title><subtitle>Exploring the world through data analysis and machine learning</subtitle><entry><title type="html">Forecasting Operations Team Resources Using Statistics</title><link href="/Team-Plannning" rel="alternate" type="text/html" title="Forecasting Operations Team Resources Using Statistics" /><published>2019-04-01T03:32:00-07:00</published><updated>2019-04-01T03:32:00-07:00</updated><id>/Team-Plannning</id><content type="html" xml:base="/Team-Plannning">&lt;p&gt;Planning staff allocation in an environment geared heavily towards operations can be challenging due to the erratic nature of the demand from both internal or external clients. The predictability issues affect wide range of teams - from sales or support to development and data analytics departments. If your team is exposed to any type of ad-hoc requests on regular basis, you are likely familiar with having your carefully estimated project plans derailed by unexpected workload.&lt;/p&gt;
 
-&lt;p&gt;This article will demonstrate that it is possible to accurately predict commitments even in a very erratic environment if we choose the right time frame and management approach. propose a simply methodology for team.As opposed to the go-to ML solution, we’ll use simple statistics that will let us to get away with a small dataset that is readily available at most businesses.&lt;/p&gt;
+&lt;p&gt;This article will demonstrate that it is possible to accurately predict commitments even in a very erratic environment as long as we choose the right time frame and management approach. We propose a simple, but powerful methodology for your operations team planning. As opposed to the common go-to Machine Learning solution, we’ll use simple statistics that will let us to get away with a small dataset that is readily available at most businesses.&lt;/p&gt;
 
 &lt;blockquote&gt;
   &lt;p&gt;For managers, the message is that it is not always possible to micromanage the team and require meeting daily or weekly deadlines for secondary project work in operations, but it is most certainly possible to plan and hold the team responsible for delivering results on monthly basis.&lt;/p&gt;
@@ -24,7 +24,8 @@
 &lt;p&gt;The team logs time they spend on providing the data analytics requests for the company. We can explore the data from past six years in this interactive visualization(you can display it fullscreen):&lt;/p&gt;
 &lt;iframe width=&quot;800&quot; height=&quot;600&quot; src=&quot;https://app.powerbi.com/view?r=eyJrIjoiY2ZlODU5YjAtZTQxMC00MzUxLTgyNjgtOWY5MjcyZGU1ZGY1IiwidCI6ImZmZTRhZjdkLWIxODgtNDIzZi1iMmQ5LTUwZmIzYjQ2NjU2ZiJ9&quot; frameborder=&quot;0&quot; allowfullscreen=&quot;true&quot;&gt;&lt;/iframe&gt;
 
-&lt;p&gt;&lt;strong&gt;Key takeaways from 2017 year:&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;br /&gt;
+&lt;strong&gt;Key takeaways from 2017 data:&lt;/strong&gt;&lt;/p&gt;
 
 &lt;ul&gt;
   &lt;li&gt;The effort is highly cyclical with more requests coming in around quarter ends when there is higher need for reporting&lt;/li&gt;
@@ -34,33 +35,41 @@
   &lt;li&gt;Annual monthly median is around 1180 Hours&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;h4 id=&quot;challenge-accuratly-predict-team-resources-for-next-month&quot;&gt;Challenge: Accuratly Predict Team Resources for Next Month&lt;/h4&gt;
-&lt;p&gt;Lets imagine it is the end of April 2018 and we want to &lt;strong&gt;accurately predict May 2018 numbers&lt;/strong&gt; for:&lt;/p&gt;
+&lt;h4 id=&quot;challenge-accurately-predict-team-resources-for-next-month&quot;&gt;Challenge: Accurately Predict Team Resources for Next Month&lt;/h4&gt;
+&lt;p&gt;Lets imagine it is the end of April 2018 and we want to accurately predict May 2018 numbers:&lt;/p&gt;
 
 &lt;ol&gt;
   &lt;li&gt;How much time the team will spend on ad-hoc requests&lt;/li&gt;
   &lt;li&gt;How much time we can safely commit to project work while using teams time efficiently&lt;/li&gt;
 &lt;/ol&gt;
 
-&lt;p&gt;&lt;strong&gt;To do this, we will first look at the previous months data:&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;To do this, we will first look at the previous months data:&lt;/p&gt;
 &lt;iframe width=&quot;800&quot; height=&quot;600&quot; src=&quot;https://app.powerbi.com/view?r=eyJrIjoiZTE2NzVjZjgtOTRkOC00OGY5LTgyZmUtOTVlNDRlMDIwYTdjIiwidCI6ImZmZTRhZjdkLWIxODgtNDIzZi1iMmQ5LTUwZmIzYjQ2NjU2ZiJ9&quot; frameborder=&quot;0&quot; allowfullscreen=&quot;true&quot;&gt;&lt;/iframe&gt;
 
 &lt;p&gt;We see that on daily basis the team spent:
-Average of $ \mu_{april} = 45.5 Hours$ on reports with
-Standard Deviation $ \sigma_{april} = 17.5 Hours$&lt;/p&gt;
+Average of&lt;/p&gt;
 
-&lt;p&gt;This allows us to calculate the Standard Deviation of the Mean (SEM) as:
-&lt;script type=&quot;math/tex&quot;&gt;SEM = \frac \sigma {\sqrt n} = \frac \17.5 {\sqrt 30} = 3.2 Hours&lt;/script&gt;&lt;/p&gt;
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;\mu_{april} = 45.5 Hours&lt;/script&gt;
+
+&lt;p&gt;on reports with Standard Deviation&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;\sigma_{april} = 17.5 Hours&lt;/script&gt;
+
+&lt;p&gt;This allows us to calculate the Standard Deviation of the Mean (SEM) as:&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;SEM = \frac \sigma {\sqrt n} = \frac \17.5 {\sqrt 30} = 3.2 Hours&lt;/script&gt;
 
 &lt;p&gt;This is where we get the first big help from statistics. While the daily logged time in April went from minimum of 17 hours a day to maximum of 84 hours a day, with 30 days in a month we the standard deviation of the mean(SEM) is only 3.2 Hours. That is very little!&lt;/p&gt;
 
 &lt;p&gt;The second huge accuracy boost comes from the &lt;a href=&quot;https://en.wikipedia.org/wiki/Central_limit_theorem&quot;&gt;Central Limit Theorem&lt;/a&gt; that tells us that even our skewed data will have normally distributed mean with sample size large enough. The rule of thumb is to have 30 or more samples. Luckily for us, one month has 30 days! (You might want to increase the prediction time frame if you want to give your employees weekends off :)&lt;/p&gt;
 
-&lt;p&gt;As a result, we can use simple normal distribution statistics to calculate the 95% Confidence Interval(CI) for April and get:
-&lt;script type=&quot;math/tex&quot;&gt;1358 \le \bar x \le 1370&lt;/script&gt;&lt;/p&gt;
+&lt;p&gt;As a result, we can use simple normal distribution statistics to calculate the 95% Confidence Interval(CI) for April and get:&lt;/p&gt;
 
-&lt;p&gt;We actually know for fact that the true mean is in this range, but the goal is to use this interval for extrapolation for the May 2018 Confidence Interval. As I said, we’ll keep things very simple and look at year 2017 to see that May was ~8% higher than April. Hence, we simply add 8% to the April CI to predict the range for May 2018 mean as:
-&lt;script type=&quot;math/tex&quot;&gt;1466 \le \bar x \le 1480&lt;/script&gt;&lt;/p&gt;
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;1358 \le \bar x \le 1370&lt;/script&gt;
+
+&lt;p&gt;We actually know for fact that the true mean is in this range, but the goal is to use this interval for extrapolation for the May 2018 Confidence Interval. As I said, we’ll keep things very simple and look at year 2017 to see that May was ~8% higher than April. Hence, we simply add 8% to the April CI to predict the range for May 2018 mean as:&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;1466 \le \bar x \le 1480&lt;/script&gt;
 
 &lt;p&gt;This means that our team of 20 with total of 4000 man hours available will spend approximately:&lt;/p&gt;
 &lt;ul&gt;
@@ -68,10 +77,11 @@ Standard Deviation $ \sigma_{april} = 17.5 Hours$&lt;/p&gt;
   &lt;li&gt;&lt;strong&gt;2530 hours&lt;/strong&gt; can be safely dedicated to other work such as projects&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;p&gt;Notice how we went from standard daily deviation of &lt;strong&gt;17.5 hours&lt;/strong&gt; to predicting the monthly effort within an interval of &lt;strong&gt;14 hours&lt;/strong&gt;!!!&lt;/p&gt;
+&lt;p&gt;Notice how we went from standard daily deviation of 17.5 hours to predicting the monthly effort within an interval of 14 hours!!!&lt;/p&gt;
 
-&lt;p&gt;&lt;strong&gt;Bonus: Poisson Distribution&lt;/strong&gt;
-We can also use Poisson distribution to predict the probability that we’ll receive 6 or more request on any given day is &lt;strong&gt;0.06&lt;/strong&gt; simply by knowing that in April, we received &lt;strong&gt;3.4&lt;/strong&gt; requests a day on average. Hence, we can expect that we will most likely get 6 requests a day on one or two occasions in May.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Bonus: Poisson Distribution&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;We can also use Poisson distribution to predict the probability that we’ll receive 6 or more request on any given day is 0.06 simply by knowing that in April, we received 3.4 requests a day on average. Hence, we can expect that we will most likely get 6 requests a day on one or two occasions in May.&lt;/p&gt;
 
 &lt;h4 id=&quot;may-2018-prediction-vs-reality&quot;&gt;May 2018 Prediction vs Reality&lt;/h4&gt;
 &lt;p&gt;So how did we do with our predictions when compared to reality? Here is the May 2018 overview:&lt;/p&gt;
