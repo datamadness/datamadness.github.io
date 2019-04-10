@@ -32,17 +32,17 @@
     <meta property="og:site_name" content="DATAmadness" />
     <meta property="og:type" content="website" />
     <meta property="og:title" content="Forecasting Operations Team Resources Using Statistics" />
-    <meta property="og:description" content="Planning staff allocation in an environment geared heavily towards operations can be challenging due to the erratic nature of the demand from the internal or external clients. The predictability issues affects wide range of teams - from sales or support teams to development teams or analytics teams. If your team" />
+    <meta property="og:description" content="Planning staff allocation in an environment geared heavily towards operations can be challenging due to the erratic nature of the demand from both internal or external clients. The predictability issues affect wide range of teams - from sales or support to development and data analytics departments. If your team is" />
     <meta property="og:url" content="/Team-Plannning" />
     <meta property="og:image" content="/assets/images/startup-desktop.jpg" />
     <meta property="article:publisher" content="https://www.facebook.com/ghost" />
     <meta property="article:author" content="https://www.facebook.com/ghost" />
-    <meta property="article:published_time" content="2018-06-24T03:32:00-07:00" />
-    <meta property="article:modified_time" content="2018-06-24T03:32:00-07:00" />
+    <meta property="article:published_time" content="2019-04-01T03:32:00-07:00" />
+    <meta property="article:modified_time" content="2019-04-01T03:32:00-07:00" />
     <meta property="article:tag" content="Statistics" />
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content="Forecasting Operations Team Resources Using Statistics" />
-    <meta name="twitter:description" content="Planning staff allocation in an environment geared heavily towards operations can be challenging due to the erratic nature of the demand from the internal or external clients. The predictability issues affects wide range of teams - from sales or support teams to development teams or analytics teams. If your team" />
+    <meta name="twitter:description" content="Planning staff allocation in an environment geared heavily towards operations can be challenging due to the erratic nature of the demand from both internal or external clients. The predictability issues affect wide range of teams - from sales or support to development and data analytics departments. If your team is" />
     <meta name="twitter:url" content="/" />
     <meta name="twitter:image" content="/assets/images/startup-desktop.jpg" />
     <meta name="twitter:label1" content="Written by" />
@@ -74,7 +74,7 @@
         "@type": "WebPage",
         "@id": "/Team-Plannning"
     },
-    "description": "Planning staff allocation in an environment geared heavily towards operations can be challenging due to the erratic nature of the demand from the internal or external clients. The predictability issues affects wide range of teams - from sales or support teams to development teams or analytics teams. If your team"
+    "description": "Planning staff allocation in an environment geared heavily towards operations can be challenging due to the erratic nature of the demand from both internal or external clients. The predictability issues affect wide range of teams - from sales or support to development and data analytics departments. If your team is"
 }
     </script>
 
@@ -148,7 +148,7 @@ into the {body} of the default.hbs template -->
 
             <header class="post-full-header">
                 <section class="post-full-meta">
-                    <time class="post-full-meta-date" datetime="24 June 2018">24 June 2018</time>
+                    <time class="post-full-meta-date" datetime=" 1 April 2019"> 1 April 2019</time>
                     
                         <span class="date-divider">/</span>
                         
@@ -168,27 +168,92 @@ into the {body} of the default.hbs template -->
 
             <section class="post-full-content">
                 <div class="kg-card-markdown">
-                    <p>Planning staff allocation in an environment geared heavily towards operations can be challenging due to the erratic nature of the demand from the internal or external clients. The predictability issues affects wide range of teams - from sales or support teams to development teams or analytics teams. If your team is exposed to any type of ad-hoc requests on regular basis, you are likely familiar with having your carefully estimated project plans derailed by unexpected workload.</p>
+                    <p>Planning staff allocation in an environment geared heavily towards operations can be challenging due to the erratic nature of the demand from both internal or external clients. The predictability issues affect wide range of teams - from sales or support to development and data analytics departments. If your team is exposed to any type of ad-hoc requests on regular basis, you are likely familiar with having your carefully estimated project plans derailed by unexpected workload.</p>
 
-<p>This article will propose a team resources planning framework that allows you to estimate:</p>
+<p>This article will demonstrate that it is possible to accurately predict commitments even in a very erratic environment if we choose the right time frame and management approach. propose a simply methodology for team.As opposed to the go-to ML solution, we’ll use simple statistics that will let us to get away with a small dataset that is readily available at most businesses.</p>
+
+<blockquote>
+  <p>For managers, the message is that it is not always possible to micromanage the team and require meeting daily or weekly deadlines for secondary project work in operations, but it is most certainly possible to plan and hold the team responsible for delivering results on monthly basis.</p>
+</blockquote>
+
+<p>The proposed resource planning framework will allow you to estimate:</p>
 
 <ul>
   <li>The fraction of team resources required to accommodate the seemingly random ad-hoc tasks without being overwhelmed</li>
   <li>How much of your team’s time can be safely committed to project work</li>
 </ul>
 
-<p>To tackle this task, we will use basics statistics to guide your staffing and time allocation decisions by using basic data that are typically available in your company or can be even estimated and modeled.</p>
-
 <p>The data used in this example are generated using a statistical model described in <a href="https://datamadness.github.io/Support-Data-Generator">this article</a>. You can use the provided tool to model your own data for quick experiments.</p>
 
-<h2 id="exploring-the-available-data">Exploring the available data</h2>
+<h4 id="business-scenario">Business Scenario</h4>
+<p>You are a manager of data analytics team with 20 team members. The team provides business intelligence, reporting and data consultation services to several departments in your large corporation X. Most requests come to the team on an ad-hoc basis and are difficult to predict. The rest of the team’s time is dedicated to project work such as developing more advanced data science and ML solutions to increase efficiency.</p>
+
+<p><strong>The problem:</strong> The team often misses project deadlines because they are busy with surge of analytics and reporting requests that must be done with high priority.</p>
+
+<h4 id="exploring-the-available-data">Exploring the available data</h4>
+<p>The team logs time they spend on providing the data analytics requests for the company. We can explore the data from past six years in this interactive visualization(you can display it fullscreen):</p>
 <iframe width="800" height="600" src="https://app.powerbi.com/view?r=eyJrIjoiY2ZlODU5YjAtZTQxMC00MzUxLTgyNjgtOWY5MjcyZGU1ZGY1IiwidCI6ImZmZTRhZjdkLWIxODgtNDIzZi1iMmQ5LTUwZmIzYjQ2NjU2ZiJ9" frameborder="0" allowfullscreen="true"></iframe>
 
-<h3 id="april-recorded">April Recorded</h3>
+<p><strong>Key takeaways from 2017 year:</strong></p>
+
+<ul>
+  <li>The effort is highly cyclical with more requests coming in around quarter ends when there is higher need for reporting</li>
+  <li>Most requests come from Investor Relations and Sales and Marketing departments</li>
+  <li>The maximum monthly effort in 2017 was logged in December with 1663 hours</li>
+  <li>The minimum monthly effort in 2017 was logged in January with 719 hours</li>
+  <li>Annual monthly median is around 1180 Hours</li>
+</ul>
+
+<h4 id="challenge-accuratly-predict-team-resources-for-next-month">Challenge: Accuratly Predict Team Resources for Next Month</h4>
+<p>Lets imagine it is the end of April 2018 and we want to <strong>accurately predict May 2018 numbers</strong> for:</p>
+
+<ol>
+  <li>How much time the team will spend on ad-hoc requests</li>
+  <li>How much time we can safely commit to project work while using teams time efficiently</li>
+</ol>
+
+<p><strong>To do this, we will first look at the previous months data:</strong></p>
 <iframe width="800" height="600" src="https://app.powerbi.com/view?r=eyJrIjoiZTE2NzVjZjgtOTRkOC00OGY5LTgyZmUtOTVlNDRlMDIwYTdjIiwidCI6ImZmZTRhZjdkLWIxODgtNDIzZi1iMmQ5LTUwZmIzYjQ2NjU2ZiJ9" frameborder="0" allowfullscreen="true"></iframe>
 
-<h3 id="may-predicted-vs-actual">May Predicted vs Actual</h3>
+<p>We see that on daily basis the team spent:
+Average of $ \mu_{april} = 45.5 Hours$ on reports with
+Standard Deviation $ \sigma_{april} = 17.5 Hours$</p>
+
+<p>This allows us to calculate the Standard Deviation of the Mean (SEM) as:
+<script type="math/tex">SEM = \frac \sigma {\sqrt n} = \frac \17.5 {\sqrt 30} = 3.2 Hours</script></p>
+
+<p>This is where we get the first big help from statistics. While the daily logged time in April went from minimum of 17 hours a day to maximum of 84 hours a day, with 30 days in a month we the standard deviation of the mean(SEM) is only 3.2 Hours. That is very little!</p>
+
+<p>The second huge accuracy boost comes from the <a href="https://en.wikipedia.org/wiki/Central_limit_theorem">Central Limit Theorem</a> that tells us that even our skewed data will have normally distributed mean with sample size large enough. The rule of thumb is to have 30 or more samples. Luckily for us, one month has 30 days! (You might want to increase the prediction time frame if you want to give your employees weekends off :)</p>
+
+<p>As a result, we can use simple normal distribution statistics to calculate the 95% Confidence Interval(CI) for April and get:
+<script type="math/tex">1358 \le \bar x \le 1370</script></p>
+
+<p>We actually know for fact that the true mean is in this range, but the goal is to use this interval for extrapolation for the May 2018 Confidence Interval. As I said, we’ll keep things very simple and look at year 2017 to see that May was ~8% higher than April. Hence, we simply add 8% to the April CI to predict the range for May 2018 mean as:
+<script type="math/tex">1466 \le \bar x \le 1480</script></p>
+
+<p>This means that our team of 20 with total of 4000 man hours available will spend approximately:</p>
+<ul>
+  <li><strong>1470 hours</strong> on ad-hoc requests for the corporation</li>
+  <li><strong>2530 hours</strong> can be safely dedicated to other work such as projects</li>
+</ul>
+
+<p>Notice how we went from standard daily deviation of <strong>17.5 hours</strong> to predicting the monthly effort within an interval of <strong>14 hours</strong>!!!</p>
+
+<p><strong>Bonus: Poisson Distribution</strong>
+We can also use Poisson distribution to predict the probability that we’ll receive 6 or more request on any given day is <strong>0.06</strong> simply by knowing that in April, we received <strong>3.4</strong> requests a day on average. Hence, we can expect that we will most likely get 6 requests a day on one or two occasions in May.</p>
+
+<h4 id="may-2018-prediction-vs-reality">May 2018 Prediction vs Reality</h4>
+<p>So how did we do with our predictions when compared to reality? Here is the May 2018 overview:</p>
 <iframe width="800" height="600" src="https://app.powerbi.com/view?r=eyJrIjoiZDUwM2EyOTUtYWM2NS00YTNlLWFkNGItMmIxMzljYWJiOTJlIiwidCI6ImZmZTRhZjdkLWIxODgtNDIzZi1iMmQ5LTUwZmIzYjQ2NjU2ZiJ9" frameborder="0" allowfullscreen="true"></iframe>
+
+<p>In quite hard-to-believe result, we were able to predict the entire months effort required for ad-hoc analytics and reporting requests with more than 99% accuracy, being off by 11 hours only(compared to the actual 1459).</p>
+
+<h4 id="conclusion">Conclusion</h4>
+
+<p>The experiment shows that if we select the correct time frame for our planning, we can use the strength of simple statistics to predict future effort with high accuracy even for teams engaged in seemingly unpredictable business. While we would be hard pressed to predict the effort required for the next day with 20 Hour accuracy, we could predict entire months effort with 11 hour effort.</p>
+
+<p>For managers, the message is that it is not possible to micromanage the team and require meeting daily or weekly deadlines for secondary project work, but it is most certainly possible to plan and hold the team responsible for delivering results on monthly basis.</p>
 
                 </div>
             </section>
@@ -257,15 +322,15 @@ into the {body} of the default.hbs template -->
                                 
                                 
                                   
-                                
-                                  
-                                
-                                  
-                                
-                                  
-                                
-                                  
                                     
+                                  
+                                
+                                  
+                                
+                                  
+                                
+                                  
+                                
                                   
                                 
                                   
@@ -294,58 +359,18 @@ into the {body} of the default.hbs template -->
 
             <!-- If there's a next post, display it using the same markup included from - partials/post-card.hbs -->
             
-                
-    <article class="post-card post-template">
-        
-            <a class="post-card-image-link" href="/tensorflow_estimator_large_dataset_feed">
-                <div class="post-card-image" style="background-image: url(/assets/images/tf_file_feed/infographic-design-banner.jpg)"></div>
-            </a>
-        
-        <div class="post-card-content">
-            <a class="post-card-content-link" href="/tensorflow_estimator_large_dataset_feed">
-                <header class="post-card-header">
-                    
-                        
-                            
-                                <span class="post-card-tags">Python</span>
-                            
-                        
-                    
-
-                    <h2 class="post-card-title">TensorFlow Estimators API - Feeding large datasets from drive via TFRecords (MNIST example)</h2>
-                </header>
-                <section class="post-card-excerpt">
-                    <p>It is easy to hit resource limits when working with large datasets. In particular, the available memory becomes quickly a limiting factor when training your neural networks on swaths of data. The solution</p>
-                </section>
-            </a>
-            <footer class="post-card-meta">
-                
-                    
-                        
-                        <img class="author-profile-image" src="/assets/images/DM_favicon.png" alt="DATAmadness" />
-                        
-                        <span class="post-card-author">
-                            <a href="/author/DATAmadness/">DATAmadness</a>
-                        </span>
-                    
-                
-            </footer>
-        </div>
-    </article>
-
-            
 
             <!-- If there's a previous post, display it using the same markup included from - partials/post-card.hbs -->
             
                 
     <article class="post-card post-template">
         
-            <a class="post-card-image-link" href="/Skewness_Auto_Transform">
-                <div class="post-card-image" style="background-image: url(/assets/images/Skew_autotransform/header_spyder.png)"></div>
+            <a class="post-card-image-link" href="/time-signal-CNN-part2">
+                <div class="post-card-image" style="background-image: url(/assets/images/time_signal_CNN/spectrogram2.png)"></div>
             </a>
         
         <div class="post-card-content">
-            <a class="post-card-content-link" href="/Skewness_Auto_Transform">
+            <a class="post-card-content-link" href="/time-signal-CNN-part2">
                 <header class="post-card-header">
                     
                         
@@ -355,10 +380,10 @@ into the {body} of the default.hbs template -->
                         
                     
 
-                    <h2 class="post-card-title">Python function to automatically transform skewed data in Pandas DataFrame</h2>
+                    <h2 class="post-card-title">Time signal classification using Convolutional Neural Network in TensorFlow - Part 2</h2>
                 </header>
                 <section class="post-card-excerpt">
-                    <p>When I stumble on an interesting new dataset, I often find myself excitedly prototyping a quick machine learning models to see what type of insights I could get out of the latest find.</p>
+                    <p>After transforming 1D time domain data series into frequency 2D maps in part 1 of this miniseries, we’ll now focus on building the actual Convolutional Neural Network binary classification model. The goal is</p>
                 </section>
             </a>
             <footer class="post-card-meta">

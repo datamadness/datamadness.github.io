@@ -8,6 +8,21 @@
     
       
       <item>
+        <title>Forecasting Operations Team Resources Using Statistics</title>
+        
+          <description>&lt;p&gt;Planning staff allocation in an environment geared heavily towards operations can be challenging due to the erratic nature of the demand from both internal or external clients. The predictability issues affect wide range of teams - from sales or support to development and data analytics departments. If your team is exposed to any type of ad-hoc requests on regular basis, you are likely familiar with having your carefully estimated project plans derailed by unexpected workload.&lt;/p&gt;
+
+</description>
+        
+        <pubDate>Mon, 01 Apr 2019 10:32:00 +0000</pubDate>
+        <link>
+        /Team-Plannning</link>
+        <guid isPermaLink="true">/Team-Plannning</guid>
+      </item>
+      
+    
+      
+      <item>
         <title>Time signal classification using Convolutional Neural Network in TensorFlow - Part 2</title>
         
           <description>&lt;p&gt;After transforming 1D time domain data series into frequency 2D maps in &lt;a href=&quot;https://datamadness.github.io/time-signal-CNN&quot;&gt;part 1&lt;/a&gt; of this miniseries, we’ll now focus on building the actual Convolutional Neural Network binary classification model. The goal is to detect whether the original time domain signal exhibits partial discharge and is likely to result in a power line failure in the future.&lt;/p&gt;
@@ -65,21 +80,6 @@ This short post shows a quick tip how to use the pythonic lambda function to sol
         <link>
         /tensorflow_estimator_large_dataset_feed</link>
         <guid isPermaLink="true">/tensorflow_estimator_large_dataset_feed</guid>
-      </item>
-      
-    
-      
-      <item>
-        <title>Forecasting Operations Team Resources Using Statistics</title>
-        
-          <description>&lt;p&gt;Planning staff allocation in an environment geared heavily towards operations can be challenging due to the erratic nature of the demand from the internal or external clients. The predictability issues affects wide range of teams - from sales or support teams to development teams or analytics teams. If your team is exposed to any type of ad-hoc requests on regular basis, you are likely familiar with having your carefully estimated project plans derailed by unexpected workload.&lt;/p&gt;
-
-</description>
-        
-        <pubDate>Sun, 24 Jun 2018 10:32:00 +0000</pubDate>
-        <link>
-        /Team-Plannning</link>
-        <guid isPermaLink="true">/Team-Plannning</guid>
       </item>
       
     

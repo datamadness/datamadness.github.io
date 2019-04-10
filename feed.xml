@@ -1,4 +1,89 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.6.2">Jekyll</generator><link href="/feed.xml" rel="self" type="application/atom+xml" /><link href="/" rel="alternate" type="text/html" /><updated>2019-04-08T21:53:39-07:00</updated><id>/</id><title type="html">DATAmadness</title><subtitle>Exploring the world through data analysis and machine learning</subtitle><entry><title type="html">Time signal classification using Convolutional Neural Network in TensorFlow - Part 2</title><link href="/time-signal-CNN-part2" rel="alternate" type="text/html" title="Time signal classification using Convolutional Neural Network in TensorFlow - Part 2" /><published>2019-03-28T16:41:00-07:00</published><updated>2019-03-28T16:41:00-07:00</updated><id>/time-signal-CNN-part2</id><content type="html" xml:base="/time-signal-CNN-part2">&lt;p&gt;After transforming 1D time domain data series into frequency 2D maps in &lt;a href=&quot;https://datamadness.github.io/time-signal-CNN&quot;&gt;part 1&lt;/a&gt; of this miniseries, we’ll now focus on building the actual Convolutional Neural Network binary classification model. The goal is to detect whether the original time domain signal exhibits partial discharge and is likely to result in a power line failure in the future.&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.6.2">Jekyll</generator><link href="/feed.xml" rel="self" type="application/atom+xml" /><link href="/" rel="alternate" type="text/html" /><updated>2019-04-09T21:35:04-07:00</updated><id>/</id><title type="html">DATAmadness</title><subtitle>Exploring the world through data analysis and machine learning</subtitle><entry><title type="html">Forecasting Operations Team Resources Using Statistics</title><link href="/Team-Plannning" rel="alternate" type="text/html" title="Forecasting Operations Team Resources Using Statistics" /><published>2019-04-01T03:32:00-07:00</published><updated>2019-04-01T03:32:00-07:00</updated><id>/Team-Plannning</id><content type="html" xml:base="/Team-Plannning">&lt;p&gt;Planning staff allocation in an environment geared heavily towards operations can be challenging due to the erratic nature of the demand from both internal or external clients. The predictability issues affect wide range of teams - from sales or support to development and data analytics departments. If your team is exposed to any type of ad-hoc requests on regular basis, you are likely familiar with having your carefully estimated project plans derailed by unexpected workload.&lt;/p&gt;
+
+&lt;p&gt;This article will demonstrate that it is possible to accurately predict commitments even in a very erratic environment if we choose the right time frame and management approach. propose a simply methodology for team.As opposed to the go-to ML solution, we’ll use simple statistics that will let us to get away with a small dataset that is readily available at most businesses.&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;For managers, the message is that it is not always possible to micromanage the team and require meeting daily or weekly deadlines for secondary project work in operations, but it is most certainly possible to plan and hold the team responsible for delivering results on monthly basis.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;The proposed resource planning framework will allow you to estimate:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;The fraction of team resources required to accommodate the seemingly random ad-hoc tasks without being overwhelmed&lt;/li&gt;
+  &lt;li&gt;How much of your team’s time can be safely committed to project work&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;The data used in this example are generated using a statistical model described in &lt;a href=&quot;https://datamadness.github.io/Support-Data-Generator&quot;&gt;this article&lt;/a&gt;. You can use the provided tool to model your own data for quick experiments.&lt;/p&gt;
+
+&lt;h4 id=&quot;business-scenario&quot;&gt;Business Scenario&lt;/h4&gt;
+&lt;p&gt;You are a manager of data analytics team with 20 team members. The team provides business intelligence, reporting and data consultation services to several departments in your large corporation X. Most requests come to the team on an ad-hoc basis and are difficult to predict. The rest of the team’s time is dedicated to project work such as developing more advanced data science and ML solutions to increase efficiency.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;The problem:&lt;/strong&gt; The team often misses project deadlines because they are busy with surge of analytics and reporting requests that must be done with high priority.&lt;/p&gt;
+
+&lt;h4 id=&quot;exploring-the-available-data&quot;&gt;Exploring the available data&lt;/h4&gt;
+&lt;p&gt;The team logs time they spend on providing the data analytics requests for the company. We can explore the data from past six years in this interactive visualization(you can display it fullscreen):&lt;/p&gt;
+&lt;iframe width=&quot;800&quot; height=&quot;600&quot; src=&quot;https://app.powerbi.com/view?r=eyJrIjoiY2ZlODU5YjAtZTQxMC00MzUxLTgyNjgtOWY5MjcyZGU1ZGY1IiwidCI6ImZmZTRhZjdkLWIxODgtNDIzZi1iMmQ5LTUwZmIzYjQ2NjU2ZiJ9&quot; frameborder=&quot;0&quot; allowfullscreen=&quot;true&quot;&gt;&lt;/iframe&gt;
+
+&lt;p&gt;&lt;strong&gt;Key takeaways from 2017 year:&lt;/strong&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;The effort is highly cyclical with more requests coming in around quarter ends when there is higher need for reporting&lt;/li&gt;
+  &lt;li&gt;Most requests come from Investor Relations and Sales and Marketing departments&lt;/li&gt;
+  &lt;li&gt;The maximum monthly effort in 2017 was logged in December with 1663 hours&lt;/li&gt;
+  &lt;li&gt;The minimum monthly effort in 2017 was logged in January with 719 hours&lt;/li&gt;
+  &lt;li&gt;Annual monthly median is around 1180 Hours&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h4 id=&quot;challenge-accuratly-predict-team-resources-for-next-month&quot;&gt;Challenge: Accuratly Predict Team Resources for Next Month&lt;/h4&gt;
+&lt;p&gt;Lets imagine it is the end of April 2018 and we want to &lt;strong&gt;accurately predict May 2018 numbers&lt;/strong&gt; for:&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;How much time the team will spend on ad-hoc requests&lt;/li&gt;
+  &lt;li&gt;How much time we can safely commit to project work while using teams time efficiently&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;&lt;strong&gt;To do this, we will first look at the previous months data:&lt;/strong&gt;&lt;/p&gt;
+&lt;iframe width=&quot;800&quot; height=&quot;600&quot; src=&quot;https://app.powerbi.com/view?r=eyJrIjoiZTE2NzVjZjgtOTRkOC00OGY5LTgyZmUtOTVlNDRlMDIwYTdjIiwidCI6ImZmZTRhZjdkLWIxODgtNDIzZi1iMmQ5LTUwZmIzYjQ2NjU2ZiJ9&quot; frameborder=&quot;0&quot; allowfullscreen=&quot;true&quot;&gt;&lt;/iframe&gt;
+
+&lt;p&gt;We see that on daily basis the team spent:
+Average of $ \mu_{april} = 45.5 Hours$ on reports with
+Standard Deviation $ \sigma_{april} = 17.5 Hours$&lt;/p&gt;
+
+&lt;p&gt;This allows us to calculate the Standard Deviation of the Mean (SEM) as:
+&lt;script type=&quot;math/tex&quot;&gt;SEM = \frac \sigma {\sqrt n} = \frac \17.5 {\sqrt 30} = 3.2 Hours&lt;/script&gt;&lt;/p&gt;
+
+&lt;p&gt;This is where we get the first big help from statistics. While the daily logged time in April went from minimum of 17 hours a day to maximum of 84 hours a day, with 30 days in a month we the standard deviation of the mean(SEM) is only 3.2 Hours. That is very little!&lt;/p&gt;
+
+&lt;p&gt;The second huge accuracy boost comes from the &lt;a href=&quot;https://en.wikipedia.org/wiki/Central_limit_theorem&quot;&gt;Central Limit Theorem&lt;/a&gt; that tells us that even our skewed data will have normally distributed mean with sample size large enough. The rule of thumb is to have 30 or more samples. Luckily for us, one month has 30 days! (You might want to increase the prediction time frame if you want to give your employees weekends off :)&lt;/p&gt;
+
+&lt;p&gt;As a result, we can use simple normal distribution statistics to calculate the 95% Confidence Interval(CI) for April and get:
+&lt;script type=&quot;math/tex&quot;&gt;1358 \le \bar x \le 1370&lt;/script&gt;&lt;/p&gt;
+
+&lt;p&gt;We actually know for fact that the true mean is in this range, but the goal is to use this interval for extrapolation for the May 2018 Confidence Interval. As I said, we’ll keep things very simple and look at year 2017 to see that May was ~8% higher than April. Hence, we simply add 8% to the April CI to predict the range for May 2018 mean as:
+&lt;script type=&quot;math/tex&quot;&gt;1466 \le \bar x \le 1480&lt;/script&gt;&lt;/p&gt;
+
+&lt;p&gt;This means that our team of 20 with total of 4000 man hours available will spend approximately:&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;&lt;strong&gt;1470 hours&lt;/strong&gt; on ad-hoc requests for the corporation&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;2530 hours&lt;/strong&gt; can be safely dedicated to other work such as projects&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Notice how we went from standard daily deviation of &lt;strong&gt;17.5 hours&lt;/strong&gt; to predicting the monthly effort within an interval of &lt;strong&gt;14 hours&lt;/strong&gt;!!!&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Bonus: Poisson Distribution&lt;/strong&gt;
+We can also use Poisson distribution to predict the probability that we’ll receive 6 or more request on any given day is &lt;strong&gt;0.06&lt;/strong&gt; simply by knowing that in April, we received &lt;strong&gt;3.4&lt;/strong&gt; requests a day on average. Hence, we can expect that we will most likely get 6 requests a day on one or two occasions in May.&lt;/p&gt;
+
+&lt;h4 id=&quot;may-2018-prediction-vs-reality&quot;&gt;May 2018 Prediction vs Reality&lt;/h4&gt;
+&lt;p&gt;So how did we do with our predictions when compared to reality? Here is the May 2018 overview:&lt;/p&gt;
+&lt;iframe width=&quot;800&quot; height=&quot;600&quot; src=&quot;https://app.powerbi.com/view?r=eyJrIjoiZDUwM2EyOTUtYWM2NS00YTNlLWFkNGItMmIxMzljYWJiOTJlIiwidCI6ImZmZTRhZjdkLWIxODgtNDIzZi1iMmQ5LTUwZmIzYjQ2NjU2ZiJ9&quot; frameborder=&quot;0&quot; allowfullscreen=&quot;true&quot;&gt;&lt;/iframe&gt;
+
+&lt;p&gt;In quite hard-to-believe result, we were able to predict the entire months effort required for ad-hoc analytics and reporting requests with more than 99% accuracy, being off by 11 hours only(compared to the actual 1459).&lt;/p&gt;
+
+&lt;h4 id=&quot;conclusion&quot;&gt;Conclusion&lt;/h4&gt;
+
+&lt;p&gt;The experiment shows that if we select the correct time frame for our planning, we can use the strength of simple statistics to predict future effort with high accuracy even for teams engaged in seemingly unpredictable business. While we would be hard pressed to predict the effort required for the next day with 20 Hour accuracy, we could predict entire months effort with 11 hour effort.&lt;/p&gt;
+
+&lt;p&gt;For managers, the message is that it is not possible to micromanage the team and require meeting daily or weekly deadlines for secondary project work, but it is most certainly possible to plan and hold the team responsible for delivering results on monthly basis.&lt;/p&gt;</content><author><name>DATAmadness</name></author><category term="Statistics" /><summary type="html">Planning staff allocation in an environment geared heavily towards operations can be challenging due to the erratic nature of the demand from both internal or external clients. The predictability issues affect wide range of teams - from sales or support to development and data analytics departments. If your team is exposed to any type of ad-hoc requests on regular basis, you are likely familiar with having your carefully estimated project plans derailed by unexpected workload.</summary></entry><entry><title type="html">Time signal classification using Convolutional Neural Network in TensorFlow - Part 2</title><link href="/time-signal-CNN-part2" rel="alternate" type="text/html" title="Time signal classification using Convolutional Neural Network in TensorFlow - Part 2" /><published>2019-03-28T16:41:00-07:00</published><updated>2019-03-28T16:41:00-07:00</updated><id>/time-signal-CNN-part2</id><content type="html" xml:base="/time-signal-CNN-part2">&lt;p&gt;After transforming 1D time domain data series into frequency 2D maps in &lt;a href=&quot;https://datamadness.github.io/time-signal-CNN&quot;&gt;part 1&lt;/a&gt; of this miniseries, we’ll now focus on building the actual Convolutional Neural Network binary classification model. The goal is to detect whether the original time domain signal exhibits partial discharge and is likely to result in a power line failure in the future.&lt;/p&gt;
 
 &lt;p&gt;Two CNN models of various depth and complexity are presented to discuss the hyperparameters, results and suitability for given dataset that presents challenges related to limited size and highly unbalanced classes.&lt;/p&gt;
 
@@ -847,27 +932,7 @@ The only trick to this is that you have to write a parser that will transform th
         &lt;span class=&quot;c&quot;&gt;#input_fn=dataset_eval_input_fn)&lt;/span&gt;
 &lt;span class=&quot;k&quot;&gt;print&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;eval_results&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
 
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;</content><author><name>DATAmadness</name></author><category term="Python" /><summary type="html">It is easy to hit resource limits when working with large datasets. In particular, the available memory becomes quickly a limiting factor when training your neural networks on swaths of data. The solution is to create a continuous stream of data that will sequentially read batch data from drive(s). Using this approach, the memory needs to hold only one batch of data while pre-loading the data for the next batch, allowing us to operate with datasets of virtually unlimited size.</summary></entry><entry><title type="html">Forecasting Operations Team Resources Using Statistics</title><link href="/Team-Plannning" rel="alternate" type="text/html" title="Forecasting Operations Team Resources Using Statistics" /><published>2018-06-24T03:32:00-07:00</published><updated>2018-06-24T03:32:00-07:00</updated><id>/Team-Plannning</id><content type="html" xml:base="/Team-Plannning">&lt;p&gt;Planning staff allocation in an environment geared heavily towards operations can be challenging due to the erratic nature of the demand from the internal or external clients. The predictability issues affects wide range of teams - from sales or support teams to development teams or analytics teams. If your team is exposed to any type of ad-hoc requests on regular basis, you are likely familiar with having your carefully estimated project plans derailed by unexpected workload.&lt;/p&gt;
-
-&lt;p&gt;This article will propose a team resources planning framework that allows you to estimate:&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;The fraction of team resources required to accommodate the seemingly random ad-hoc tasks without being overwhelmed&lt;/li&gt;
-  &lt;li&gt;How much of your team’s time can be safely committed to project work&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;To tackle this task, we will use basics statistics to guide your staffing and time allocation decisions by using basic data that are typically available in your company or can be even estimated and modeled.&lt;/p&gt;
-
-&lt;p&gt;The data used in this example are generated using a statistical model described in &lt;a href=&quot;https://datamadness.github.io/Support-Data-Generator&quot;&gt;this article&lt;/a&gt;. You can use the provided tool to model your own data for quick experiments.&lt;/p&gt;
-
-&lt;h2 id=&quot;exploring-the-available-data&quot;&gt;Exploring the available data&lt;/h2&gt;
-&lt;iframe width=&quot;800&quot; height=&quot;600&quot; src=&quot;https://app.powerbi.com/view?r=eyJrIjoiY2ZlODU5YjAtZTQxMC00MzUxLTgyNjgtOWY5MjcyZGU1ZGY1IiwidCI6ImZmZTRhZjdkLWIxODgtNDIzZi1iMmQ5LTUwZmIzYjQ2NjU2ZiJ9&quot; frameborder=&quot;0&quot; allowfullscreen=&quot;true&quot;&gt;&lt;/iframe&gt;
-
-&lt;h3 id=&quot;april-recorded&quot;&gt;April Recorded&lt;/h3&gt;
-&lt;iframe width=&quot;800&quot; height=&quot;600&quot; src=&quot;https://app.powerbi.com/view?r=eyJrIjoiZTE2NzVjZjgtOTRkOC00OGY5LTgyZmUtOTVlNDRlMDIwYTdjIiwidCI6ImZmZTRhZjdkLWIxODgtNDIzZi1iMmQ5LTUwZmIzYjQ2NjU2ZiJ9&quot; frameborder=&quot;0&quot; allowfullscreen=&quot;true&quot;&gt;&lt;/iframe&gt;
-
-&lt;h3 id=&quot;may-predicted-vs-actual&quot;&gt;May Predicted vs Actual&lt;/h3&gt;
-&lt;iframe width=&quot;800&quot; height=&quot;600&quot; src=&quot;https://app.powerbi.com/view?r=eyJrIjoiZDUwM2EyOTUtYWM2NS00YTNlLWFkNGItMmIxMzljYWJiOTJlIiwidCI6ImZmZTRhZjdkLWIxODgtNDIzZi1iMmQ5LTUwZmIzYjQ2NjU2ZiJ9&quot; frameborder=&quot;0&quot; allowfullscreen=&quot;true&quot;&gt;&lt;/iframe&gt;</content><author><name>DATAmadness</name></author><category term="Statistics" /><summary type="html">Planning staff allocation in an environment geared heavily towards operations can be challenging due to the erratic nature of the demand from the internal or external clients. The predictability issues affects wide range of teams - from sales or support teams to development teams or analytics teams. If your team is exposed to any type of ad-hoc requests on regular basis, you are likely familiar with having your carefully estimated project plans derailed by unexpected workload.</summary></entry><entry><title type="html">Python function to automatically transform skewed data in Pandas DataFrame</title><link href="/Skewness_Auto_Transform" rel="alternate" type="text/html" title="Python function to automatically transform skewed data in Pandas DataFrame" /><published>2018-05-27T01:00:00-07:00</published><updated>2018-05-27T01:00:00-07:00</updated><id>/Skewness_Auto_Transform</id><content type="html" xml:base="/Skewness_Auto_Transform">&lt;p&gt;When I stumble on an interesting new dataset, I often find myself excitedly prototyping a quick machine learning models to see what type of insights I could get out of the latest find. Since hacking together a quick model can be fast thanks to plenty awesome packages such as scikit-learn or Keras, I happen to spend most of my prototyping effort on cleaning and transforming the data. (I always like to start with the simplest regressors / classifiers)&lt;/p&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;</content><author><name>DATAmadness</name></author><category term="Python" /><summary type="html">It is easy to hit resource limits when working with large datasets. In particular, the available memory becomes quickly a limiting factor when training your neural networks on swaths of data. The solution is to create a continuous stream of data that will sequentially read batch data from drive(s). Using this approach, the memory needs to hold only one batch of data while pre-loading the data for the next batch, allowing us to operate with datasets of virtually unlimited size.</summary></entry><entry><title type="html">Python function to automatically transform skewed data in Pandas DataFrame</title><link href="/Skewness_Auto_Transform" rel="alternate" type="text/html" title="Python function to automatically transform skewed data in Pandas DataFrame" /><published>2018-05-27T01:00:00-07:00</published><updated>2018-05-27T01:00:00-07:00</updated><id>/Skewness_Auto_Transform</id><content type="html" xml:base="/Skewness_Auto_Transform">&lt;p&gt;When I stumble on an interesting new dataset, I often find myself excitedly prototyping a quick machine learning models to see what type of insights I could get out of the latest find. Since hacking together a quick model can be fast thanks to plenty awesome packages such as scikit-learn or Keras, I happen to spend most of my prototyping effort on cleaning and transforming the data. (I always like to start with the simplest regressors / classifiers)&lt;/p&gt;
 
 &lt;p&gt;To help speeding up the initial transformation pipe, I wrote a small general python function that takes a Pandas DataFrame and automatically transforms any columns that exceed specified skewness. You can get it from &lt;a href=&quot;https://github.com/datamadness/Automatic-skewness-transformation-for-Pandas-DataFrame&quot;&gt;my GitHub repo&lt;/a&gt;. Specifically, you’ll find these two python files:&lt;/p&gt;
 
