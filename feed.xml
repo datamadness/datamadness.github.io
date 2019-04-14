@@ -1,35 +1,35 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.6.2">Jekyll</generator><link href="/feed.xml" rel="self" type="application/atom+xml" /><link href="/" rel="alternate" type="text/html" /><updated>2019-04-09T21:58:15-07:00</updated><id>/</id><title type="html">DATAmadness</title><subtitle>Exploring the world through data analysis and machine learning</subtitle><entry><title type="html">Forecasting Operations Team Resources Allocation Using Statistics</title><link href="/Team-Plannning" rel="alternate" type="text/html" title="Forecasting Operations Team Resources Allocation Using Statistics" /><published>2019-04-01T03:32:00-07:00</published><updated>2019-04-01T03:32:00-07:00</updated><id>/Team-Plannning</id><content type="html" xml:base="/Team-Plannning">&lt;p&gt;Planning staff allocation in an environment geared heavily towards operations can be challenging due to the erratic nature of the demand from both internal or external clients. The predictability issues affect wide range of teams - from sales or support to development and data analytics departments. If your team is exposed to any type of ad-hoc requests on regular basis, you are likely familiar with having your carefully estimated project plans derailed by unexpected workload.&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.6.2">Jekyll</generator><link href="/feed.xml" rel="self" type="application/atom+xml" /><link href="/" rel="alternate" type="text/html" /><updated>2019-04-14T13:45:56-07:00</updated><id>/</id><title type="html">DATAmadness</title><subtitle>Exploring the world through data analysis and machine learning</subtitle><entry><title type="html">Use Statistics to Forecast Resource Allocation in Operations Teams</title><link href="/Team-Plannning" rel="alternate" type="text/html" title="Use Statistics to Forecast Resource Allocation in Operations Teams" /><published>2019-04-01T03:32:00-07:00</published><updated>2019-04-01T03:32:00-07:00</updated><id>/Team-Plannning</id><content type="html" xml:base="/Team-Plannning">&lt;p&gt;Planning staff allocation in an environment geared heavily towards operations can be challenging due to the erratic nature of the demand from both internal or external clients. The predictability issues affect a wide range of teams - from sales or support to development and data analytics departments. If your team is exposed to any type of ad-hoc requests on a regular basis, you are likely familiar with having your carefully estimated project plans derailed by an unexpected workload.&lt;/p&gt;
 
-&lt;p&gt;This article will demonstrate that it is possible to accurately predict commitments even in a very erratic environment as long as we choose the right time frame and management approach. We propose a simple, but powerful methodology for your operations team planning. As opposed to the common go-to Machine Learning solution, we’ll use simple statistics that will let us to get away with a small dataset that is readily available at most businesses.&lt;/p&gt;
+&lt;p&gt;This article will demonstrate that it is possible to accurately predict commitments even in a very erratic environment as long as we choose the right time frame and management approach. A simple, yet powerful methodology is proposed for your operations team planning. As opposed to the common go-to Machine Learning solution, we’ll use simple statistics that will let us to get away with a small dataset that is readily available at most businesses.&lt;/p&gt;
 
 &lt;blockquote&gt;
-  &lt;p&gt;For managers, the message is that it is not always possible to micromanage the team and require meeting daily or weekly deadlines for secondary project work in operations, but it is most certainly possible to plan and hold the team responsible for delivering results on monthly basis.&lt;/p&gt;
+  &lt;p&gt;For managers, the message is that it is not always necessary to micromanage the team and require keeping up with daily or weekly  deadlines for secondary project work in operations, but it is certainly possible to plan and hold the team responsible for delivering results on a monthly basis.&lt;/p&gt;
 &lt;/blockquote&gt;
 
 &lt;p&gt;The proposed resource planning framework will allow you to estimate:&lt;/p&gt;
 
 &lt;ul&gt;
-  &lt;li&gt;The fraction of team resources required to accommodate the seemingly random ad-hoc tasks without being overwhelmed&lt;/li&gt;
+  &lt;li&gt;The fraction of team resources required to accommodate seemingly random ad-hoc tasks without being overwhelmed&lt;/li&gt;
   &lt;li&gt;How much of your team’s time can be safely committed to project work&lt;/li&gt;
 &lt;/ul&gt;
 
 &lt;p&gt;The data used in this example are generated using a statistical model described in &lt;a href=&quot;https://datamadness.github.io/Support-Data-Generator&quot;&gt;this article&lt;/a&gt;. You can use the provided tool to model your own data for quick experiments.&lt;/p&gt;
 
 &lt;h4 id=&quot;business-scenario&quot;&gt;Business Scenario&lt;/h4&gt;
-&lt;p&gt;You are a manager of data analytics team with 20 team members. The team provides business intelligence, reporting and data consultation services to several departments in your large corporation X. Most requests come to the team on an ad-hoc basis and are difficult to predict. The rest of the team’s time is dedicated to project work such as developing more advanced data science and ML solutions to increase efficiency.&lt;/p&gt;
+&lt;p&gt;You are a manager of a data analytics team with 20 team members. The team provides business intelligence, reporting and data consultation services to several departments in your large corporation X. Most requests come to the team on an ad-hoc basis and are difficult to predict. The rest of the team’s time is dedicated to project work such as developing more advanced data science and ML solutions to increase efficiency.&lt;/p&gt;
 
-&lt;p&gt;&lt;strong&gt;The problem:&lt;/strong&gt; The team often misses project deadlines because they are busy with surge of analytics and reporting requests that must be done with high priority.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;The Problem:&lt;/strong&gt; The team often misses project deadlines because they are busy with a surge of analytics and reporting requests that must be done with high priority.&lt;/p&gt;
 
 &lt;h4 id=&quot;exploring-the-available-data&quot;&gt;Exploring the available data&lt;/h4&gt;
-&lt;p&gt;The team logs time they spend on providing the data analytics requests for the company. We can explore the data from past six years in this interactive visualization(you can display it fullscreen):&lt;/p&gt;
+&lt;p&gt;The team logs time they spend on providing the data analytics requests for the company. We can explore the data from the past six years in this interactive visualization(you can display it fullscreen):&lt;/p&gt;
 &lt;iframe width=&quot;800&quot; height=&quot;600&quot; src=&quot;https://app.powerbi.com/view?r=eyJrIjoiY2ZlODU5YjAtZTQxMC00MzUxLTgyNjgtOWY5MjcyZGU1ZGY1IiwidCI6ImZmZTRhZjdkLWIxODgtNDIzZi1iMmQ5LTUwZmIzYjQ2NjU2ZiJ9&quot; frameborder=&quot;0&quot; allowfullscreen=&quot;true&quot;&gt;&lt;/iframe&gt;
 
 &lt;p&gt;&lt;br /&gt;
 &lt;strong&gt;Key takeaways from 2017 data:&lt;/strong&gt;&lt;/p&gt;
 
 &lt;ul&gt;
-  &lt;li&gt;The effort is highly cyclical with more requests coming in around quarter ends when there is higher need for reporting&lt;/li&gt;
-  &lt;li&gt;Most requests come from Investor Relations and Sales and Marketing departments&lt;/li&gt;
+  &lt;li&gt;The effort is highly cyclical with more requests coming in around quarter ends when there is a higher need for reporting&lt;/li&gt;
+  &lt;li&gt;Most requests come from Investor Relations and the Sales and Marketing departments&lt;/li&gt;
   &lt;li&gt;The maximum monthly effort in 2017 was logged in December with 1663 hours&lt;/li&gt;
   &lt;li&gt;The minimum monthly effort in 2017 was logged in January with 719 hours&lt;/li&gt;
   &lt;li&gt;Annual monthly median is around 1180 Hours&lt;/li&gt;
@@ -40,7 +40,7 @@
 
 &lt;ol&gt;
   &lt;li&gt;How much time the team will spend on ad-hoc requests&lt;/li&gt;
-  &lt;li&gt;How much time we can safely commit to project work while using teams time efficiently&lt;/li&gt;
+  &lt;li&gt;How much time we can safely commit to project work while using the team’s time efficiently&lt;/li&gt;
 &lt;/ol&gt;
 
 &lt;p&gt;To do this, we will first look at the previous months data:&lt;/p&gt;
@@ -59,43 +59,43 @@ Average of&lt;/p&gt;
 
 &lt;script type=&quot;math/tex; mode=display&quot;&gt;SEM = \frac \sigma {\sqrt n} = \frac {17.5} {\sqrt 30} = 3.2 Hours&lt;/script&gt;
 
-&lt;p&gt;This is where we get the first big help from statistics. While the daily logged time in April went from minimum of 17 hours a day to maximum of 84 hours a day, with 30 days in a month we the standard deviation of the mean(SEM) is only 3.2 Hours. That is very little!&lt;/p&gt;
+&lt;p&gt;This is where we get the first big assistance from statistics: While the daily logged time in April went from a minimum of 17 hours a day to a maximum of 84 hours a day, with 30 days in a month the standard deviation of the mean(SEM) is only 3.2 Hours. That is very little!&lt;/p&gt;
 
-&lt;p&gt;The second huge accuracy boost comes from the &lt;a href=&quot;https://en.wikipedia.org/wiki/Central_limit_theorem&quot;&gt;Central Limit Theorem&lt;/a&gt; that tells us that even our skewed data will have normally distributed mean with sample size large enough. The rule of thumb is to have 30 or more samples. Luckily for us, one month has 30 days! (You might want to increase the prediction time frame if you want to give your employees weekends off :)&lt;/p&gt;
+&lt;p&gt;The second huge accuracy boost comes from the &lt;a href=&quot;https://en.wikipedia.org/wiki/Central_limit_theorem&quot;&gt;Central Limit Theorem&lt;/a&gt; that tells us that even our skewed data will have a normally distributed mean when the sample size is large enough. The rule of thumb is to have 30 or more samples. Luckily for us, one month has 30 days! (You might want to increase the prediction time frame if you want to give your employees weekends off :))&lt;/p&gt;
 
-&lt;p&gt;As a result, we can use simple normal distribution statistics to calculate the 95% Confidence Interval(CI) for April and get:&lt;/p&gt;
+&lt;p&gt;As a result, we can use a simple normal distribution statistics to calculate the 95% Confidence Interval(CI) for April and get:&lt;/p&gt;
 
 &lt;script type=&quot;math/tex; mode=display&quot;&gt;1358 \le \bar x \le 1370&lt;/script&gt;
 
-&lt;p&gt;We actually know for fact that the true mean is in this range, but the goal is to use this interval for extrapolation for the May 2018 Confidence Interval. As I said, we’ll keep things very simple and look at year 2017 to see that May was ~8% higher than April. Hence, we simply add 8% to the April CI to predict the range for May 2018 mean as:&lt;/p&gt;
+&lt;p&gt;We actually know for a fact that the true mean is in this range, but the goal is to use this interval for extrapolation for the May 2018 Confidence Interval. As I mentioned, we’ll keep things very simple and look at 2017 to see that May was ~8% higher than April. Hence, we simply add 8% to the April CI to predict the range for May 2018 mean as:&lt;/p&gt;
 
 &lt;script type=&quot;math/tex; mode=display&quot;&gt;1466 \le \bar x \le 1480&lt;/script&gt;
 
-&lt;p&gt;This means that our team of 20 with total of 4000 man hours available will spend approximately:&lt;/p&gt;
+&lt;p&gt;This means that our team of 20 with a total of 4000 man hours available will spend approximately:&lt;/p&gt;
 &lt;ul&gt;
   &lt;li&gt;&lt;strong&gt;1470 hours&lt;/strong&gt; on ad-hoc requests for the corporation&lt;/li&gt;
   &lt;li&gt;&lt;strong&gt;2530 hours&lt;/strong&gt; can be safely dedicated to other work such as projects&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;p&gt;Notice how we went from standard daily deviation of 17.5 hours to predicting the monthly effort within an interval of 14 hours!!!&lt;/p&gt;
+&lt;p&gt;Notice how we went from a standard daily deviation of 17.5 hours to predicting the monthly effort within an interval of 14 hours!!!&lt;/p&gt;
 
 &lt;p&gt;&lt;strong&gt;Bonus: Poisson Distribution&lt;/strong&gt;&lt;/p&gt;
 
-&lt;p&gt;We can also use Poisson distribution to predict the probability that we’ll receive 6 or more request on any given day is 0.06 simply by knowing that in April, we received 3.4 requests a day on average. Hence, we can expect that we will most likely get 6 requests a day on one or two occasions in May.&lt;/p&gt;
+&lt;p&gt;We can also use Poisson distribution to predict the probability that we’ll receive certain number of request on any given day. For example, we can calculate the probability of receiving 6 or more requests on any given day by plugging in the average rate of 3.4 requests/day into the cumulative poisson distribution function. This can be done in Python, Excel or any other tool of your choice. The resulting probability $p = 0.06$ tells us that we are most likely to have one or two days with 6 or more requests.&lt;/p&gt;
 
 &lt;h4 id=&quot;may-2018-prediction-vs-reality&quot;&gt;May 2018 Prediction vs Reality&lt;/h4&gt;
-&lt;p&gt;So how did we do with our predictions when compared to reality? Here is the May 2018 overview:&lt;/p&gt;
+&lt;p&gt;So, how did we do with our predictions when compared to reality? Here is the May 2018 overview:&lt;/p&gt;
 &lt;iframe width=&quot;800&quot; height=&quot;600&quot; src=&quot;https://app.powerbi.com/view?r=eyJrIjoiZDUwM2EyOTUtYWM2NS00YTNlLWFkNGItMmIxMzljYWJiOTJlIiwidCI6ImZmZTRhZjdkLWIxODgtNDIzZi1iMmQ5LTUwZmIzYjQ2NjU2ZiJ9&quot; frameborder=&quot;0&quot; allowfullscreen=&quot;true&quot;&gt;&lt;/iframe&gt;
 
-&lt;p&gt;In quite hard-to-believe result, we were able to predict the entire months effort required for ad-hoc analytics and reporting requests with more than 99% accuracy, being off by 11 hours only(compared to the actual 1459).&lt;/p&gt;
+&lt;p&gt;It may be hard to believe, but we were able to predict the entire month’s effort required for ad-hoc analytics and reporting requests with more than 99% accuracy, being off only by 11 hours(predicted ~1470 vs actual 1459).&lt;/p&gt;
 
 &lt;h4 id=&quot;conclusion&quot;&gt;Conclusion&lt;/h4&gt;
 
-&lt;p&gt;The experiment shows that if we select the correct time frame for our planning, we can use the strength of simple statistics to predict future effort with high accuracy even for teams engaged in seemingly unpredictable business. While we would be hard pressed to predict the effort required for the next day with 20 Hour accuracy, we could predict entire months effort with 11 hour effort.&lt;/p&gt;
+&lt;p&gt;The experiment shows that if we select the correct time frame for our planning, we can use the strength of simple statistics to predict future effort with high accuracy even for teams engaged in seemingly unpredictable business. While we would be hard pressed to predict the effort required for the next day with 20 h accuracy, we could predict an entire month’s effort with only 11 hour error.&lt;/p&gt;
 
-&lt;p&gt;For managers, the message is that it is not possible to micromanage the team and require meeting daily or weekly deadlines for secondary project work, but it is most certainly possible to plan and hold the team responsible for delivering results on monthly basis.&lt;/p&gt;
+&lt;p&gt;For managers, the message is that it is not necessary to micromanage the team and require keeping up with daily or weekly deadlines for secondary project work, but it is certainly possible to plan and hold the team responsible for delivering results on a monthly basis.&lt;/p&gt;
 
-&lt;p&gt;Data, calculations and visualization files used in this example can be downloaded from &lt;a href=&quot;https://github.com/datamadness/Statistics-for-planning-team-reasources-in-operations&quot;&gt;this GitHub repo&lt;/a&gt;.&lt;/p&gt;</content><author><name>DATAmadness</name></author><category term="Statistics" /><summary type="html">Planning staff allocation in an environment geared heavily towards operations can be challenging due to the erratic nature of the demand from both internal or external clients. The predictability issues affect wide range of teams - from sales or support to development and data analytics departments. If your team is exposed to any type of ad-hoc requests on regular basis, you are likely familiar with having your carefully estimated project plans derailed by unexpected workload.</summary></entry><entry><title type="html">Time signal classification using Convolutional Neural Network in TensorFlow - Part 2</title><link href="/time-signal-CNN-part2" rel="alternate" type="text/html" title="Time signal classification using Convolutional Neural Network in TensorFlow - Part 2" /><published>2019-03-28T16:41:00-07:00</published><updated>2019-03-28T16:41:00-07:00</updated><id>/time-signal-CNN-part2</id><content type="html" xml:base="/time-signal-CNN-part2">&lt;p&gt;After transforming 1D time domain data series into frequency 2D maps in &lt;a href=&quot;https://datamadness.github.io/time-signal-CNN&quot;&gt;part 1&lt;/a&gt; of this miniseries, we’ll now focus on building the actual Convolutional Neural Network binary classification model. The goal is to detect whether the original time domain signal exhibits partial discharge and is likely to result in a power line failure in the future.&lt;/p&gt;
+&lt;p&gt;Data, calculations, and visualization files used in this example can be downloaded from &lt;a href=&quot;https://github.com/datamadness/Statistics-for-planning-team-reasources-in-operations&quot;&gt;this GitHub repo&lt;/a&gt;.&lt;/p&gt;</content><author><name>DATAmadness</name></author><category term="Statistics" /><summary type="html">Planning staff allocation in an environment geared heavily towards operations can be challenging due to the erratic nature of the demand from both internal or external clients. The predictability issues affect a wide range of teams - from sales or support to development and data analytics departments. If your team is exposed to any type of ad-hoc requests on a regular basis, you are likely familiar with having your carefully estimated project plans derailed by an unexpected workload.</summary></entry><entry><title type="html">Time signal classification using Convolutional Neural Network in TensorFlow - Part 2</title><link href="/time-signal-CNN-part2" rel="alternate" type="text/html" title="Time signal classification using Convolutional Neural Network in TensorFlow - Part 2" /><published>2019-03-28T16:41:00-07:00</published><updated>2019-03-28T16:41:00-07:00</updated><id>/time-signal-CNN-part2</id><content type="html" xml:base="/time-signal-CNN-part2">&lt;p&gt;After transforming 1D time domain data series into frequency 2D maps in &lt;a href=&quot;https://datamadness.github.io/time-signal-CNN&quot;&gt;part 1&lt;/a&gt; of this miniseries, we’ll now focus on building the actual Convolutional Neural Network binary classification model. The goal is to detect whether the original time domain signal exhibits partial discharge and is likely to result in a power line failure in the future.&lt;/p&gt;
 
 &lt;p&gt;Two CNN models of various depth and complexity are presented to discuss the hyperparameters, results and suitability for given dataset that presents challenges related to limited size and highly unbalanced classes.&lt;/p&gt;
 
@@ -1152,28 +1152,28 @@ Average skewness after transformation is 0.92
 
 &lt;p&gt;Note: I would recommend to quickly check which transformation works better for your specific dataset. The Box-Cox works well in most situations, but log/exponential can return better results in some cases.&lt;/p&gt;
 
-&lt;p&gt;Enjoy!&lt;/p&gt;</content><author><name>DATAmadness</name></author><category term="Python" /><summary type="html">When I stumble on an interesting new dataset, I often find myself excitedly prototyping a quick machine learning models to see what type of insights I could get out of the latest find. Since hacking together a quick model can be fast thanks to plenty awesome packages such as scikit-learn or Keras, I happen to spend most of my prototyping effort on cleaning and transforming the data. (I always like to start with the simplest regressors / classifiers)</summary></entry><entry><title type="html">Support Data Generator in Python</title><link href="/Support-Data-Generator" rel="alternate" type="text/html" title="Support Data Generator in Python" /><published>2018-05-27T01:00:00-07:00</published><updated>2018-05-27T01:00:00-07:00</updated><id>/Support-Data-Generator</id><content type="html" xml:base="/Support-Data-Generator">&lt;p&gt;We all have been there - it is Sunday evening, you have couple of fresh ideas for a new customer centric strategy and you want to test how it would hold up in the real world. Unfortunately, it might be hard to get real or at least somewhat realistic customer support ticket datasets for specific business models and company size.&lt;/p&gt;
+&lt;p&gt;Enjoy!&lt;/p&gt;</content><author><name>DATAmadness</name></author><category term="Python" /><summary type="html">When I stumble on an interesting new dataset, I often find myself excitedly prototyping a quick machine learning models to see what type of insights I could get out of the latest find. Since hacking together a quick model can be fast thanks to plenty awesome packages such as scikit-learn or Keras, I happen to spend most of my prototyping effort on cleaning and transforming the data. (I always like to start with the simplest regressors / classifiers)</summary></entry><entry><title type="html">Support Data Generator in Python</title><link href="/Support-Data-Generator" rel="alternate" type="text/html" title="Support Data Generator in Python" /><published>2018-05-27T01:00:00-07:00</published><updated>2018-05-27T01:00:00-07:00</updated><id>/Support-Data-Generator</id><content type="html" xml:base="/Support-Data-Generator">&lt;p&gt;We’ve all been there - it’s Sunday evening, you have a couple of fresh ideas for a new customer centric strategy and you want to test how it would hold up in the real world. Unfortunately, it might be hard to get real or at least a somewhat realistic customer support ticket datasets for specific business models and company size.&lt;/p&gt;
 
-&lt;p&gt;If this issue plagues you on regular basis, head to &lt;a href=&quot;https://github.com/datamadness/Support-ticket-data-generator.git&quot;&gt;this repository on my GitHub&lt;/a&gt; and download the two python files:&lt;/p&gt;
+&lt;p&gt;If this issue plagues you on regular basis, head to &lt;a href=&quot;https://github.com/datamadness/Support-ticket-data-generator.git&quot;&gt;this repository on my GitHub&lt;/a&gt; and download the following two python files:&lt;/p&gt;
 
 &lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;main_generate_ticket_data.py&lt;/code&gt;&lt;br /&gt;
 &lt;code class=&quot;highlighter-rouge&quot;&gt;generate_daily_data.py&lt;/code&gt;&lt;/p&gt;
 
-&lt;p&gt;This code will allow you to input few numeric parameters and quickly generate custom support ticket datasets that reflect what you could expect in real world business operations.&lt;/p&gt;
+&lt;p&gt;This code will allow you to input a few numeric parameters and quickly generate custom support ticket datasets that reflect what you could expect in real world business operations.&lt;/p&gt;
 &lt;h4 id=&quot;feature-overview&quot;&gt;Feature Overview&lt;/h4&gt;
 
 &lt;ul&gt;
-  &lt;li&gt;A python function to generate one year worth of support data with arbitrary amount of records(call repeatedly for x years worth of data)&lt;/li&gt;
-  &lt;li&gt;Generates varied, but statistically relevant number of support tickets for each day of the year&lt;/li&gt;
+  &lt;li&gt;A python function to generate one year’s worth of support data with an arbitrary amount of records(call repeatedly for x years worth of data)&lt;/li&gt;
+  &lt;li&gt;Generate a varied, but statistically relevant number of support tickets for each day of the year&lt;/li&gt;
   &lt;li&gt;Effects of business days vs weekends&lt;/li&gt;
-  &lt;li&gt;Capable to simulate an impact of arbitrary number of busy seasons through the year(e.g. Christmas in retail or tax periods in accounting)&lt;/li&gt;
-  &lt;li&gt;Simulates realistic, but easy to control statistical distribution of logged time for each support ticket / case.&lt;/li&gt;
-  &lt;li&gt;Control number of customer accounts to capture desired support volume vs customer base size&lt;/li&gt;
+  &lt;li&gt;Capable of simulating the impact of an arbitrary number of busy seasons through the year(e.g. Christmas in retail or tax periods in accounting)&lt;/li&gt;
+  &lt;li&gt;Simulate a realistic, but easy to control, statistical distribution of logged time for each support ticket / case.&lt;/li&gt;
+  &lt;li&gt;Control the number of customer accounts to capture desired support volume vs customer base size&lt;/li&gt;
 &lt;/ul&gt;
 
 &lt;h4 id=&quot;input-parameters-summary&quot;&gt;Input parameters summary&lt;/h4&gt;
 
-&lt;p&gt;Daily ticket volume through the year controls:&lt;/p&gt;
+&lt;p&gt;Daily ticket volume throughout the year controls:&lt;/p&gt;
 
 &lt;ul&gt;
   &lt;li&gt;Seasonal peaks&lt;/li&gt;
@@ -1198,22 +1198,22 @@ Advanced / Optional:&lt;/li&gt;
   &lt;li&gt;Number of unique accounts&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;h4 id=&quot;modelling-daily-tickets-volumes-through-the-year&quot;&gt;Modelling daily tickets volumes through the year&lt;/h4&gt;
-&lt;p&gt;The number of daily tickets is typically random variable that has reasonably defined mean and variance. Moreover, the mean is likely to move through the year to reflect seasonal effects such as major holidays or annual business cycles. 
-To model this behavior, the code is using truncated normal continuous variable function from scipy package to generate the number of tickets on given day:&lt;/p&gt;
+&lt;h4 id=&quot;modelling-daily-tickets-volumes-throughout-the-year&quot;&gt;Modelling daily tickets volumes throughout the year&lt;/h4&gt;
+&lt;p&gt;The number of daily tickets is typically a random variable that has reasonably defined mean and variance. Moreover, the mean is likely to move throughout the year to reflect seasonal effects such as major holidays or annual business cycles. 
+To model this behavior, the code is using a truncated normal continuous variable function from scipy package to generate the number of tickets on a given day:&lt;/p&gt;
 &lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c&quot;&gt;#Calculate distribution function&lt;/span&gt;
 &lt;span class=&quot;n&quot;&gt;dist&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;stats&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;truncnorm&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;((&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;annual_minimum&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;mu&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;/&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;sigma&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;annual_maximum&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;mu&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;/&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;sigma&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;loc&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;mu&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;scale&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;sigma&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
 &lt;span class=&quot;c&quot;&gt;#Generate number of tickets for given day&lt;/span&gt;
 &lt;span class=&quot;n&quot;&gt;ticket_num&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;int&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;dist&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;rvs&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;())&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-&lt;p&gt;Simply specify the approximate minimum and maximum number of cases per day through the year. The mean &lt;code class=&quot;highlighter-rouge&quot;&gt;mu&lt;/code&gt; and variance &lt;code class=&quot;highlighter-rouge&quot;&gt;sigma&lt;/code&gt; for given day then will be automatically calculated based the seasonal effect function:&lt;/p&gt;
+&lt;p&gt;Simply specify the approximate minimum and maximum number of cases per day throughout the year. The mean &lt;code class=&quot;highlighter-rouge&quot;&gt;mu&lt;/code&gt; and variance &lt;code class=&quot;highlighter-rouge&quot;&gt;sigma&lt;/code&gt; for any given day then will be automatically calculated based on the seasonal effect function:&lt;/p&gt;
 &lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c&quot;&gt;#Calculate mean for given day&lt;/span&gt;
 &lt;span class=&quot;n&quot;&gt;mu&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;annual_maximum&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;annual_minimum&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;seasonal_factor&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;busy_level&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;mf&quot;&gt;0.5&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; 
 	&lt;span class=&quot;p&quot;&gt;((&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;annual_maximum&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;annual_minimum&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; 
 &lt;span class=&quot;c&quot;&gt;#Calculate standard deviation for given day&lt;/span&gt;
 &lt;span class=&quot;n&quot;&gt;sigma&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;annual_maximum&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;annual_minimum&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;mf&quot;&gt;0.1&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-&lt;p&gt;The seasonal effect requires you to input the peak months as integer values. Here is an example for simulating two seasonal peaks in February and November:
+&lt;p&gt;The seasonal effect requires tha you input the peak months as integer values. Here is an example for simulating two seasonal peaks in February and November:
 ‘busy_months = np.array([2,11])’&lt;/p&gt;
 
 &lt;p&gt;Moreover, input &lt;code class=&quot;highlighter-rouge&quot;&gt;seasonal_factor&lt;/code&gt; (float &amp;lt;0,1&amp;gt;) allows you to control the magnitude of seasonal effects:&lt;/p&gt;
@@ -1232,7 +1232,7 @@ To model this behavior, the code is using truncated normal continuous variable f
 &lt;img src=&quot;/assets/images/support_data_generator/weekly_ticket_totals_comparison.png&quot; alt=&quot;image test&quot; /&gt;&lt;/p&gt;
 
 &lt;h6 id=&quot;impacts-of-weekends&quot;&gt;Impacts of weekends:&lt;/h6&gt;
-&lt;p&gt;Weekends can have a major impact on your ticket volumes. This can be particularly pronounced if your company is B2B oriented and your clients are off work while having little to no impact if you are operating in B2C model. To model this, select the appropriate value of the weekend_factor parameter (float - &amp;lt;0,1&amp;gt;):&lt;/p&gt;
+&lt;p&gt;Weekends can have a major impact on your ticket volumes. This can be particularly pronounced if your company is B2B oriented and your clients are off work while having little to no impact if you are operating in a B2C model. To model this, select the appropriate value of the weekend_factor parameter (float - &amp;lt;0,1&amp;gt;):&lt;/p&gt;
 &lt;ul&gt;
   &lt;li&gt;0 - no ticket volume on weekends&lt;/li&gt;
   &lt;li&gt;1 - weekends are the same as business days
@@ -1240,34 +1240,38 @@ To model this behavior, the code is using truncated normal continuous variable f
 &lt;/ul&gt;
 
 &lt;h6 id=&quot;modelling-logged-time-for-each-opened-ticket&quot;&gt;Modelling logged time for each opened ticket&lt;/h6&gt;
-&lt;p&gt;Having an understanding of how much time is spent on each ticket is a crucial part of planning your operations. Unfortunately, this data cannot be easily simulated by a simple normal distribution function. While you will be able to find mean  and variance in your real world data, you will also see few large outliers due to complex support problems resulting into positive skew. Your systems and procedures are also likely to introduce cut off limit on the low end - minimum time spent on any opened ticket. &lt;br /&gt;
-Fortunately, these effects can be quite well approximated by the non-central chi-squared distribution(&lt;a href=&quot;https://en.wikipedia.org/wiki/Noncentral_chi-squared_distribution&quot;&gt;Wikipedia&lt;/a&gt;) that can generalize the k - degrees of freedom defining chi-squared function via non-centrality parameter.&lt;/p&gt;
+&lt;p&gt;Having an understanding of how much time is spent on each ticket is a crucial part of planning your operations. Unfortunately, this data cannot be easily simulated by a simple normal distribution function. While you will be able to find mean  and variance in your real world data, you will also see few large outliers due to complex support problems resulting in a positive skew. Your systems and procedures are also likely to introduce a cut off limit on the low end - the minimum time spent on any opened ticket. &lt;br /&gt;
+Fortunately, these effects can be quite well approximated by the non-central chi-squared distribution(&lt;a href=&quot;https://en.wikipedia.org/wiki/Noncentral_chi-squared_distribution&quot;&gt;Wikipedia&lt;/a&gt;) that can generalize the k - degrees of freedom defining the chi-squared function via the non-centrality parameter.&lt;/p&gt;
 
-&lt;p&gt;Probability Density Function(PDF) for non-central chi-squared function:&lt;/p&gt;
+&lt;p&gt;Probability Density Function(PDF) for the non-central chi-squared function:&lt;/p&gt;
 
 &lt;script type=&quot;math/tex; mode=display&quot;&gt;f_{X}(x;k,\lambda )=\sum _{i=0}^{\infty }{\frac {e^{-\lambda /2}(\lambda /2)^{i}}{i!}}f_{Y_{k+2i}}(x)&lt;/script&gt;
 
-&lt;p&gt;Visualization of the non-central chi-squared PDF for various combinations of k and non-central parameter(source &lt;a href=&quot;https://en.wikipedia.org/wiki/Noncentral_chi-squared_distribution#/media/File:Chi-Squared-(nonCentral)-pdf.png&quot;&gt;en.wikipedia.com&lt;/a&gt;):
+&lt;p&gt;Visualization of the non-central chi-squared PDF for various combinations of k and the non-central parameter(source &lt;a href=&quot;https://en.wikipedia.org/wiki/Noncentral_chi-squared_distribution#/media/File:Chi-Squared-(nonCentral)-pdf.png&quot;&gt;en.wikipedia.com&lt;/a&gt;):
 &lt;img src=&quot;/assets/images/support_data_generator/Chi-Squared-(nonCentral)-pdf.png&quot; width=&quot;600&quot; height=&quot;450&quot; /&gt;&lt;/p&gt;
 
 &lt;p&gt;In the implemented python code, the logged time data is generated by function daily_data imported from generate_daily_data.py. This function is called by the main function with the following parameters:&lt;/p&gt;
 
 &lt;h6 id=&quot;mandatory&quot;&gt;Mandatory:&lt;/h6&gt;
 &lt;ul&gt;
-  &lt;li&gt;size - automatically determined by the main function&lt;/li&gt;
-  &lt;li&gt;logged_time_median_desired - median logged time for the population in minutes&lt;/li&gt;
-  &lt;li&gt;Logged_time_minimum - minimum logged time in minutes&lt;/li&gt;
+  &lt;li&gt;size: automatically determined by the main function&lt;/li&gt;
+  &lt;li&gt;logged_time_median_desired: median logged time for the population in minutes&lt;/li&gt;
+  &lt;li&gt;Logged_time_minimum: minimum logged time in minutes&lt;/li&gt;
 &lt;/ul&gt;
 
 &lt;h6 id=&quot;optional&quot;&gt;Optional:&lt;/h6&gt;
 &lt;ul&gt;
-  &lt;li&gt;skewness_factor - [0,1] value;  0 for default chi^2 distribution; 1 for large positive skew&lt;/li&gt;
-  &lt;li&gt;k - degrees of freedom&lt;/li&gt;
-  &lt;li&gt;nonc - non-centrality (stats typically uses lambda letter)&lt;/li&gt;
+  &lt;li&gt;skewness_factor: [0,1] value;  0 for default chi^2 distribution; 1 for large positive skew&lt;/li&gt;
+  &lt;li&gt;k: degrees of freedom&lt;/li&gt;
+  &lt;li&gt;nonc: non-centrality (stats typically uses lambda letter)&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;p&gt;The following plot shows histogram and kernel density estimation(KDE) for sample of logged time data containing approximately ~8000 tickets over 12 months with minimum time = 5minutes and desired median = 20 minutes.
+&lt;p&gt;The following plot shows histogram and kernel density estimation(KDE) for a sample of logged time data containing approximately ~8000 tickets over 12 months with minimum time = 5minutes and desired median = 20 minutes.
 &lt;img src=&quot;/assets/images/support_data_generator/logged_time_distribution_plot.png&quot; alt=&quot;image test&quot; /&gt;&lt;/p&gt;
 
 &lt;p&gt;The same dataset was used to generate the next plot that compares the impact of skewness_factor while keeping all other parameters constant. Notice that the median does not change while the PDF does:
-&lt;img src=&quot;/assets/images/support_data_generator/skewness_comparison_violin.png&quot; alt=&quot;image test&quot; /&gt;&lt;/p&gt;</content><author><name>DATAmadness</name></author><category term="Statistics" /><category term="Python" /><summary type="html">We all have been there - it is Sunday evening, you have couple of fresh ideas for a new customer centric strategy and you want to test how it would hold up in the real world. Unfortunately, it might be hard to get real or at least somewhat realistic customer support ticket datasets for specific business models and company size.</summary></entry></feed>
+&lt;img src=&quot;/assets/images/support_data_generator/skewness_comparison_violin.png&quot; alt=&quot;image test&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;You can further fine-tune the distributions by adjusting any additonal parameters found in the Python script. That being said, the exposed input parameters addressed in this article should provide plenty of freedom to quickly model most bussiness scenarios and save you some time before you decide to dive into the actuall datamining to bring your idea to life. 
+You might be also interested in this article where the tool is used to generate general operations team workload data for demonstration of statistical team planning:&lt;br /&gt;
+&lt;a href=&quot;https://datamadness.github.io/Team-Plannning&quot;&gt;Use Statistics to Forecast Resource Allocation in Operations Teams&lt;/a&gt;&lt;/p&gt;</content><author><name>DATAmadness</name></author><category term="Statistics" /><category term="Python" /><summary type="html">We’ve all been there - it’s Sunday evening, you have a couple of fresh ideas for a new customer centric strategy and you want to test how it would hold up in the real world. Unfortunately, it might be hard to get real or at least a somewhat realistic customer support ticket datasets for specific business models and company size.</summary></entry></feed>

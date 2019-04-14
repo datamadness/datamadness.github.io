@@ -32,7 +32,7 @@
     <meta property="og:site_name" content="DATAmadness" />
     <meta property="og:type" content="website" />
     <meta property="og:title" content="Support Data Generator in Python" />
-    <meta property="og:description" content="We all have been there - it is Sunday evening, you have couple of fresh ideas for a new customer centric strategy and you want to test how it would hold up in the real world. Unfortunately, it might be hard to get real or at least somewhat realistic customer" />
+    <meta property="og:description" content="We’ve all been there - it’s Sunday evening, you have a couple of fresh ideas for a new customer centric strategy and you want to test how it would hold up in the real world. Unfortunately, it might be hard to get real or at least a somewhat realistic customer" />
     <meta property="og:url" content="/Support-Data-Generator" />
     <meta property="og:image" content="/assets/images/tags.jpg" />
     <meta property="article:publisher" content="https://www.facebook.com/ghost" />
@@ -42,7 +42,7 @@
     <meta property="article:tag" content="Statistics" />
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content="Support Data Generator in Python" />
-    <meta name="twitter:description" content="We all have been there - it is Sunday evening, you have couple of fresh ideas for a new customer centric strategy and you want to test how it would hold up in the real world. Unfortunately, it might be hard to get real or at least somewhat realistic customer" />
+    <meta name="twitter:description" content="We’ve all been there - it’s Sunday evening, you have a couple of fresh ideas for a new customer centric strategy and you want to test how it would hold up in the real world. Unfortunately, it might be hard to get real or at least a somewhat realistic customer" />
     <meta name="twitter:url" content="/" />
     <meta name="twitter:image" content="/assets/images/tags.jpg" />
     <meta name="twitter:label1" content="Written by" />
@@ -74,7 +74,7 @@
         "@type": "WebPage",
         "@id": "/Support-Data-Generator"
     },
-    "description": "We all have been there - it is Sunday evening, you have couple of fresh ideas for a new customer centric strategy and you want to test how it would hold up in the real world. Unfortunately, it might be hard to get real or at least somewhat realistic customer"
+    "description": "We’ve all been there - it’s Sunday evening, you have a couple of fresh ideas for a new customer centric strategy and you want to test how it would hold up in the real world. Unfortunately, it might be hard to get real or at least a somewhat realistic customer"
 }
     </script>
 
@@ -193,28 +193,28 @@ into the {body} of the default.hbs template -->
 
             <section class="post-full-content">
                 <div class="kg-card-markdown">
-                    <p>We all have been there - it is Sunday evening, you have couple of fresh ideas for a new customer centric strategy and you want to test how it would hold up in the real world. Unfortunately, it might be hard to get real or at least somewhat realistic customer support ticket datasets for specific business models and company size.</p>
+                    <p>We’ve all been there - it’s Sunday evening, you have a couple of fresh ideas for a new customer centric strategy and you want to test how it would hold up in the real world. Unfortunately, it might be hard to get real or at least a somewhat realistic customer support ticket datasets for specific business models and company size.</p>
 
-<p>If this issue plagues you on regular basis, head to <a href="https://github.com/datamadness/Support-ticket-data-generator.git">this repository on my GitHub</a> and download the two python files:</p>
+<p>If this issue plagues you on regular basis, head to <a href="https://github.com/datamadness/Support-ticket-data-generator.git">this repository on my GitHub</a> and download the following two python files:</p>
 
 <p><code class="highlighter-rouge">main_generate_ticket_data.py</code><br />
 <code class="highlighter-rouge">generate_daily_data.py</code></p>
 
-<p>This code will allow you to input few numeric parameters and quickly generate custom support ticket datasets that reflect what you could expect in real world business operations.</p>
+<p>This code will allow you to input a few numeric parameters and quickly generate custom support ticket datasets that reflect what you could expect in real world business operations.</p>
 <h4 id="feature-overview">Feature Overview</h4>
 
 <ul>
-  <li>A python function to generate one year worth of support data with arbitrary amount of records(call repeatedly for x years worth of data)</li>
-  <li>Generates varied, but statistically relevant number of support tickets for each day of the year</li>
+  <li>A python function to generate one year’s worth of support data with an arbitrary amount of records(call repeatedly for x years worth of data)</li>
+  <li>Generate a varied, but statistically relevant number of support tickets for each day of the year</li>
   <li>Effects of business days vs weekends</li>
-  <li>Capable to simulate an impact of arbitrary number of busy seasons through the year(e.g. Christmas in retail or tax periods in accounting)</li>
-  <li>Simulates realistic, but easy to control statistical distribution of logged time for each support ticket / case.</li>
-  <li>Control number of customer accounts to capture desired support volume vs customer base size</li>
+  <li>Capable of simulating the impact of an arbitrary number of busy seasons through the year(e.g. Christmas in retail or tax periods in accounting)</li>
+  <li>Simulate a realistic, but easy to control, statistical distribution of logged time for each support ticket / case.</li>
+  <li>Control the number of customer accounts to capture desired support volume vs customer base size</li>
 </ul>
 
 <h4 id="input-parameters-summary">Input parameters summary</h4>
 
-<p>Daily ticket volume through the year controls:</p>
+<p>Daily ticket volume throughout the year controls:</p>
 
 <ul>
   <li>Seasonal peaks</li>
@@ -239,22 +239,22 @@ Advanced / Optional:</li>
   <li>Number of unique accounts</li>
 </ul>
 
-<h4 id="modelling-daily-tickets-volumes-through-the-year">Modelling daily tickets volumes through the year</h4>
-<p>The number of daily tickets is typically random variable that has reasonably defined mean and variance. Moreover, the mean is likely to move through the year to reflect seasonal effects such as major holidays or annual business cycles. 
-To model this behavior, the code is using truncated normal continuous variable function from scipy package to generate the number of tickets on given day:</p>
+<h4 id="modelling-daily-tickets-volumes-throughout-the-year">Modelling daily tickets volumes throughout the year</h4>
+<p>The number of daily tickets is typically a random variable that has reasonably defined mean and variance. Moreover, the mean is likely to move throughout the year to reflect seasonal effects such as major holidays or annual business cycles. 
+To model this behavior, the code is using a truncated normal continuous variable function from scipy package to generate the number of tickets on a given day:</p>
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">#Calculate distribution function</span>
 <span class="n">dist</span> <span class="o">=</span> <span class="n">stats</span><span class="o">.</span><span class="n">truncnorm</span><span class="p">((</span><span class="n">annual_minimum</span> <span class="o">-</span> <span class="n">mu</span><span class="p">)</span> <span class="o">/</span> <span class="n">sigma</span><span class="p">,</span> <span class="p">(</span><span class="n">annual_maximum</span> <span class="o">-</span> <span class="n">mu</span><span class="p">)</span> <span class="o">/</span> <span class="n">sigma</span><span class="p">,</span> <span class="n">loc</span><span class="o">=</span><span class="n">mu</span><span class="p">,</span> <span class="n">scale</span><span class="o">=</span><span class="n">sigma</span><span class="p">)</span>
 <span class="c">#Generate number of tickets for given day</span>
 <span class="n">ticket_num</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">dist</span><span class="o">.</span><span class="n">rvs</span><span class="p">())</span>
 </code></pre></div></div>
-<p>Simply specify the approximate minimum and maximum number of cases per day through the year. The mean <code class="highlighter-rouge">mu</code> and variance <code class="highlighter-rouge">sigma</code> for given day then will be automatically calculated based the seasonal effect function:</p>
+<p>Simply specify the approximate minimum and maximum number of cases per day throughout the year. The mean <code class="highlighter-rouge">mu</code> and variance <code class="highlighter-rouge">sigma</code> for any given day then will be automatically calculated based on the seasonal effect function:</p>
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">#Calculate mean for given day</span>
 <span class="n">mu</span> <span class="o">=</span> <span class="p">(</span><span class="n">annual_maximum</span> <span class="o">-</span> <span class="n">annual_minimum</span><span class="p">)</span><span class="o">/</span><span class="mi">2</span> <span class="o">+</span> <span class="n">seasonal_factor</span> <span class="o">*</span> <span class="p">(</span><span class="n">busy_level</span> <span class="o">-</span> <span class="mf">0.5</span><span class="p">)</span> <span class="o">*</span> 
 	<span class="p">((</span><span class="n">annual_maximum</span> <span class="o">-</span> <span class="n">annual_minimum</span><span class="p">)</span><span class="o">/</span><span class="mi">2</span><span class="p">)</span> 
 <span class="c">#Calculate standard deviation for given day</span>
 <span class="n">sigma</span> <span class="o">=</span> <span class="p">(</span><span class="n">annual_maximum</span> <span class="o">-</span> <span class="n">annual_minimum</span><span class="p">)</span> <span class="o">*</span> <span class="mf">0.1</span>
 </code></pre></div></div>
-<p>The seasonal effect requires you to input the peak months as integer values. Here is an example for simulating two seasonal peaks in February and November:
+<p>The seasonal effect requires tha you input the peak months as integer values. Here is an example for simulating two seasonal peaks in February and November:
 ‘busy_months = np.array([2,11])’</p>
 
 <p>Moreover, input <code class="highlighter-rouge">seasonal_factor</code> (float &lt;0,1&gt;) allows you to control the magnitude of seasonal effects:</p>
@@ -273,7 +273,7 @@ To model this behavior, the code is using truncated normal continuous variable f
 <img src="/assets/images/support_data_generator/weekly_ticket_totals_comparison.png" alt="image test" /></p>
 
 <h6 id="impacts-of-weekends">Impacts of weekends:</h6>
-<p>Weekends can have a major impact on your ticket volumes. This can be particularly pronounced if your company is B2B oriented and your clients are off work while having little to no impact if you are operating in B2C model. To model this, select the appropriate value of the weekend_factor parameter (float - &lt;0,1&gt;):</p>
+<p>Weekends can have a major impact on your ticket volumes. This can be particularly pronounced if your company is B2B oriented and your clients are off work while having little to no impact if you are operating in a B2C model. To model this, select the appropriate value of the weekend_factor parameter (float - &lt;0,1&gt;):</p>
 <ul>
   <li>0 - no ticket volume on weekends</li>
   <li>1 - weekends are the same as business days
@@ -281,37 +281,41 @@ To model this behavior, the code is using truncated normal continuous variable f
 </ul>
 
 <h6 id="modelling-logged-time-for-each-opened-ticket">Modelling logged time for each opened ticket</h6>
-<p>Having an understanding of how much time is spent on each ticket is a crucial part of planning your operations. Unfortunately, this data cannot be easily simulated by a simple normal distribution function. While you will be able to find mean  and variance in your real world data, you will also see few large outliers due to complex support problems resulting into positive skew. Your systems and procedures are also likely to introduce cut off limit on the low end - minimum time spent on any opened ticket. <br />
-Fortunately, these effects can be quite well approximated by the non-central chi-squared distribution(<a href="https://en.wikipedia.org/wiki/Noncentral_chi-squared_distribution">Wikipedia</a>) that can generalize the k - degrees of freedom defining chi-squared function via non-centrality parameter.</p>
+<p>Having an understanding of how much time is spent on each ticket is a crucial part of planning your operations. Unfortunately, this data cannot be easily simulated by a simple normal distribution function. While you will be able to find mean  and variance in your real world data, you will also see few large outliers due to complex support problems resulting in a positive skew. Your systems and procedures are also likely to introduce a cut off limit on the low end - the minimum time spent on any opened ticket. <br />
+Fortunately, these effects can be quite well approximated by the non-central chi-squared distribution(<a href="https://en.wikipedia.org/wiki/Noncentral_chi-squared_distribution">Wikipedia</a>) that can generalize the k - degrees of freedom defining the chi-squared function via the non-centrality parameter.</p>
 
-<p>Probability Density Function(PDF) for non-central chi-squared function:</p>
+<p>Probability Density Function(PDF) for the non-central chi-squared function:</p>
 
 <script type="math/tex; mode=display">f_{X}(x;k,\lambda )=\sum _{i=0}^{\infty }{\frac {e^{-\lambda /2}(\lambda /2)^{i}}{i!}}f_{Y_{k+2i}}(x)</script>
 
-<p>Visualization of the non-central chi-squared PDF for various combinations of k and non-central parameter(source <a href="https://en.wikipedia.org/wiki/Noncentral_chi-squared_distribution#/media/File:Chi-Squared-(nonCentral)-pdf.png">en.wikipedia.com</a>):
+<p>Visualization of the non-central chi-squared PDF for various combinations of k and the non-central parameter(source <a href="https://en.wikipedia.org/wiki/Noncentral_chi-squared_distribution#/media/File:Chi-Squared-(nonCentral)-pdf.png">en.wikipedia.com</a>):
 <img src="/assets/images/support_data_generator/Chi-Squared-(nonCentral)-pdf.png" width="600" height="450" /></p>
 
 <p>In the implemented python code, the logged time data is generated by function daily_data imported from generate_daily_data.py. This function is called by the main function with the following parameters:</p>
 
 <h6 id="mandatory">Mandatory:</h6>
 <ul>
-  <li>size - automatically determined by the main function</li>
-  <li>logged_time_median_desired - median logged time for the population in minutes</li>
-  <li>Logged_time_minimum - minimum logged time in minutes</li>
+  <li>size: automatically determined by the main function</li>
+  <li>logged_time_median_desired: median logged time for the population in minutes</li>
+  <li>Logged_time_minimum: minimum logged time in minutes</li>
 </ul>
 
 <h6 id="optional">Optional:</h6>
 <ul>
-  <li>skewness_factor - [0,1] value;  0 for default chi^2 distribution; 1 for large positive skew</li>
-  <li>k - degrees of freedom</li>
-  <li>nonc - non-centrality (stats typically uses lambda letter)</li>
+  <li>skewness_factor: [0,1] value;  0 for default chi^2 distribution; 1 for large positive skew</li>
+  <li>k: degrees of freedom</li>
+  <li>nonc: non-centrality (stats typically uses lambda letter)</li>
 </ul>
 
-<p>The following plot shows histogram and kernel density estimation(KDE) for sample of logged time data containing approximately ~8000 tickets over 12 months with minimum time = 5minutes and desired median = 20 minutes.
+<p>The following plot shows histogram and kernel density estimation(KDE) for a sample of logged time data containing approximately ~8000 tickets over 12 months with minimum time = 5minutes and desired median = 20 minutes.
 <img src="/assets/images/support_data_generator/logged_time_distribution_plot.png" alt="image test" /></p>
 
 <p>The same dataset was used to generate the next plot that compares the impact of skewness_factor while keeping all other parameters constant. Notice that the median does not change while the PDF does:
 <img src="/assets/images/support_data_generator/skewness_comparison_violin.png" alt="image test" /></p>
+
+<p>You can further fine-tune the distributions by adjusting any additonal parameters found in the Python script. That being said, the exposed input parameters addressed in this article should provide plenty of freedom to quickly model most bussiness scenarios and save you some time before you decide to dive into the actuall datamining to bring your idea to life. 
+You might be also interested in this article where the tool is used to generate general operations team workload data for demonstration of statistical team planning:<br />
+<a href="https://datamadness.github.io/Team-Plannning">Use Statistics to Forecast Resource Allocation in Operations Teams</a></p>
 
                 </div>
             </section>
@@ -383,7 +387,7 @@ Fortunately, these effects can be quite well approximated by the non-central chi
                                     
                                         
                                         
-                                            <li><a href="/Team-Plannning">Forecasting Operations Team Resources Allocation Using Statistics</a></li>
+                                            <li><a href="/Team-Plannning">Use Statistics to Forecast Resource Allocation in Operations Teams</a></li>
                                         
                                     
                                   

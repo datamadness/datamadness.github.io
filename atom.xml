@@ -8,9 +8,9 @@
     
       
       <item>
-        <title>Forecasting Operations Team Resources Allocation Using Statistics</title>
+        <title>Use Statistics to Forecast Resource Allocation in Operations Teams</title>
         
-          <description>&lt;p&gt;Planning staff allocation in an environment geared heavily towards operations can be challenging due to the erratic nature of the demand from both internal or external clients. The predictability issues affect wide range of teams - from sales or support to development and data analytics departments. If your team is exposed to any type of ad-hoc requests on regular basis, you are likely familiar with having your carefully estimated project plans derailed by unexpected workload.&lt;/p&gt;
+          <description>&lt;p&gt;Planning staff allocation in an environment geared heavily towards operations can be challenging due to the erratic nature of the demand from both internal or external clients. The predictability issues affect a wide range of teams - from sales or support to development and data analytics departments. If your team is exposed to any type of ad-hoc requests on a regular basis, you are likely familiar with having your carefully estimated project plans derailed by an unexpected workload.&lt;/p&gt;
 
 </description>
         
@@ -102,7 +102,7 @@ This short post shows a quick tip how to use the pythonic lambda function to sol
       <item>
         <title>Support Data Generator in Python</title>
         
-          <description>&lt;p&gt;We all have been there - it is Sunday evening, you have couple of fresh ideas for a new customer centric strategy and you want to test how it would hold up in the real world. Unfortunately, it might be hard to get real or at least somewhat realistic customer support ticket datasets for specific business models and company size.&lt;/p&gt;
+          <description>&lt;p&gt;We’ve all been there - it’s Sunday evening, you have a couple of fresh ideas for a new customer centric strategy and you want to test how it would hold up in the real world. Unfortunately, it might be hard to get real or at least a somewhat realistic customer support ticket datasets for specific business models and company size.&lt;/p&gt;
 
 </description>
         
