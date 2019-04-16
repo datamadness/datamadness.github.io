@@ -11,7 +11,7 @@
 
 
 
-    <title>Time series classification using Convolutional Neural Network in TensorFlow - Part 2</title>
+    <title>Time signal classification using Convolutional Neural Network in TensorFlow - Part 2</title>
     <meta name="HandheldFriendly" content="True" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <!-- Styles'n'Scripts -->
@@ -31,7 +31,7 @@
      <!--title below is coming from _includes/dynamic_title-->
     <meta property="og:site_name" content="DATAmadness" />
     <meta property="og:type" content="website" />
-    <meta property="og:title" content="Time series classification using Convolutional Neural Network in TensorFlow - Part 2" />
+    <meta property="og:title" content="Time signal classification using Convolutional Neural Network in TensorFlow - Part 2" />
     <meta property="og:description" content="After transforming 1D time domain data series into frequency 2D maps in part 1 of this miniseries, we’ll now focus on building the actual Convolutional Neural Network binary classification model. The goal is to detect whether the original time domain signal exhibits partial discharge and is likely to result in" />
     <meta property="og:url" content="/time-signal-CNN-part2" />
     <meta property="og:image" content="/assets/images/time_signal_CNN/spectrogram2.png" />
@@ -41,7 +41,7 @@
     <meta property="article:modified_time" content="2019-03-28T16:41:00-07:00" />
     <meta property="article:tag" content="Python" />
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="Time series classification using Convolutional Neural Network in TensorFlow - Part 2" />
+    <meta name="twitter:title" content="Time signal classification using Convolutional Neural Network in TensorFlow - Part 2" />
     <meta name="twitter:description" content="After transforming 1D time domain data series into frequency 2D maps in part 1 of this miniseries, we’ll now focus on building the actual Convolutional Neural Network binary classification model. The goal is to detect whether the original time domain signal exhibits partial discharge and is likely to result in" />
     <meta name="twitter:url" content="/" />
     <meta name="twitter:image" content="/assets/images/time_signal_CNN/spectrogram2.png" />
@@ -87,7 +87,7 @@
     </script> -->
 
     <meta name="generator" content="Jekyll 3.6.2" />
-    <link rel="alternate" type="application/rss+xml" title="Time series classification using Convolutional Neural Network in TensorFlow - Part 2" href="/feed.xml" />
+    <link rel="alternate" type="application/rss+xml" title="Time signal classification using Convolutional Neural Network in TensorFlow - Part 2" href="/feed.xml" />
 
 
 </head>
@@ -179,7 +179,7 @@ into the {body} of the default.hbs template -->
                         
                     
                 </section>
-                <h1 class="post-full-title">Time series classification using Convolutional Neural Network in TensorFlow - Part 2</h1>
+                <h1 class="post-full-title">Time signal classification using Convolutional Neural Network in TensorFlow - Part 2</h1>
             </header>
 
             
@@ -191,7 +191,7 @@ into the {body} of the default.hbs template -->
                 <div class="kg-card-markdown">
                     <p>After transforming 1D time domain data series into frequency 2D maps in <a href="https://datamadness.github.io/time-signal-CNN">part 1</a> of this miniseries, we’ll now focus on building the actual Convolutional Neural Network binary classification model. The goal is to detect whether the original time domain signal exhibits partial discharge and is likely to result in a power line failure in the future.</p>
 
-<p>Two CNN models of various depth and complexity are presented to discuss the hyperparameters, results and suitability for given dataset that presents challenges related to limited size and highly unbalanced classes.</p>
+<p>Two CNN models of various depth and complexity are presented to discuss the hyperparameters, results and suitability for a given dataset that presents challenges related to limited size and highly unbalanced classes.</p>
 
 <h4 id="full-example-repo-on-github">Full example repo on GitHub</h4>
 <p>If you want to get the files for the full example, you can get it from <a href="https://github.com/datamadness/Time-signal-classification-using-Convolutional-Neural-Network">this GitHub repo</a>. You’ll find two files:
@@ -201,21 +201,23 @@ into the {body} of the default.hbs template -->
 <h4 id="dataset-overview">Dataset Overview</h4>
 <ul>
   <li>Individual sample format: <a href="https://datamadness.github.io/time-signal-CNN">250 x 200 2D tensor</a></li>
-  <li>Train: 8160 samples with upsampled minority class using custom permutations</li>
+  <li>Train: 8160 samples with an upsampled minority class using custom permutations</li>
   <li>Evaluation: 2178 samples</li>
   <li>Storage: TFRecords with 30 samples per file</li>
 </ul>
 
 <h4 id="tensorflow-approach">TensorFlow Approach</h4>
-<p>The CNN models are built using TensorFlow Estimators API as it provides good flexibility and control over building custom models while allowing more robust data streaming and resource solution. This is highly desirable as we work with fairly large dataset and wish to reduce the cost related to computing resources. As a result, the input function for the custom estimators will stream the data batch by batch, which allows us to use arbitrary computing resources and the only limitation is time we are willing to dedicate to training the CNN.
-to accommodate this solution, the input function uses TensorFlow Data API and TFRecord iterator. This is extremely convenient solution ans the Estimators API will take care of initializing the iterator and setting up thee graph.</p>
+<p>The CNN models are built using the TensorFlow Estimators API, as it provides good flexibility and control over building custom models while allowing more robust data streaming and resource solution. This is highly desirable as we work with fairly large dataset and wish to reduce the costs related to computing resources.</p>
+
+<p>As a result, the input function for the custom estimators will stream the data batch by batch, which allows us to use arbitrary computing resources and the only limitation is the time we are willing to dedicate to training the CNN.
+To accommodate this solution, the input function uses the TensorFlow Data API and TFRecord iterator. This is extremely convenient solution and the Estimators API will take care of initializing the iterator and setting up the graph.</p>
 
 <h4 id="input-function-and-pipeline">Input function and Pipeline</h4>
-<p>The input_fn of estimator API serve for two purposes:</p>
+<p>The input_fn of the Estimator API serves two purposes:</p>
 
 <ul>
   <li>Create a dataset to stream parsed data via an iterator</li>
-  <li>Establish pipeline for data transformation before feeding it to the model</li>
+  <li>Establish a pipeline for data transformation before feeding it to the model</li>
 </ul>
 
 <p>The input_fn receives four parameters:</p>
@@ -238,7 +240,7 @@ to accommodate this solution, the input function uses TensorFlow Data API and TF
     <span class="n">dataset</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">TFRecordDataset</span><span class="p">(</span><span class="n">filenames</span><span class="p">)</span>
 </code></pre></div></div>
 
-<p>Note that the Estimator API will take care of intializing the iterator so we do not have to worry about it here as opposed to manually building a graph where you would have to do something like this:</p>
+<p>Note that the Estimator API will take care of initializing the iterator, so we do not have to worry about it here as opposed to manually building a graph where you would have to do something like this:</p>
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    <span class="n">iterator</span> <span class="o">=</span> <span class="n">dataset</span><span class="o">.</span><span class="n">make_initializable_iterator</span><span class="p">()</span>
     <span class="n">sess</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">iterator</span><span class="o">.</span><span class="n">initializer</span><span class="p">)</span>
 </code></pre></div></div>
@@ -256,18 +258,18 @@ to accommodate this solution, the input function uses TensorFlow Data API and TF
 
 <p><strong>Pipeline</strong></p>
 
-<p>The parsing and input_fn is an ideal place for building your pipeline. In this example, the pipeline consists of two operations. First, we can assume that any physical effects related to the partial discharge are exhibiting at higher frequencies. This is due to the fact that partial discharge lasts only very short time(order of microseconds). Therefore, we can easily reduce the feature size by dropping all datapoints representing lower frequencies without loosing any valuable information:</p>
+<p>The parsing and input_fn is an ideal place for building your pipeline. In this example, the pipeline consists of two operations. First, we can assume that any physical effects related to the partial discharge are exhibiting at higher frequencies. This is due to the fact that a partial discharge lasts only a very short time(in the order of microseconds). Therefore, we can easily reduce the feature size by dropping all datapoints representing lower frequencies without losing any valuable information:</p>
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code>        <span class="n">signal_data</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">parsed</span><span class="p">[</span><span class="s">'signal'</span><span class="p">],</span> <span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">250</span><span class="p">,</span> <span class="mi">200</span><span class="p">])</span>
         <span class="c">#remove low frequency components</span>
         <span class="n">signal_data</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="nb">slice</span><span class="p">(</span><span class="n">signal_data</span><span class="p">,</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">240</span><span class="p">,</span> <span class="mi">200</span><span class="p">])</span>
 </code></pre></div></div>
 <p>We could possibly experiment with removing even more of the low frequency datapoints and reducing the feature tensor dimension.</p>
 
-<p>The second step in the normalization is to scale the data. The following code demonstrates to types of scaling:</p>
+<p>The second step in the normalization is to scale the data. The following code demonstrates two types of scaling:</p>
 
 <ul>
-  <li>Min/Max with rounding to 0 or 1, creating black and white feature map</li>
-  <li>Scaling to a fixed value, creating float map where most values lie between 0 and 1, but outliers can reach higher values without reducing most of the information.</li>
+  <li>Min/Max with rounding to 0 or 1, creating a black and white feature map</li>
+  <li>Scaling to a fixed value, creating a float map where most values lie between 0 and 1, but outliers can reach higher values without reducing most of the information.</li>
 </ul>
 
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code>        <span class="c"># Perform additional preprocessing on the parsed data.</span>
@@ -317,11 +319,11 @@ to accommodate this solution, the input function uses TensorFlow Data API and TF
 </code></pre></div></div>
 
 <h4 id="cnn-model-1">CNN Model #1</h4>
-<p>The first model consists of four convolutional layer and two dense layers with relu activation functions. Most layers have dropout rates to reduce overfitting as we have limited training dataset and the trainig will have to be conducted using multiple epochs. The following visualizations shows the overall CNN architecture:</p>
+<p>The first model consists of four convolutional layers and two dense layers with relu activation functions. Most layers have dropout rates to reduce overfitting as we have a limited training dataset and the training will have to be conducted using multiple epochs. The following visualizations shows the overall CNN architecture:</p>
 
 <p><img src="/assets/images/time_signal_CNN/CNN architecture 4096.png" alt="image post" /></p>
 
-<p>and here is the equivalent python code for TensorFlow estimators:</p>
+<p>and here is the equivalent python code for TensorFlow Estimators:</p>
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">#%% Building the CNN Classifier</span>
 <span class="k">def</span> <span class="nf">cnn_model_fn</span><span class="p">(</span><span class="n">features</span><span class="p">,</span> <span class="n">labels</span><span class="p">,</span> <span class="n">mode</span><span class="p">):</span>
   <span class="s">"""Model function for CNN."""</span>
@@ -396,7 +398,7 @@ to accommodate this solution, the input function uses TensorFlow Data API and TF
   <span class="n">logits</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">layers</span><span class="o">.</span><span class="n">dense</span><span class="p">(</span><span class="n">inputs</span><span class="o">=</span><span class="n">dropout4</span><span class="p">,</span> <span class="n">units</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
 </code></pre></div></div>
 
-<p>Since this is a binary classification problem, we use sigmoid function to get the prediction probabilities from logits and use a simple rounding function to assign classes based on the calculated probabilities. Similarly, we use sigmoid cross entropy loss function to navigate the gradients during training optimization:</p>
+<p>Since this is a binary classification problem, we use a sigmoid function to get the prediction probabilities from logits and use a simple rounding function to assign classes based on the calculated probabilities. Similarly, we use a sigmoid cross entropy loss function to navigate the gradients during training optimization:</p>
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  <span class="n">predictions</span> <span class="o">=</span> <span class="p">{</span>
       <span class="c"># Generate predictions (for PREDICT and EVAL mode)</span>
       <span class="s">"classes"</span><span class="p">:</span> <span class="n">tf</span><span class="o">.</span><span class="nb">round</span><span class="p">(</span><span class="n">tf</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">sigmoid</span><span class="p">(</span><span class="n">logits</span><span class="p">)),</span>
@@ -434,7 +436,7 @@ to accommodate this solution, the input function uses TensorFlow Data API and TF
 
 <h4 id="training-and-evaluation">Training and Evaluation</h4>
 
-<p>Since we are dealing with highly imbalanced classes, the standard accuracy metrics for evaluation would be very unreliable. Therefore, custom evaluation using confusion matrix and Mathews Correlation Coefficient (MCC) is calculated based on the predicted probabilities.</p>
+<p>Since we are dealing with highly imbalanced classes, the standard accuracy metrics for evaluation would be very unreliable. Therefore, custom evaluation using a confusion matrix and Mathews Correlation Coefficient (MCC) is calculated based on the predicted probabilities.</p>
 
 <p>Mathews Correlation matrix:</p>
 
@@ -446,7 +448,7 @@ to accommodate this solution, the input function uses TensorFlow Data API and TF
     <span class="k">return</span> <span class="n">predicted</span>
 </code></pre></div></div>
 
-<p>once classes are assigned, the corresponding confusion matrix and MCC is calculated:</p>
+<p>Once classes are assigned, the corresponding confusion matrix and MCC is calculated:</p>
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">#Print confusion matric and calculate Matthews correlation coefficient (MCC) </span>
 <span class="k">def</span> <span class="nf">print_metrics</span><span class="p">(</span><span class="n">labels</span><span class="p">,</span> <span class="n">scores</span><span class="p">):</span>
     <span class="n">conf</span> <span class="o">=</span> <span class="n">confusion_matrix</span><span class="p">(</span><span class="n">labels</span><span class="p">,</span> <span class="n">scores</span><span class="p">)</span>
@@ -466,7 +468,7 @@ to accommodate this solution, the input function uses TensorFlow Data API and TF
     <span class="k">return</span> <span class="n">MCC</span>
 </code></pre></div></div>
 
-<p>The evaluation routine runs every single epoch and plots the following as function of epoch number:</p>
+<p>The evaluation routine runs every single epoch and plots the following as a function of the epoch number:</p>
 
 <ul>
   <li>Training set loss (Sigmoid cross entropy)</li>
@@ -474,7 +476,7 @@ to accommodate this solution, the input function uses TensorFlow Data API and TF
   <li>Evaluation set MCC</li>
 </ul>
 
-<p>Following the development of these parameters during the training allows us to determine the predictive power for minority class, when further learning does not provide further improvement and when we start risking overfitting. 
+<p>Following the development of these parameters during the training allows us to determine the predictive power for the minority class, when further learning does not provide further improvement and when we start risking overfitting. 
 <img src="/assets/images/time_signal_CNN/Learning_plot_4096.png" alt="image post" /></p>
 
 <p><strong>Hyper-parameters:</strong></p>
@@ -505,9 +507,9 @@ to accommodate this solution, the input function uses TensorFlow Data API and TF
 
 <h4 id="conclusion">Conclusion</h4>
 
-<p>Both architectures that mostly differed in the number of features and nodes showed similar prediction power achieving accuracy(AUC) of ~0.94 and Mathews Correlation Coefficient around 0.57. For comparison, this is very similar to what we were able to achieve with gradient boosted trees on data from statistical analysis of the time signal. Nevertheless, the construction of the CNN solution was considerably less effort intensive as the CNN automatically extracts the features at a cost of longer training time. If we consider that human capital is more expensive than computing power, this metrics still comes in favour of the CNN.That being said, the ultimate goal is to use ensemble of classifiers that will take a vote on the final class and further increase the predictive power.</p>
+<p>Both architectures, which mostly differed in the number of features and nodes, showed similar prediction power achieving an accuracy(AUC) of ~0.94 and Mathews Correlation Coefficient around 0.57. For comparison, this is very similar to what we were able to achieve with gradient boosted trees on data from statistical analysis of the time signal. Nevertheless, the construction of the CNN solution was considerably less effort intensive as the CNN automatically extracts the features at a cost of longer training time. If we consider that human capital is more expensive than computing power, this metrics still comes in favour of the CNN.That being said, the ultimate goal is to use an ensemble of classifiers that will take a vote on the final class and further increase the predictive power.</p>
 
-<p>The main difference between the two architectures was in the training time where the model #1 required 255 seconds per 100 steps and model #2 required 150 seconds. Therefore, all other metrics being the same, the model #2 would be more favorable as it is faster and requires less computing resources.</p>
+<p>The main difference between the two architectures was in the training time where the model #1 required 255 seconds per 100 steps and model #2 required 150 seconds. Therefore, all other metrics being the same, model #2 would be more favorable as it is faster and requires less computing resources.</p>
 
 <p>Looking at the evaluation plots vs training epoch, we can also estimate that there is very little to no improvement in running the training beyond epoch #40 and we only increase the risk of overfitting.</p>
 
@@ -601,18 +603,11 @@ to accommodate this solution, the input function uses TensorFlow Data API and TF
                                     
                                         
                                         
-                                            <li><a href="/time-signal-CNN">Time series classification using Convolutional Neural Network in TensorFlow - Part 1</a></li>
+                                            <li><a href="/tensorflow_input_funtion_tip">TensorFlow Tip - input_fn with custom parameters</a></li>
                                         
                                     
                                   
                                 
-                                  
-                                    
-                                        
-                                        
-                                            <li><a href="/tensorflow_input_funtion_tip">TensorFlow Tip - input_fn with custom parameters</a></li>
-                                        
-                                    
                                   
                                 
                                   
@@ -627,6 +622,8 @@ to accommodate this solution, the input function uses TensorFlow Data API and TF
                                   
                                     
                                         
+                                        
+                                            <li><a href="/Skewness_Auto_Transform">Python function to automatically transform skewed data in Pandas DataFrame</a></li>
                                         
                                     
                                   
@@ -643,7 +640,7 @@ to accommodate this solution, the input function uses TensorFlow Data API and TF
                         <footer class="read-next-card-footer">
                             <a href="/tag/python/">
                                 
-                                    See all 5 posts  →
+                                    See all 4 posts  →
                                 
                             </a>
                         </footer>
@@ -699,12 +696,12 @@ to accommodate this solution, the input function uses TensorFlow Data API and TF
                 
     <article class="post-card post-template">
         
-            <a class="post-card-image-link" href="/time-signal-CNN">
-                <div class="post-card-image" style="background-image: url(/assets/images/time_signal_CNN/1280px-sampled_signal.png)"></div>
+            <a class="post-card-image-link" href="/tensorflow_input_funtion_tip">
+                <div class="post-card-image" style="background-image: url(/assets/images/input_function/Fort_Gibson_dam_2.jpg)"></div>
             </a>
         
         <div class="post-card-content">
-            <a class="post-card-content-link" href="/time-signal-CNN">
+            <a class="post-card-content-link" href="/tensorflow_input_funtion_tip">
                 <header class="post-card-header">
                     
                         
@@ -714,10 +711,10 @@ to accommodate this solution, the input function uses TensorFlow Data API and TF
                         
                     
 
-                    <h2 class="post-card-title">Time series classification using Convolutional Neural Network in TensorFlow - Part 1</h2>
+                    <h2 class="post-card-title">TensorFlow Tip - input_fn with custom parameters</h2>
                 </header>
                 <section class="post-card-excerpt">
-                    <p>This example explores the possibility to use Convolutional Neural Network(CNN) to classify time domain signal. The fundamental thesis of this work is that arbitrarily long sampled time domain signal can be divided into</p>
+                    <p>TensorFlow Estimators API is great for quickly building your custom models, but you might have noticed there is no obvious way to pass custom parameters into the input_fn from your estimator. That can</p>
                 </section>
             </a>
             <footer class="post-card-meta">
@@ -752,13 +749,13 @@ to accommodate this solution, the input function uses TensorFlow Data API and TF
         </a>
     </div>
     <span class="floating-header-divider">&mdash;</span>
-    <div class="floating-header-title">Time series classification using Convolutional Neural Network in TensorFlow - Part 2</div>
+    <div class="floating-header-title">Time signal classification using Convolutional Neural Network in TensorFlow - Part 2</div>
     <div class="floating-header-share">
         <div class="floating-header-share-label">Share this <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
     <path d="M7.5 15.5V4a1.5 1.5 0 1 1 3 0v4.5h2a1 1 0 0 1 1 1h2a1 1 0 0 1 1 1H18a1.5 1.5 0 0 1 1.5 1.5v3.099c0 .929-.13 1.854-.385 2.748L17.5 23.5h-9c-1.5-2-5.417-8.673-5.417-8.673a1.2 1.2 0 0 1 1.76-1.605L7.5 15.5zm6-6v2m-3-3.5v3.5m6-1v2"/>
 </svg>
 </div>
-        <a class="floating-header-share-tw" href="https://twitter.com/share?text=Time+series+classification+using+Convolutional+Neural+Network+in+TensorFlow+-+Part+2&amp;url=https://datamadness.github.io/time-signal-CNN-part2"
+        <a class="floating-header-share-tw" href="https://twitter.com/share?text=Time+signal+classification+using+Convolutional+Neural+Network+in+TensorFlow+-+Part+2&amp;url=https://datamadness.github.io/time-signal-CNN-part2"
             onclick="window.open(this.href, 'share-twitter', 'width=550,height=235');return false;">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32"><path d="M30.063 7.313c-.813 1.125-1.75 2.125-2.875 2.938v.75c0 1.563-.188 3.125-.688 4.625a15.088 15.088 0 0 1-2.063 4.438c-.875 1.438-2 2.688-3.25 3.813a15.015 15.015 0 0 1-4.625 2.563c-1.813.688-3.75 1-5.75 1-3.25 0-6.188-.875-8.875-2.625.438.063.875.125 1.375.125 2.688 0 5.063-.875 7.188-2.5-1.25 0-2.375-.375-3.375-1.125s-1.688-1.688-2.063-2.875c.438.063.813.125 1.125.125.5 0 1-.063 1.5-.25-1.313-.25-2.438-.938-3.313-1.938a5.673 5.673 0 0 1-1.313-3.688v-.063c.813.438 1.688.688 2.625.688a5.228 5.228 0 0 1-1.875-2c-.5-.875-.688-1.813-.688-2.75 0-1.063.25-2.063.75-2.938 1.438 1.75 3.188 3.188 5.25 4.25s4.313 1.688 6.688 1.813a5.579 5.579 0 0 1 1.5-5.438c1.125-1.125 2.5-1.688 4.125-1.688s3.063.625 4.188 1.813a11.48 11.48 0 0 0 3.688-1.375c-.438 1.375-1.313 2.438-2.563 3.188 1.125-.125 2.188-.438 3.313-.875z"/></svg>
 

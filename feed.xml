@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.6.2">Jekyll</generator><link href="/feed.xml" rel="self" type="application/atom+xml" /><link href="/" rel="alternate" type="text/html" /><updated>2019-04-14T13:48:42-07:00</updated><id>/</id><title type="html">DATAmadness</title><subtitle>Exploring the world through data analysis and machine learning</subtitle><entry><title type="html">Use Statistics to Forecast Resource Allocation in Operations Teams</title><link href="/Team-Plannning" rel="alternate" type="text/html" title="Use Statistics to Forecast Resource Allocation in Operations Teams" /><published>2019-04-01T03:32:00-07:00</published><updated>2019-04-01T03:32:00-07:00</updated><id>/Team-Plannning</id><content type="html" xml:base="/Team-Plannning">&lt;p&gt;Planning staff allocation in an environment geared heavily towards operations can be challenging due to the erratic nature of the demand from both internal or external clients. The predictability issues affect a wide range of teams - from sales or support to development and data analytics departments. If your team is exposed to any type of ad-hoc requests on a regular basis, you are likely familiar with having your carefully estimated project plans derailed by an unexpected workload.&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.6.2">Jekyll</generator><link href="/feed.xml" rel="self" type="application/atom+xml" /><link href="/" rel="alternate" type="text/html" /><updated>2019-04-15T21:14:00-07:00</updated><id>/</id><title type="html">DATAmadness</title><subtitle>Exploring the world through data analysis and machine learning</subtitle><entry><title type="html">Use Statistics to Forecast Resource Allocation in Operations Teams</title><link href="/Team-Plannning" rel="alternate" type="text/html" title="Use Statistics to Forecast Resource Allocation in Operations Teams" /><published>2019-04-01T03:32:00-07:00</published><updated>2019-04-01T03:32:00-07:00</updated><id>/Team-Plannning</id><content type="html" xml:base="/Team-Plannning">&lt;p&gt;Planning staff allocation in an environment geared heavily towards operations can be challenging due to the erratic nature of the demand from both internal or external clients. The predictability issues affect a wide range of teams - from sales or support to development and data analytics departments. If your team is exposed to any type of ad-hoc requests on a regular basis, you are likely familiar with having your carefully estimated project plans derailed by an unexpected workload.&lt;/p&gt;
 
 &lt;p&gt;This article will demonstrate that it is possible to accurately predict commitments even in a very erratic environment as long as we choose the right time frame and management approach. A simple, yet powerful methodology is proposed for your operations team planning. As opposed to the common go-to Machine Learning solution, we’ll use simple statistics that will let us to get away with a small dataset that is readily available at most businesses.&lt;/p&gt;
 
@@ -95,9 +95,9 @@ Average of&lt;/p&gt;
 
 &lt;p&gt;For managers, the message is that it is not necessary to micromanage the team and require keeping up with daily or weekly deadlines for secondary project work, but it is certainly possible to plan and hold the team responsible for delivering results on a monthly basis.&lt;/p&gt;
 
-&lt;p&gt;Data, calculations, and visualization files used in this example can be downloaded from &lt;a href=&quot;https://github.com/datamadness/Statistics-for-planning-team-reasources-in-operations&quot;&gt;this GitHub repo&lt;/a&gt;.&lt;/p&gt;</content><author><name>DATAmadness</name></author><category term="Statistics" /><summary type="html">Planning staff allocation in an environment geared heavily towards operations can be challenging due to the erratic nature of the demand from both internal or external clients. The predictability issues affect a wide range of teams - from sales or support to development and data analytics departments. If your team is exposed to any type of ad-hoc requests on a regular basis, you are likely familiar with having your carefully estimated project plans derailed by an unexpected workload.</summary></entry><entry><title type="html">Time series classification using Convolutional Neural Network in TensorFlow - Part 2</title><link href="/time-signal-CNN-part2" rel="alternate" type="text/html" title="Time series classification using Convolutional Neural Network in TensorFlow - Part 2" /><published>2019-03-28T16:41:00-07:00</published><updated>2019-03-28T16:41:00-07:00</updated><id>/time-signal-CNN-part2</id><content type="html" xml:base="/time-signal-CNN-part2">&lt;p&gt;After transforming 1D time domain data series into frequency 2D maps in &lt;a href=&quot;https://datamadness.github.io/time-signal-CNN&quot;&gt;part 1&lt;/a&gt; of this miniseries, we’ll now focus on building the actual Convolutional Neural Network binary classification model. The goal is to detect whether the original time domain signal exhibits partial discharge and is likely to result in a power line failure in the future.&lt;/p&gt;
+&lt;p&gt;Data, calculations, and visualization files used in this example can be downloaded from &lt;a href=&quot;https://github.com/datamadness/Statistics-for-planning-team-reasources-in-operations&quot;&gt;this GitHub repo&lt;/a&gt;.&lt;/p&gt;</content><author><name>DATAmadness</name></author><category term="Statistics" /><summary type="html">Planning staff allocation in an environment geared heavily towards operations can be challenging due to the erratic nature of the demand from both internal or external clients. The predictability issues affect a wide range of teams - from sales or support to development and data analytics departments. If your team is exposed to any type of ad-hoc requests on a regular basis, you are likely familiar with having your carefully estimated project plans derailed by an unexpected workload.</summary></entry><entry><title type="html">Time signal classification using Convolutional Neural Network in TensorFlow - Part 2</title><link href="/time-signal-CNN-part2" rel="alternate" type="text/html" title="Time signal classification using Convolutional Neural Network in TensorFlow - Part 2" /><published>2019-03-28T16:41:00-07:00</published><updated>2019-03-28T16:41:00-07:00</updated><id>/time-signal-CNN-part2</id><content type="html" xml:base="/time-signal-CNN-part2">&lt;p&gt;After transforming 1D time domain data series into frequency 2D maps in &lt;a href=&quot;https://datamadness.github.io/time-signal-CNN&quot;&gt;part 1&lt;/a&gt; of this miniseries, we’ll now focus on building the actual Convolutional Neural Network binary classification model. The goal is to detect whether the original time domain signal exhibits partial discharge and is likely to result in a power line failure in the future.&lt;/p&gt;
 
-&lt;p&gt;Two CNN models of various depth and complexity are presented to discuss the hyperparameters, results and suitability for given dataset that presents challenges related to limited size and highly unbalanced classes.&lt;/p&gt;
+&lt;p&gt;Two CNN models of various depth and complexity are presented to discuss the hyperparameters, results and suitability for a given dataset that presents challenges related to limited size and highly unbalanced classes.&lt;/p&gt;
 
 &lt;h4 id=&quot;full-example-repo-on-github&quot;&gt;Full example repo on GitHub&lt;/h4&gt;
 &lt;p&gt;If you want to get the files for the full example, you can get it from &lt;a href=&quot;https://github.com/datamadness/Time-signal-classification-using-Convolutional-Neural-Network&quot;&gt;this GitHub repo&lt;/a&gt;. You’ll find two files:
@@ -107,21 +107,23 @@ Average of&lt;/p&gt;
 &lt;h4 id=&quot;dataset-overview&quot;&gt;Dataset Overview&lt;/h4&gt;
 &lt;ul&gt;
   &lt;li&gt;Individual sample format: &lt;a href=&quot;https://datamadness.github.io/time-signal-CNN&quot;&gt;250 x 200 2D tensor&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;Train: 8160 samples with upsampled minority class using custom permutations&lt;/li&gt;
+  &lt;li&gt;Train: 8160 samples with an upsampled minority class using custom permutations&lt;/li&gt;
   &lt;li&gt;Evaluation: 2178 samples&lt;/li&gt;
   &lt;li&gt;Storage: TFRecords with 30 samples per file&lt;/li&gt;
 &lt;/ul&gt;
 
 &lt;h4 id=&quot;tensorflow-approach&quot;&gt;TensorFlow Approach&lt;/h4&gt;
-&lt;p&gt;The CNN models are built using TensorFlow Estimators API as it provides good flexibility and control over building custom models while allowing more robust data streaming and resource solution. This is highly desirable as we work with fairly large dataset and wish to reduce the cost related to computing resources. As a result, the input function for the custom estimators will stream the data batch by batch, which allows us to use arbitrary computing resources and the only limitation is time we are willing to dedicate to training the CNN.
-to accommodate this solution, the input function uses TensorFlow Data API and TFRecord iterator. This is extremely convenient solution ans the Estimators API will take care of initializing the iterator and setting up thee graph.&lt;/p&gt;
+&lt;p&gt;The CNN models are built using the TensorFlow Estimators API, as it provides good flexibility and control over building custom models while allowing more robust data streaming and resource solution. This is highly desirable as we work with fairly large dataset and wish to reduce the costs related to computing resources.&lt;/p&gt;
+
+&lt;p&gt;As a result, the input function for the custom estimators will stream the data batch by batch, which allows us to use arbitrary computing resources and the only limitation is the time we are willing to dedicate to training the CNN.
+To accommodate this solution, the input function uses the TensorFlow Data API and TFRecord iterator. This is extremely convenient solution and the Estimators API will take care of initializing the iterator and setting up the graph.&lt;/p&gt;
 
 &lt;h4 id=&quot;input-function-and-pipeline&quot;&gt;Input function and Pipeline&lt;/h4&gt;
-&lt;p&gt;The input_fn of estimator API serve for two purposes:&lt;/p&gt;
+&lt;p&gt;The input_fn of the Estimator API serves two purposes:&lt;/p&gt;
 
 &lt;ul&gt;
   &lt;li&gt;Create a dataset to stream parsed data via an iterator&lt;/li&gt;
-  &lt;li&gt;Establish pipeline for data transformation before feeding it to the model&lt;/li&gt;
+  &lt;li&gt;Establish a pipeline for data transformation before feeding it to the model&lt;/li&gt;
 &lt;/ul&gt;
 
 &lt;p&gt;The input_fn receives four parameters:&lt;/p&gt;
@@ -144,7 +146,7 @@ to accommodate this solution, the input function uses TensorFlow Data API and TF
     &lt;span class=&quot;n&quot;&gt;dataset&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;tf&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;data&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;TFRecordDataset&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;filenames&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-&lt;p&gt;Note that the Estimator API will take care of intializing the iterator so we do not have to worry about it here as opposed to manually building a graph where you would have to do something like this:&lt;/p&gt;
+&lt;p&gt;Note that the Estimator API will take care of initializing the iterator, so we do not have to worry about it here as opposed to manually building a graph where you would have to do something like this:&lt;/p&gt;
 &lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;    &lt;span class=&quot;n&quot;&gt;iterator&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;dataset&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;make_initializable_iterator&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
     &lt;span class=&quot;n&quot;&gt;sess&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;run&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;iterator&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;initializer&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
@@ -162,18 +164,18 @@ to accommodate this solution, the input function uses TensorFlow Data API and TF
 
 &lt;p&gt;&lt;strong&gt;Pipeline&lt;/strong&gt;&lt;/p&gt;
 
-&lt;p&gt;The parsing and input_fn is an ideal place for building your pipeline. In this example, the pipeline consists of two operations. First, we can assume that any physical effects related to the partial discharge are exhibiting at higher frequencies. This is due to the fact that partial discharge lasts only very short time(order of microseconds). Therefore, we can easily reduce the feature size by dropping all datapoints representing lower frequencies without loosing any valuable information:&lt;/p&gt;
+&lt;p&gt;The parsing and input_fn is an ideal place for building your pipeline. In this example, the pipeline consists of two operations. First, we can assume that any physical effects related to the partial discharge are exhibiting at higher frequencies. This is due to the fact that a partial discharge lasts only a very short time(in the order of microseconds). Therefore, we can easily reduce the feature size by dropping all datapoints representing lower frequencies without losing any valuable information:&lt;/p&gt;
 &lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;        &lt;span class=&quot;n&quot;&gt;signal_data&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;tf&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;reshape&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;parsed&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;'signal'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;],&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;250&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;200&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;])&lt;/span&gt;
         &lt;span class=&quot;c&quot;&gt;#remove low frequency components&lt;/span&gt;
         &lt;span class=&quot;n&quot;&gt;signal_data&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;tf&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;slice&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;signal_data&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;],&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;240&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;200&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;])&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 &lt;p&gt;We could possibly experiment with removing even more of the low frequency datapoints and reducing the feature tensor dimension.&lt;/p&gt;
 
-&lt;p&gt;The second step in the normalization is to scale the data. The following code demonstrates to types of scaling:&lt;/p&gt;
+&lt;p&gt;The second step in the normalization is to scale the data. The following code demonstrates two types of scaling:&lt;/p&gt;
 
 &lt;ul&gt;
-  &lt;li&gt;Min/Max with rounding to 0 or 1, creating black and white feature map&lt;/li&gt;
-  &lt;li&gt;Scaling to a fixed value, creating float map where most values lie between 0 and 1, but outliers can reach higher values without reducing most of the information.&lt;/li&gt;
+  &lt;li&gt;Min/Max with rounding to 0 or 1, creating a black and white feature map&lt;/li&gt;
+  &lt;li&gt;Scaling to a fixed value, creating a float map where most values lie between 0 and 1, but outliers can reach higher values without reducing most of the information.&lt;/li&gt;
 &lt;/ul&gt;
 
 &lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;        &lt;span class=&quot;c&quot;&gt;# Perform additional preprocessing on the parsed data.&lt;/span&gt;
@@ -223,11 +225,11 @@ to accommodate this solution, the input function uses TensorFlow Data API and TF
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
 &lt;h4 id=&quot;cnn-model-1&quot;&gt;CNN Model #1&lt;/h4&gt;
-&lt;p&gt;The first model consists of four convolutional layer and two dense layers with relu activation functions. Most layers have dropout rates to reduce overfitting as we have limited training dataset and the trainig will have to be conducted using multiple epochs. The following visualizations shows the overall CNN architecture:&lt;/p&gt;
+&lt;p&gt;The first model consists of four convolutional layers and two dense layers with relu activation functions. Most layers have dropout rates to reduce overfitting as we have a limited training dataset and the training will have to be conducted using multiple epochs. The following visualizations shows the overall CNN architecture:&lt;/p&gt;
 
 &lt;p&gt;&lt;img src=&quot;/assets/images/time_signal_CNN/CNN architecture 4096.png&quot; alt=&quot;image post&quot; /&gt;&lt;/p&gt;
 
-&lt;p&gt;and here is the equivalent python code for TensorFlow estimators:&lt;/p&gt;
+&lt;p&gt;and here is the equivalent python code for TensorFlow Estimators:&lt;/p&gt;
 &lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c&quot;&gt;#%% Building the CNN Classifier&lt;/span&gt;
 &lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;cnn_model_fn&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;features&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;labels&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;mode&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;):&lt;/span&gt;
   &lt;span class=&quot;s&quot;&gt;&quot;&quot;&quot;Model function for CNN.&quot;&quot;&quot;&lt;/span&gt;
@@ -302,7 +304,7 @@ to accommodate this solution, the input function uses TensorFlow Data API and TF
   &lt;span class=&quot;n&quot;&gt;logits&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;tf&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;layers&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;dense&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;inputs&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;dropout4&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;units&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-&lt;p&gt;Since this is a binary classification problem, we use sigmoid function to get the prediction probabilities from logits and use a simple rounding function to assign classes based on the calculated probabilities. Similarly, we use sigmoid cross entropy loss function to navigate the gradients during training optimization:&lt;/p&gt;
+&lt;p&gt;Since this is a binary classification problem, we use a sigmoid function to get the prediction probabilities from logits and use a simple rounding function to assign classes based on the calculated probabilities. Similarly, we use a sigmoid cross entropy loss function to navigate the gradients during training optimization:&lt;/p&gt;
 &lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;  &lt;span class=&quot;n&quot;&gt;predictions&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
       &lt;span class=&quot;c&quot;&gt;# Generate predictions (for PREDICT and EVAL mode)&lt;/span&gt;
       &lt;span class=&quot;s&quot;&gt;&quot;classes&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;tf&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;round&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;tf&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;nn&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;sigmoid&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;logits&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)),&lt;/span&gt;
@@ -340,7 +342,7 @@ to accommodate this solution, the input function uses TensorFlow Data API and TF
 
 &lt;h4 id=&quot;training-and-evaluation&quot;&gt;Training and Evaluation&lt;/h4&gt;
 
-&lt;p&gt;Since we are dealing with highly imbalanced classes, the standard accuracy metrics for evaluation would be very unreliable. Therefore, custom evaluation using confusion matrix and Mathews Correlation Coefficient (MCC) is calculated based on the predicted probabilities.&lt;/p&gt;
+&lt;p&gt;Since we are dealing with highly imbalanced classes, the standard accuracy metrics for evaluation would be very unreliable. Therefore, custom evaluation using a confusion matrix and Mathews Correlation Coefficient (MCC) is calculated based on the predicted probabilities.&lt;/p&gt;
 
 &lt;p&gt;Mathews Correlation matrix:&lt;/p&gt;
 
@@ -352,7 +354,7 @@ to accommodate this solution, the input function uses TensorFlow Data API and TF
     &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;predicted&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-&lt;p&gt;once classes are assigned, the corresponding confusion matrix and MCC is calculated:&lt;/p&gt;
+&lt;p&gt;Once classes are assigned, the corresponding confusion matrix and MCC is calculated:&lt;/p&gt;
 &lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c&quot;&gt;#Print confusion matric and calculate Matthews correlation coefficient (MCC) &lt;/span&gt;
 &lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;print_metrics&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;labels&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;scores&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;):&lt;/span&gt;
     &lt;span class=&quot;n&quot;&gt;conf&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;confusion_matrix&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;labels&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;scores&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
@@ -372,7 +374,7 @@ to accommodate this solution, the input function uses TensorFlow Data API and TF
     &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;MCC&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-&lt;p&gt;The evaluation routine runs every single epoch and plots the following as function of epoch number:&lt;/p&gt;
+&lt;p&gt;The evaluation routine runs every single epoch and plots the following as a function of the epoch number:&lt;/p&gt;
 
 &lt;ul&gt;
   &lt;li&gt;Training set loss (Sigmoid cross entropy)&lt;/li&gt;
@@ -380,7 +382,7 @@ to accommodate this solution, the input function uses TensorFlow Data API and TF
   &lt;li&gt;Evaluation set MCC&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;p&gt;Following the development of these parameters during the training allows us to determine the predictive power for minority class, when further learning does not provide further improvement and when we start risking overfitting. 
+&lt;p&gt;Following the development of these parameters during the training allows us to determine the predictive power for the minority class, when further learning does not provide further improvement and when we start risking overfitting. 
 &lt;img src=&quot;/assets/images/time_signal_CNN/Learning_plot_4096.png&quot; alt=&quot;image post&quot; /&gt;&lt;/p&gt;
 
 &lt;p&gt;&lt;strong&gt;Hyper-parameters:&lt;/strong&gt;&lt;/p&gt;
@@ -411,9 +413,9 @@ to accommodate this solution, the input function uses TensorFlow Data API and TF
 
 &lt;h4 id=&quot;conclusion&quot;&gt;Conclusion&lt;/h4&gt;
 
-&lt;p&gt;Both architectures that mostly differed in the number of features and nodes showed similar prediction power achieving accuracy(AUC) of ~0.94 and Mathews Correlation Coefficient around 0.57. For comparison, this is very similar to what we were able to achieve with gradient boosted trees on data from statistical analysis of the time signal. Nevertheless, the construction of the CNN solution was considerably less effort intensive as the CNN automatically extracts the features at a cost of longer training time. If we consider that human capital is more expensive than computing power, this metrics still comes in favour of the CNN.That being said, the ultimate goal is to use ensemble of classifiers that will take a vote on the final class and further increase the predictive power.&lt;/p&gt;
+&lt;p&gt;Both architectures, which mostly differed in the number of features and nodes, showed similar prediction power achieving an accuracy(AUC) of ~0.94 and Mathews Correlation Coefficient around 0.57. For comparison, this is very similar to what we were able to achieve with gradient boosted trees on data from statistical analysis of the time signal. Nevertheless, the construction of the CNN solution was considerably less effort intensive as the CNN automatically extracts the features at a cost of longer training time. If we consider that human capital is more expensive than computing power, this metrics still comes in favour of the CNN.That being said, the ultimate goal is to use an ensemble of classifiers that will take a vote on the final class and further increase the predictive power.&lt;/p&gt;
 
-&lt;p&gt;The main difference between the two architectures was in the training time where the model #1 required 255 seconds per 100 steps and model #2 required 150 seconds. Therefore, all other metrics being the same, the model #2 would be more favorable as it is faster and requires less computing resources.&lt;/p&gt;
+&lt;p&gt;The main difference between the two architectures was in the training time where the model #1 required 255 seconds per 100 steps and model #2 required 150 seconds. Therefore, all other metrics being the same, model #2 would be more favorable as it is faster and requires less computing resources.&lt;/p&gt;
 
 &lt;p&gt;Looking at the evaluation plots vs training epoch, we can also estimate that there is very little to no improvement in running the training beyond epoch #40 and we only increase the risk of overfitting.&lt;/p&gt;
 
@@ -429,8 +431,45 @@ to accommodate this solution, the input function uses TensorFlow Data API and TF
 
 &lt;span class=&quot;n&quot;&gt;INFO&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;tensorflow&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;loss&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mf&quot;&gt;0.08221432&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;step&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;10556&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mf&quot;&gt;150.680&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;sec&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
 &lt;span class=&quot;n&quot;&gt;INFO&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;tensorflow&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;global_step&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;sec&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;mf&quot;&gt;0.241183&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;</content><author><name>DATAmadness</name></author><category term="Python" /><summary type="html">After transforming 1D time domain data series into frequency 2D maps in part 1 of this miniseries, we’ll now focus on building the actual Convolutional Neural Network binary classification model. The goal is to detect whether the original time domain signal exhibits partial discharge and is likely to result in a power line failure in the future.</summary></entry><entry><title type="html">Time series classification using Convolutional Neural Network in TensorFlow - Part 1</title><link href="/time-signal-CNN" rel="alternate" type="text/html" title="Time series classification using Convolutional Neural Network in TensorFlow - Part 1" /><published>2019-03-25T15:00:00-07:00</published><updated>2019-03-25T15:00:00-07:00</updated><id>/time-signal-CNN</id><content type="html" xml:base="/time-signal-CNN">&lt;p&gt;This example explores the possibility to use Convolutional Neural Network(CNN) to classify time domain signal. The fundamental thesis of this work is that arbitrarily long sampled time domain signal can be divided into short segments using a window function. These segments can be further converted to frequency domain data via &lt;a href=&quot;https://en.wikipedia.org/wiki/Short-time_Fourier_transform&quot;&gt;Short Time Fourier Transform(STFT)&lt;/a&gt;	. This approach is well known from acoustics, but it is easily applicable on any frequency spectrum.
-The goal of this work is to add an alternative tool to ensemble of classifiers for time signal predictions. As an example, this specific classifier example was developed on &lt;a href=&quot;https://www.kaggle.com/c/vsb-power-line-fault-detection/data&quot;&gt;VSB Power Line Fault Detection dataset&lt;/a&gt; where I aimed to combine three classifiers:&lt;/p&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;</content><author><name>DATAmadness</name></author><category term="Python" /><summary type="html">After transforming 1D time domain data series into frequency 2D maps in part 1 of this miniseries, we’ll now focus on building the actual Convolutional Neural Network binary classification model. The goal is to detect whether the original time domain signal exhibits partial discharge and is likely to result in a power line failure in the future.</summary></entry><entry><title type="html">TensorFlow Tip - input_fn with custom parameters</title><link href="/tensorflow_input_funtion_tip" rel="alternate" type="text/html" title="TensorFlow Tip - input_fn with custom parameters" /><published>2019-03-24T05:00:00-07:00</published><updated>2019-03-24T05:00:00-07:00</updated><id>/tensorflow_input_funtion_tip</id><content type="html" xml:base="/tensorflow_input_funtion_tip">&lt;p&gt;TensorFlow Estimators API is great for quickly building your custom models, but you might have noticed there is no  obvious way to pass custom parameters into the input_fn from your estimator. That can be a limiting factor when building more complicated input functions that include a data pipline in them(&lt;a href=&quot;https://datamadness.github.io/tensorflow_estimator_large_dataset_feed&quot;&gt;see this post&lt;/a&gt;).
+This short post shows a quick tip how to use the pythonic lambda function to solve the problem on a single line of code.&lt;/p&gt;
+
+&lt;p&gt;You can get the full python example from &lt;a href=&quot;https://github.com/datamadness/Feeding-TensorFlow-from-drive-MNIST-Example&quot;&gt;my GitHub repo&lt;/a&gt; for more details and practical demo. Specifically, you want to look into the input function in this file:&lt;/p&gt;
+
+&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;MNIST_CNN_with_TFR_iterator_example.py&lt;/code&gt;&lt;/p&gt;
+
+&lt;h4 id=&quot;standard-input_fn&quot;&gt;Standard input_fn&lt;/h4&gt;
+&lt;p&gt;Below is an example of standard &lt;em&gt;train_input_fn&lt;/em&gt; from the MNIST classifier that shows how the input_fn is used for training an estimator:&lt;/p&gt;
+&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;mnist_classifier&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;train&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;input_fn&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;train_input_fn&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;steps&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1000&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;You can see that the &lt;em&gt;input_fn&lt;/em&gt; does not accept any parameters when called from the estimators &lt;em&gt;train&lt;/em&gt; method.&lt;/p&gt;
+
+&lt;h4 id=&quot;custom-intput_fn-with-parameters&quot;&gt;Custom intput_fn with parameters&lt;/h4&gt;
+&lt;p&gt;The problem can be easily solve via the ever-so-helpful &lt;em&gt;lambda&lt;/em&gt; statement with our custom &lt;em&gt;dataset_input_fn&lt;/em&gt; and an arbitrary number of input parameters:&lt;/p&gt;
+
+&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;mnist_classifier&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;train&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;input_fn&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;lambda&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;dataset_input_fn&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;train_folder&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;train&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;bp&quot;&gt;True&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; 
+		&lt;span class=&quot;n&quot;&gt;batch_size&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;batch_size&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;num_epochs&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;num_epochs&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;),&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;steps&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;training_steps&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;hooks&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;logging_hook&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;])&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Enjoy!&lt;/p&gt;</content><author><name>DATAmadness</name></author><category term="Python" /><summary type="html">TensorFlow Estimators API is great for quickly building your custom models, but you might have noticed there is no obvious way to pass custom parameters into the input_fn from your estimator. That can be a limiting factor when building more complicated input functions that include a data pipline in them(see this post). This short post shows a quick tip how to use the pythonic lambda function to solve the problem on a single line of code.</summary></entry><entry><title type="html">Time Signal Cnn</title><link href="/time-signal-CNN" rel="alternate" type="text/html" title="Time Signal Cnn" /><published>2019-03-24T00:00:00-07:00</published><updated>2019-03-24T00:00:00-07:00</updated><id>/time-signal-CNN</id><content type="html" xml:base="/time-signal-CNN">&lt;h2 id=&quot;drive&quot;&gt;drive&lt;/h2&gt;
+&lt;p&gt;layout: post
+current: post
+cover:  assets/images/time_signal_CNN/1280px-sampled_signal.png
+navigation: True
+title: Time signal classification using Convolutional Neural Network in TensorFlow - Part 1
+date: 2019-03-25 22:00:00
+tags: [Python]
+class: post-template
+subclass: ‘post tag-Python’
+author: DATAmadness
+mathjax: true
+—&lt;/p&gt;
+
+&lt;p&gt;This example explores the possibility of using a Convolutional Neural Network(CNN) to classify time domain signal. The fundamental thesis of this work is that an arbitrarily long sampled time domain signal can be divided into short segments using a window function. These segments can be further converted to frequency domain data via &lt;a href=&quot;https://en.wikipedia.org/wiki/Short-time_Fourier_transform&quot;&gt;Short Time Fourier Transform(STFT)&lt;/a&gt;	. This approach is well known from acoustics, but it is easily applicable on any frequency spectrum.
+The goal of this work is to add an alternative tool to an ensemble of classifiers for time signal predictions. To illustrate, this specific classifier example was developed on &lt;a href=&quot;https://www.kaggle.com/c/vsb-power-line-fault-detection/data&quot;&gt;VSB Power Line Fault Detection dataset&lt;/a&gt; where I aimed to combine three classifiers:&lt;/p&gt;
 
 &lt;ul&gt;
   &lt;li&gt;Long Short-Term Memory (LSTM) Recurent Neural Network(RNN),&lt;/li&gt;
@@ -438,7 +477,7 @@ The goal of this work is to add an alternative tool to ensemble of classifiers f
   &lt;li&gt;Convolutional Neural Network(CNN)&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;p&gt;These three methods are based on very different principles and therefore, they can complement each other with different sets of strengths and weaknesses.&lt;/p&gt;
+&lt;p&gt;These three methods are based on very different principles and can complement each other with different sets of strengths and weaknesses.&lt;/p&gt;
 
 &lt;h4 id=&quot;full-example-repo-on-github&quot;&gt;Full example repo on GitHub&lt;/h4&gt;
 &lt;p&gt;If you want to get the files for the full example, you can get it from &lt;a href=&quot;https://github.com/datamadness/Time-signal-classification-using-Convolutional-Neural-Network&quot;&gt;this GitHub repo&lt;/a&gt;. You’ll find two files:
@@ -448,7 +487,7 @@ The goal of this work is to add an alternative tool to ensemble of classifiers f
 &lt;h4 id=&quot;signal-processing&quot;&gt;Signal Processing&lt;/h4&gt;
 
 &lt;h4 id=&quot;the-raw-data&quot;&gt;The Raw Data&lt;/h4&gt;
-&lt;p&gt;The raw dataset contains time domain measurements of 3 phase transmission line. Each measurement contains three individual phase signals with 800 000 discrete data points covering 20ms (or one cycle at 50Hz). The following plot shows the data for single measurement:&lt;/p&gt;
+&lt;p&gt;The raw dataset contains time domain measurements of a 3-phase transmission line. Each measurement contains three individual phase signals with 800 000 discrete data points covering 20ms (or one cycle at 50Hz). The following plot shows the data for a single measurement:&lt;/p&gt;
 
 &lt;p&gt;&lt;img src=&quot;/assets/images/time_signal_CNN/raw_data_visualization.png&quot; alt=&quot;image post&quot; /&gt;&lt;/p&gt;
 
@@ -461,10 +500,10 @@ The goal of this work is to add an alternative tool to ensemble of classifiers f
 
 &lt;p&gt;Therefore, for the purposes of this particular classifier, we take each individual phase signal as a single independent sample. As a result, in the raw form we have 800k features per sample and a binary classification problem.&lt;/p&gt;
 
-&lt;p&gt;&lt;em&gt;Warning: We still must split the data into train/test based on measurements. Having different phases from a single measurement in both train and test dataset would most certainly lead to information leak!&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;Warning: We still must split the data into train/test based on measurements. Having different phases from a single measurement in both train and test datasets would most certainly lead to information leak!&lt;/em&gt;&lt;/p&gt;
 
 &lt;h4 id=&quot;data-transformation&quot;&gt;Data Transformation&lt;/h4&gt;
-&lt;p&gt;Here is a summary what we know about the raw signal data:&lt;/p&gt;
+&lt;p&gt;Here is a summary of what we know about the raw signal data:&lt;/p&gt;
 
 &lt;ul&gt;
   &lt;li&gt;1D tensor with length $800e5$&lt;/li&gt;
@@ -473,9 +512,9 @@ The goal of this work is to add an alternative tool to ensemble of classifiers f
   &lt;li&gt;STFT can reliably resolve frequency domain features up to $20MHz$ as per &lt;a href=&quot;https://en.wikipedia.org/wiki/Nyquist–Shannon_sampling_theorem&quot;&gt;sampling theorem&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;p&gt;With this knowledge, we can use scipy stft to transform the 1D time domain data into 2D tensor of frequency domain features. That being said, the overall length of the data is still going to amount to $800e5$ datapoints.
-As an example STFT with $nperseg=2000$ will return 2D array with shape 1000x800.
-To reduce the data size, we can use block_reduce with stride of 4 and np.max function(works just like pooling in CNN).&lt;/p&gt;
+&lt;p&gt;With this knowledge, we can use scipy stft to transform the 1D time domain data into a 2D tensor of frequency domain features. That being said, the overall length of the data is still going to amount to $800e5$ datapoints.
+As an example, STFT with $nperseg=2000$ will return 2D array with a shape of 1000x800.
+To reduce the data size, we can use block_reduce with a stride of 4 and np.max function(works just like pooling in CNN).&lt;/p&gt;
 
 &lt;p&gt;Here is the complete function to execute this two step transformation:&lt;/p&gt;
 &lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;signal_stft&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;phase_data&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;plot&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;bp&quot;&gt;False&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;):&lt;/span&gt;
@@ -500,14 +539,14 @@ To reduce the data size, we can use block_reduce with stride of 4 and np.max fun
 
 &lt;p&gt;&lt;img src=&quot;/assets/images/time_signal_CNN/spectrogram.png&quot; alt=&quot;image post&quot; /&gt;&lt;/p&gt;
 
-&lt;p&gt;The final dimension is 250x200 points, which is considerable reduction with acceptable information loss. Additionally, the resulting 2D tensor is more favorable to CNN architectures that most of us are familiar with from image classification.&lt;/p&gt;
+&lt;p&gt;The final dimension is 250x200 points, which is a considerable reduction with acceptable information loss. Additionally, the resulting 2D tensor is more favorable to CNN architectures that most of us are familiar with from image classification.&lt;/p&gt;
 
 &lt;h4 id=&quot;upsampling-and-tfrecords-for-data-streaming&quot;&gt;Upsampling and TFrecords for Data Streaming&lt;/h4&gt;
-&lt;p&gt;Since the transformed training data still require gigabytes of memory, I save them into smaller TFRecords that will allow smooth data streaming during CNN training in TensorFlow. This is described in more detail in &lt;a href=&quot;https://datamadness.github.io/tensorflow_estimator_large_dataset_feed&quot;&gt;this post&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;Since the transformed training data still requires gigabytes of memory, I save them into smaller TFRecords that will allow for smooth data streaming during CNN training in TensorFlow. This is described in more detail in &lt;a href=&quot;https://datamadness.github.io/tensorflow_estimator_large_dataset_feed&quot;&gt;this post&lt;/a&gt;.&lt;/p&gt;
 
-&lt;p&gt;The following code will split the measurement ids into train/test datasets while protecting phase signals from single measurement being split. 
+&lt;p&gt;The following code will split the measurement ids into train/test datasets while protecting phase signals from a single measurement being split. 
 Since the classes are also highly unbalanced(about 14:1), the code will also upsample the minor class using permutation operations to avoid having duplicated samples.
-Note: Only train data are upsampled.&lt;/p&gt;
+Note: Only train data is upsampled.&lt;/p&gt;
 
 &lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;pandas&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;as&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;pd&lt;/span&gt;
 &lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;tensorflow&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;as&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;tf&lt;/span&gt;
@@ -639,30 +678,9 @@ Note: Only train data are upsampled.&lt;/p&gt;
 
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-&lt;p&gt;I will focus on using the preprocessed frequency domain data in a Convolutional Neural Network in part 2 of this mini-series.&lt;/p&gt;</content><author><name>DATAmadness</name></author><category term="Python" /><summary type="html">This example explores the possibility to use Convolutional Neural Network(CNN) to classify time domain signal. The fundamental thesis of this work is that arbitrarily long sampled time domain signal can be divided into short segments using a window function. These segments can be further converted to frequency domain data via Short Time Fourier Transform(STFT) . This approach is well known from acoustics, but it is easily applicable on any frequency spectrum. The goal of this work is to add an alternative tool to ensemble of classifiers for time signal predictions. As an example, this specific classifier example was developed on VSB Power Line Fault Detection dataset where I aimed to combine three classifiers:</summary></entry><entry><title type="html">TensorFlow Tip - input_fn with custom parameters</title><link href="/tensorflow_input_funtion_tip" rel="alternate" type="text/html" title="TensorFlow Tip - input_fn with custom parameters" /><published>2019-03-24T05:00:00-07:00</published><updated>2019-03-24T05:00:00-07:00</updated><id>/tensorflow_input_funtion_tip</id><content type="html" xml:base="/tensorflow_input_funtion_tip">&lt;p&gt;TensorFlow Estimators API is great for quickly building your custom models, but you might have noticed there is no  obvious way to pass custom parameters into the input_fn from your estimator. That can be a limiting factor when building more complicated input functions that include a data pipline in them(&lt;a href=&quot;https://datamadness.github.io/tensorflow_estimator_large_dataset_feed&quot;&gt;see this post&lt;/a&gt;).
-This short post shows a quick tip how to use the pythonic lambda function to solve the problem on a single line of code.&lt;/p&gt;
+&lt;p&gt;I will focus on using the preprocessed frequency domain data in a Convolutional Neural Network in part 2 of this mini-series.&lt;/p&gt;
 
-&lt;p&gt;You can get the full python example from &lt;a href=&quot;https://github.com/datamadness/Feeding-TensorFlow-from-drive-MNIST-Example&quot;&gt;my GitHub repo&lt;/a&gt; for more details and practical demo. Specifically, you want to look into the input function in this file:&lt;/p&gt;
-
-&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;MNIST_CNN_with_TFR_iterator_example.py&lt;/code&gt;&lt;/p&gt;
-
-&lt;h4 id=&quot;standard-input_fn&quot;&gt;Standard input_fn&lt;/h4&gt;
-&lt;p&gt;Below is an example of standard &lt;em&gt;train_input_fn&lt;/em&gt; from the MNIST classifier that shows how the input_fn is used for training an estimator:&lt;/p&gt;
-&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;mnist_classifier&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;train&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;input_fn&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;train_input_fn&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;steps&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1000&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-&lt;p&gt;You can see that the &lt;em&gt;input_fn&lt;/em&gt; does not accept any parameters when called from the estimators &lt;em&gt;train&lt;/em&gt; method.&lt;/p&gt;
-
-&lt;h4 id=&quot;custom-intput_fn-with-parameters&quot;&gt;Custom intput_fn with parameters&lt;/h4&gt;
-&lt;p&gt;The problem can be easily solve via the ever-so-helpful &lt;em&gt;lambda&lt;/em&gt; statement with our custom &lt;em&gt;dataset_input_fn&lt;/em&gt; and an arbitrary number of input parameters:&lt;/p&gt;
-
-&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;mnist_classifier&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;train&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;input_fn&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;lambda&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;dataset_input_fn&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;train_folder&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;train&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;bp&quot;&gt;True&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; 
-		&lt;span class=&quot;n&quot;&gt;batch_size&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;batch_size&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;num_epochs&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;num_epochs&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;),&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;steps&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;training_steps&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;hooks&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;logging_hook&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;])&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;Enjoy!&lt;/p&gt;</content><author><name>DATAmadness</name></author><category term="Python" /><summary type="html">TensorFlow Estimators API is great for quickly building your custom models, but you might have noticed there is no obvious way to pass custom parameters into the input_fn from your estimator. That can be a limiting factor when building more complicated input functions that include a data pipline in them(see this post). This short post shows a quick tip how to use the pythonic lambda function to solve the problem on a single line of code.</summary></entry><entry><title type="html">TensorFlow Estimators API - Feeding large datasets from drive via TFRecords (MNIST example)</title><link href="/tensorflow_estimator_large_dataset_feed" rel="alternate" type="text/html" title="TensorFlow Estimators API - Feeding large datasets from drive via TFRecords (MNIST example)" /><published>2019-03-23T03:35:00-07:00</published><updated>2019-03-23T03:35:00-07:00</updated><id>/tensorflow_estimator_large_dataset_feed</id><content type="html" xml:base="/tensorflow_estimator_large_dataset_feed">&lt;p&gt;It is easy to hit resource limits when working with large datasets. In particular, the available memory becomes quickly a limiting factor when training your neural networks on swaths of data. The solution is to create a continuous stream of data that will sequentially read batch data from drive(s). Using this approach, the memory needs to hold only one batch of data while pre-loading the data for the next batch, allowing us to operate with datasets of virtually unlimited size.&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://datamadness.github.io/time-signal-CNN-part2&quot;&gt;Read Part 2&lt;/a&gt;&lt;/p&gt;</content><author><name></name></author><summary type="html">drive layout: post current: post cover: assets/images/time_signal_CNN/1280px-sampled_signal.png navigation: True title: Time signal classification using Convolutional Neural Network in TensorFlow - Part 1 date: 2019-03-25 22:00:00 tags: [Python] class: post-template subclass: ‘post tag-Python’ author: DATAmadness mathjax: true —</summary></entry><entry><title type="html">TensorFlow Estimators API - Feeding large datasets from drive via TFRecords (MNIST example)</title><link href="/tensorflow_estimator_large_dataset_feed" rel="alternate" type="text/html" title="TensorFlow Estimators API - Feeding large datasets from drive via TFRecords (MNIST example)" /><published>2019-03-23T03:35:00-07:00</published><updated>2019-03-23T03:35:00-07:00</updated><id>/tensorflow_estimator_large_dataset_feed</id><content type="html" xml:base="/tensorflow_estimator_large_dataset_feed">&lt;p&gt;It is easy to hit resource limits when working with large datasets. In particular, the available memory becomes quickly a limiting factor when training your neural networks on swaths of data. The solution is to create a continuous stream of data that will sequentially read batch data from drive(s). Using this approach, the memory needs to hold only one batch of data while pre-loading the data for the next batch, allowing us to operate with datasets of virtually unlimited size.&lt;/p&gt;
 
 &lt;p&gt;This article demonstrates the approach on the popular &lt;a href=&quot;http://yann.lecun.com/exdb/mnist/&quot;&gt;MNIST dataset&lt;/a&gt; using TensorFlow Estimators API, TFRecords and Data API.&lt;/p&gt;
 
