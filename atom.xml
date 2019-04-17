@@ -40,8 +40,8 @@
       <item>
         <title>TensorFlow Tip - input_fn with custom parameters</title>
         
-          <description>&lt;p&gt;TensorFlow Estimators API is great for quickly building your custom models, but you might have noticed there is no  obvious way to pass custom parameters into the input_fn from your estimator. That can be a limiting factor when building more complicated input functions that include a data pipline in them(&lt;a href=&quot;https://datamadness.github.io/tensorflow_estimator_large_dataset_feed&quot;&gt;see this post&lt;/a&gt;).
-This short post shows a quick tip how to use the pythonic lambda function to solve the problem on a single line of code.&lt;/p&gt;
+          <description>&lt;p&gt;The TensorFlow Estimators API is great for quickly building your custom models, but you might have noticed there is no  obvious way to pass custom parameters from your estimator into the input_fn. That can be a limiting factor when building more complicated input functions that include a data pipeline in them(&lt;a href=&quot;https://datamadness.github.io/tensorflow_estimator_large_dataset_feed&quot;&gt;see this post&lt;/a&gt;).
+This short post offers a quick tip on how to use the pythonic lambda function to solve the problem in a single line of code.&lt;/p&gt;
 
 </description>
         
@@ -83,7 +83,7 @@ mathjax: true
       <item>
         <title>TensorFlow Estimators API - Feeding large datasets from drive via TFRecords (MNIST example)</title>
         
-          <description>&lt;p&gt;It is easy to hit resource limits when working with large datasets. In particular, the available memory becomes quickly a limiting factor when training your neural networks on swaths of data. The solution is to create a continuous stream of data that will sequentially read batch data from drive(s). Using this approach, the memory needs to hold only one batch of data while pre-loading the data for the next batch, allowing us to operate with datasets of virtually unlimited size.&lt;/p&gt;
+          <description>&lt;p&gt;It is easy to hit resource limits when working with large datasets. The available memory in particular becomes quickly a limiting factor when training your neural networks on swaths of data. The solution is to create a continuous stream of data that will sequentially read batch data from drive(s). Using this approach, the memory needs to hold only one batch of data while pre-loading the data for the next batch, allowing us to operate with datasets of virtually unlimited size.&lt;/p&gt;
 
 </description>
         
@@ -98,7 +98,7 @@ mathjax: true
       <item>
         <title>Python function to automatically transform skewed data in Pandas DataFrame</title>
         
-          <description>&lt;p&gt;When I stumble on an interesting new dataset, I often find myself excitedly prototyping a quick machine learning models to see what type of insights I could get out of the latest find. Since hacking together a quick model can be fast thanks to plenty awesome packages such as scikit-learn or Keras, I happen to spend most of my prototyping effort on cleaning and transforming the data. (I always like to start with the simplest regressors / classifiers)&lt;/p&gt;
+          <description>&lt;p&gt;When I stumble on an interesting new dataset, I often find myself excitedly prototyping a quick machine learning models to see what type of insights I could get out of the latest find. Since hacking together a quick model can be fast thanks to plenty of awesome packages such as scikit-learn or Keras, I happen to spend most of my prototyping effort on cleaning and transforming the data. (I always like to start with the simplest regressors / classifiers)&lt;/p&gt;
 
 </description>
         

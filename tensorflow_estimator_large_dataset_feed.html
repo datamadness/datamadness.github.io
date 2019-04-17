@@ -32,7 +32,7 @@
     <meta property="og:site_name" content="DATAmadness" />
     <meta property="og:type" content="website" />
     <meta property="og:title" content="TensorFlow Estimators API - Feeding large datasets from drive via TFRecords (MNIST example)" />
-    <meta property="og:description" content="It is easy to hit resource limits when working with large datasets. In particular, the available memory becomes quickly a limiting factor when training your neural networks on swaths of data. The solution is to create a continuous stream of data that will sequentially read batch data from drive(s). Using" />
+    <meta property="og:description" content="It is easy to hit resource limits when working with large datasets. The available memory in particular becomes quickly a limiting factor when training your neural networks on swaths of data. The solution is to create a continuous stream of data that will sequentially read batch data from drive(s). Using" />
     <meta property="og:url" content="/tensorflow_estimator_large_dataset_feed" />
     <meta property="og:image" content="/assets/images/tf_file_feed/infographic-design-banner.jpg" />
     <meta property="article:publisher" content="https://www.facebook.com/ghost" />
@@ -42,7 +42,7 @@
     <meta property="article:tag" content="Python" />
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content="TensorFlow Estimators API - Feeding large datasets from drive via TFRecords (MNIST example)" />
-    <meta name="twitter:description" content="It is easy to hit resource limits when working with large datasets. In particular, the available memory becomes quickly a limiting factor when training your neural networks on swaths of data. The solution is to create a continuous stream of data that will sequentially read batch data from drive(s). Using" />
+    <meta name="twitter:description" content="It is easy to hit resource limits when working with large datasets. The available memory in particular becomes quickly a limiting factor when training your neural networks on swaths of data. The solution is to create a continuous stream of data that will sequentially read batch data from drive(s). Using" />
     <meta name="twitter:url" content="/" />
     <meta name="twitter:image" content="/assets/images/tf_file_feed/infographic-design-banner.jpg" />
     <meta name="twitter:label1" content="Written by" />
@@ -74,7 +74,7 @@
         "@type": "WebPage",
         "@id": "/tensorflow_estimator_large_dataset_feed"
     },
-    "description": "It is easy to hit resource limits when working with large datasets. In particular, the available memory becomes quickly a limiting factor when training your neural networks on swaths of data. The solution is to create a continuous stream of data that will sequentially read batch data from drive(s). Using"
+    "description": "It is easy to hit resource limits when working with large datasets. The available memory in particular becomes quickly a limiting factor when training your neural networks on swaths of data. The solution is to create a continuous stream of data that will sequentially read batch data from drive(s). Using"
 }
     </script>
 
@@ -189,7 +189,7 @@ into the {body} of the default.hbs template -->
 
             <section class="post-full-content">
                 <div class="kg-card-markdown">
-                    <p>It is easy to hit resource limits when working with large datasets. In particular, the available memory becomes quickly a limiting factor when training your neural networks on swaths of data. The solution is to create a continuous stream of data that will sequentially read batch data from drive(s). Using this approach, the memory needs to hold only one batch of data while pre-loading the data for the next batch, allowing us to operate with datasets of virtually unlimited size.</p>
+                    <p>It is easy to hit resource limits when working with large datasets. The available memory in particular becomes quickly a limiting factor when training your neural networks on swaths of data. The solution is to create a continuous stream of data that will sequentially read batch data from drive(s). Using this approach, the memory needs to hold only one batch of data while pre-loading the data for the next batch, allowing us to operate with datasets of virtually unlimited size.</p>
 
 <p>This article demonstrates the approach on the popular <a href="http://yann.lecun.com/exdb/mnist/">MNIST dataset</a> using TensorFlow Estimators API, TFRecords and Data API.</p>
 
@@ -203,22 +203,22 @@ into the {body} of the default.hbs template -->
   <li>Load MNIST dataset via Keras</li>
   <li>Serialize the data into list(s)</li>
   <li>Save the data on drive in TFRecord format</li>
-  <li>Create Estimator API input function that builds dataset from TFRecords using an iterator</li>
-  <li>Train Convolutional Neural Network streaming the data via a custom input function</li>
+  <li>Create the Estimator API input function that builds dataset from TFRecords using an iterator</li>
+  <li>Train the Convolutional Neural Network streaming the data via a custom input function</li>
 </ol>
 
 <h4 id="saving-data-in-tfrecord-format">Saving Data in TFRecord format</h4>
 <p>The MNIST training dataset consists of 60000 28x28 images of hand written digits such as this one:
 <img src="/assets/images/tf_file_feed/MNIST_digit.png" alt="image post" /></p>
 
-<p>To save this data into TFRecord format, couple of things needs to happen:</p>
+<p>To save this data into TFRecord format, a couple of things need to happen:</p>
 
 <ul>
-  <li>The data must be represented in dictionary format</li>
-  <li>Individual dictionary values should be flattened into scalars or 1D arrays suitable for storing as series</li>
+  <li>The data must be represented in a dictionary format</li>
+  <li>Individual dictionary values should be flattened into scalars or 1D arrays suitable for storing as a series</li>
 </ul>
 
-<p>The following function tranforms a single 28x28 MNIST digit into the desired format. Notice that the dictionary can have an arbitrary number of keys which is useful for storing any metadata such as original data dimension or training labels:</p>
+<p>The following function transforms a single 28x28 MNIST digit into the desired format. Notice that the dictionary can have an arbitrary number of keys which is useful for storing any metadata such as original data dimension or training labels:</p>
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">get_observation</span><span class="p">(</span><span class="n">observation_id</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
     <span class="n">img_data</span> <span class="o">=</span> <span class="n">train_data</span><span class="p">[</span><span class="n">observation_id</span><span class="p">,:,:]</span>
     <span class="n">shape</span> <span class="o">=</span> <span class="n">img_data</span><span class="o">.</span><span class="n">shape</span>
@@ -240,7 +240,7 @@ into the {body} of the default.hbs template -->
   <li>ByteList</li>
 </ul>
 
-<p>Each datatype can offer different advantages, so it is worth experimenting with them. For example, I was able to significantly reduce the size required for storing the files by encoding Floats/Integers into ByteList, but it increases complexity of your code and it benefits only certain data structures.</p>
+<p>Each datatype can offer different advantages, so it is worth experimenting with them. For example, I was able to significantly reduce the size required for storing the files by encoding Floats/Integers into ByteList, but it increases the complexity of your code and it benefits only certain data structures.</p>
 
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">get_example_object</span><span class="p">(</span><span class="n">single_record</span><span class="p">):</span>
     
@@ -258,7 +258,7 @@ into the {body} of the default.hbs template -->
     <span class="k">return</span> <span class="n">record</span>
 </code></pre></div></div>
 
-<p>Using the transformation functions above, we can finally write the MNIST trainig dataset into TFRecord files. The following piece of code save the dataset into 10 files with 6000 records per file:</p>
+<p>Using the transformation functions above, we can finally write the MNIST training dataset into TFRecord files. The following piece of code save the dataset into 10 files with 6000 records per file:</p>
 
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">#Number of TFR files to save the data into</span>
 <span class="n">numFiles</span> <span class="o">=</span> <span class="mi">10</span>
@@ -276,10 +276,12 @@ into the {body} of the default.hbs template -->
             <span class="n">tfwriter</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">example</span><span class="o">.</span><span class="n">SerializeToString</span><span class="p">())</span>
 </code></pre></div></div>
 
-<h4 id="builing-an-input-function-for-estimators-api-usign-tensorflow-data-api">Builing an input function for Estimators API usign TensorFlow Data API</h4>
-<p>Once we have the data saved into TFRecords on a drive, the next step is to write an input fucntion for the Estimators API that will stream the data into your model. 
-The easiest way to accomplish this is via the Data API, specifically the TFRecordDataset class that will directly create a dataset from list of TFRecord files. The Estimators and Data APIs are designed to work together, so you do not even have to initialize the iterator for your dataset.
-The only trick to this is that you have to write a parser that will transform the serialized data in lists back into format suitable for your model. As such this is also a perfect place to build your pipeline for further data preprocessing, transformation and feature engineering.</p>
+<h4 id="building-an-input-function-for-estimators-api-using-tensorflow-data-api">Building an input function for Estimators API using TensorFlow Data API</h4>
+<p>Once we have the data saved into TFRecords on a drive, the next step is to write an input function for the Estimators API that will stream the data into your model. 
+The easiest way to accomplish this is via the Data API, specifically the TFRecordDataset class that will directly create a dataset from a list of TFRecord files.</p>
+
+<p>The Estimators and Data APIs are designed to work together, so you do not even have to initialize the iterator for your dataset.
+The only trick to is that you have to write a parser that will transform the serialized data in lists back into a format suitable for your model. As such this is also the perfect place to build your pipeline for further data preprocessing, transformation, and feature engineering.</p>
 
 <p>Here is the input function for our MNIST dataset:</p>
 
@@ -323,7 +325,7 @@ The only trick to this is that you have to write a parser that will transform th
 
 <h4 id="plugging-it-all-together-training-your-cnn-on-a-data-stream-from-tfr-files">Plugging it all together: Training your CNN on a data stream from TFR files</h4>
 
-<p>Now when we have all the bits ready, we can put it all together and train our MNIST CNN on a data streaming from TFRecord files saved on your drive. Here is the complete modified <a href="https://www.tensorflow.org/tutorials/estimators/cnn">MNIST CNN example from TensorFlow page</a>:</p>
+<p>Now when we have all the pieces ready, we can put it all together and train our MNIST CNN on a data streaming from TFRecord files saved on your drive. Here is the complete modified <a href="https://www.tensorflow.org/tutorials/estimators/cnn">MNIST CNN example from TensorFlow page</a>:</p>
 
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">tensorflow</span> <span class="k">as</span> <span class="n">tf</span>
 <span class="kn">import</span> <span class="nn">os</span>
