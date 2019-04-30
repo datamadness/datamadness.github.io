@@ -38,6 +38,22 @@
     
       
       <item>
+        <title>Time signal classification using Convolutional Neural Network in TensorFlow - Part 1</title>
+        
+          <description>&lt;p&gt;This example explores the possibility of using a Convolutional Neural Network(CNN) to classify time domain signal. The fundamental thesis of this work is that an arbitrarily long sampled time domain signal can be divided into short segments using a window function. These segments can be further converted to frequency domain data via &lt;a href=&quot;https://en.wikipedia.org/wiki/Short-time_Fourier_transform&quot;&gt;Short Time Fourier Transform(STFT)&lt;/a&gt;	. This approach is well known from acoustics, but it is easily applicable on any frequency spectrum.
+The goal of this work is to add an alternative tool to an ensemble of classifiers for time signal predictions. To illustrate, this specific classifier example was developed on &lt;a href=&quot;https://www.kaggle.com/c/vsb-power-line-fault-detection/data&quot;&gt;VSB Power Line Fault Detection dataset&lt;/a&gt; where I aimed to combine three classifiers:&lt;/p&gt;
+
+</description>
+        
+        <pubDate>Mon, 25 Mar 2019 22:00:00 +0000</pubDate>
+        <link>
+        /time-signal-CNN</link>
+        <guid isPermaLink="true">/time-signal-CNN</guid>
+      </item>
+      
+    
+      
+      <item>
         <title>TensorFlow Tip - input_fn with custom parameters</title>
         
           <description>&lt;p&gt;The TensorFlow Estimators API is great for quickly building your custom models, but you might have noticed there is no  obvious way to pass custom parameters from your estimator into the input_fn. That can be a limiting factor when building more complicated input functions that include a data pipeline in them(&lt;a href=&quot;https://datamadness.github.io/tensorflow_estimator_large_dataset_feed&quot;&gt;see this post&lt;/a&gt;).
@@ -49,33 +65,6 @@ This short post offers a quick tip on how to use the pythonic lambda function to
         <link>
         /tensorflow_input_funtion_tip</link>
         <guid isPermaLink="true">/tensorflow_input_funtion_tip</guid>
-      </item>
-      
-    
-      
-      <item>
-        <title>Time Signal Cnn</title>
-        
-          <description>&lt;h2 id=&quot;drive&quot;&gt;drive&lt;/h2&gt;
-&lt;p&gt;layout: post
-current: post
-cover:  assets/images/time_signal_CNN/1280px-sampled_signal.png
-navigation: True
-title: Time signal classification using Convolutional Neural Network in TensorFlow - Part 1
-date: 2019-03-25 22:00:00
-tags: [Python]
-class: post-template
-subclass: ‘post tag-Python’
-author: DATAmadness
-mathjax: true
-—&lt;/p&gt;
-
-</description>
-        
-        <pubDate>Sun, 24 Mar 2019 00:00:00 -0700</pubDate>
-        <link>
-        /time-signal-CNN</link>
-        <guid isPermaLink="true">/time-signal-CNN</guid>
       </item>
       
     
