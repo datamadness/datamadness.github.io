@@ -199,13 +199,16 @@ While packages like scikit-learn include many data transformers out of the box, 
 <h4 id="building-the-transformer">Building the Transformer</h4>
 <p>The transformer class requires us to create three methods consistent with any other scikit transformer:</p>
 
-<p><strong>__init__</strong>
-This method initiates the transformer and allows is to introduce hyperparameters. In this case we have only a single hyperparameter defining the maximum acceptable fraction of rows with nan values. Anything above and the full column will be removed.</p>
+<p><strong>__init__</strong></p>
+
+<p>This method initiates the transformer and allows is to introduce hyperparameters. In this case we have only a single hyperparameter defining the maximum acceptable fraction of rows with nan values. Anything above and the full column will be removed.</p>
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">max_bad_rows_pct</span> <span class="o">=</span> <span class="mi">5</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">max_bad_rows_pct</span><span class="o">=</span><span class="n">max_bad_rows_pct</span>
 </code></pre></div></div>
-<p><strong>fit</strong>
-The fit methods allows us to train the transformer on specific dataset without transforming it. For example, we could train it on “Train” data and then apply it on both “Train” and “Test” datasets to assure consistency.</p>
+
+<p><strong>fit</strong></p>
+
+<p>The fit methods allows us to train the transformer on specific dataset without transforming it. For example, we could train it on “Train” data and then apply it on both “Train” and “Test” datasets to assure consistency.</p>
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    <span class="k">def</span> <span class="nf">fit</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="bp">None</span><span class="p">):</span>
         <span class="c">#Find which columns have more than acceptable fraction of nans</span>
         <span class="n">cutoff</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">X</span><span class="p">)</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">max_bad_rows_pct</span> <span class="o">/</span> <span class="mi">100</span><span class="p">)</span>
@@ -248,7 +251,7 @@ The fit methods allows us to train the transformer on specific dataset without t
         <span class="k">return</span> <span class="n">X</span>
 </code></pre></div></div>
 
-<p>Use case example:</p>
+<p><strong>Using the tranformer:</strong></p>
 
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">myTransformer</span> <span class="o">=</span> <span class="n">NanRemover</span><span class="p">(</span><span class="n">max_bad_rows_pct</span> <span class="o">=</span> <span class="mi">10</span><span class="p">)</span>
 <span class="n">trainDF</span> <span class="o">=</span> <span class="n">myTransformer</span><span class="o">.</span><span class="n">fit_tranform</span><span class="p">(</span><span class="n">trainDF</span><span class="p">)</span>
