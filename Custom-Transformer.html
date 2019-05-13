@@ -208,7 +208,9 @@ While packages like scikit-learn include many data transformers out of the box, 
 
 <p><strong>fit</strong></p>
 
-<p>The fit methods allows us to train the transformer on specific dataset without transforming it. For example, we could train it on “Train” data and then apply it on both “Train” and “Test” datasets to assure consistency.</p>
+<p>The fit methods allows us to train the transformer on specific dataset without transforming it. For example, we could train it on “Train” data and then apply it on both “Train” and “Test” datasets to assure consistency. 
+In this case, the fit method simply learns which columns have excessive number of nan values should be dropped by the tranform method.</p>
+
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    <span class="k">def</span> <span class="nf">fit</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="bp">None</span><span class="p">):</span>
         <span class="c">#Find which columns have more than acceptable fraction of nans</span>
         <span class="n">cutoff</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">X</span><span class="p">)</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">max_bad_rows_pct</span> <span class="o">/</span> <span class="mi">100</span><span class="p">)</span>
@@ -220,6 +222,7 @@ While packages like scikit-learn include many data transformers out of the box, 
 
 <p><strong>transform</strong></p>
 
+<p>The transform method takes the list of columns to drop (obtained by the fit method) and implements it on the input dataset. Note that under the scikit framework, we can also use fit_transform method that executes both fit and transform.</p>
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    <span class="k">def</span> <span class="nf">transform</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
         <span class="c">#Drop columns with too many nans</span>
         <span class="n">X</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">columns</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">badColumns</span><span class="p">,</span> <span class="n">inplace</span> <span class="o">=</span> <span class="bp">True</span><span class="p">)</span>
