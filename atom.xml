@@ -8,6 +8,22 @@
     
       
       <item>
+        <title>Creating custom transformer for your scikit-learn pipeline</title>
+        
+          <description>&lt;p&gt;Having a pipeline to transform your data is an absolute must for any machine learning project. Besides speeding up the intake of new data and providing much cleaner code, well designed pipeline allows us to include the initial data transformation steps in hyperparameter tuning.
+While packages like scikit-learn include many data transformers out of the box, you will always need to include some custom transformations. In this case, it is highly recommended to build a custom transformer based on the underlying framework so it can be included in the final pipeline.&lt;/p&gt;
+
+</description>
+        
+        <pubDate>Fri, 12 Apr 2019 06:00:00 +0000</pubDate>
+        <link>
+        /Custom-Transformer</link>
+        <guid isPermaLink="true">/Custom-Transformer</guid>
+      </item>
+      
+    
+      
+      <item>
         <title>Use Statistics to Forecast Resource Allocation in Operations Teams</title>
         
           <description>&lt;p&gt;Planning staff allocation in an environment geared heavily towards operations can be challenging due to the erratic nature of the demand from both internal or external clients. The predictability issues affect a wide range of teams - from sales or support to development and data analytics departments. If your team is exposed to any type of ad-hoc requests on a regular basis, you are likely familiar with having your carefully estimated project plans derailed by an unexpected workload.&lt;/p&gt;
