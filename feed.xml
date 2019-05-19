@@ -1,9 +1,10 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.6.2">Jekyll</generator><link href="/feed.xml" rel="self" type="application/atom+xml" /><link href="/" rel="alternate" type="text/html" /><updated>2019-05-19T12:19:49-07:00</updated><id>/</id><title type="html">DATAmadness</title><subtitle>Exploring the world through data analysis and machine learning</subtitle><entry><title type="html">API tool for an easy access to Statistics Canada census data in pandas format</title><link href="/StatsCanada-Tool-Census" rel="alternate" type="text/html" title="API tool for an easy access to Statistics Canada census data in pandas format" /><published>2019-05-16T03:00:00-07:00</published><updated>2019-05-16T03:00:00-07:00</updated><id>/StatsCanada-Tool-Census</id><content type="html" xml:base="/StatsCanada-Tool-Census">&lt;p&gt;The popular Canadian census in 2016 brought us access to wide range of socioeconomic data that can be sliced by geography and topics with high level of granularity. Moreover, the &lt;a href=&quot;https://www.statcan.gc.ca/eng/developers&quot;&gt;data is accessible through an API&lt;/a&gt;, allowing us to transform it and get insights from virtually any angle using your tool of choice.
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.6.2">Jekyll</generator><link href="/feed.xml" rel="self" type="application/atom+xml" /><link href="/" rel="alternate" type="text/html" /><updated>2019-05-19T12:24:39-07:00</updated><id>/</id><title type="html">DATAmadness</title><subtitle>Exploring the world through data analysis and machine learning</subtitle><entry><title type="html">API tool for an easy access to Statistics Canada census data in pandas format</title><link href="/StatsCanada-Tool-Census" rel="alternate" type="text/html" title="API tool for an easy access to Statistics Canada census data in pandas format" /><published>2019-05-16T03:00:00-07:00</published><updated>2019-05-16T03:00:00-07:00</updated><id>/StatsCanada-Tool-Census</id><content type="html" xml:base="/StatsCanada-Tool-Census">&lt;p&gt;The popular Canadian census in 2016 brought us access to wide range of socioeconomic data that can be sliced by geography and topics with high level of granularity. Moreover, the &lt;a href=&quot;https://www.statcan.gc.ca/eng/developers&quot;&gt;data is accessible through an API&lt;/a&gt;, allowing us to transform it and get insights from virtually any angle using your tool of choice.
 To make the access to the data easier, I wrote a small python tool that automates the gory details. It allows you to call the Statistics Canada api and retrieve any data for any region in just couple lines of code. Moreover, you can receive combined data from arbitrary number of regions at once. The data is returned in pandas DataFrame format for easy post-processing.&lt;/p&gt;
 
 &lt;h4 id=&quot;download-thepython-tool-from-github&quot;&gt;Download thePython tool from GitHub&lt;/h4&gt;
-&lt;p&gt;You can download the tool from &lt;a href=&quot;https://github.com/datamadness/StatsCanada-API-Tool&quot;&gt;this GitHub repo&lt;/a&gt;. You’ll find two files:
-&lt;code class=&quot;highlighter-rouge&quot;&gt;geo_data.py&lt;/code&gt;&lt;br /&gt;
+&lt;p&gt;You can download the tool from &lt;a href=&quot;https://github.com/datamadness/StatsCanada-API-Tool&quot;&gt;this GitHub repo&lt;/a&gt;. You’ll find two files:&lt;/p&gt;
+
+&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;geo_data.py&lt;/code&gt;&lt;br /&gt;
 &lt;code class=&quot;highlighter-rouge&quot;&gt;census_data_retriever.py&lt;/code&gt;&lt;/p&gt;
 
 &lt;h4 id=&quot;region_slicer-class&quot;&gt;region_slicer class&lt;/h4&gt;
@@ -11,10 +12,10 @@ To make the access to the data easier, I wrote a small python tool that automate
 
 &lt;p&gt;&lt;em&gt;region_slicer(geo_level = str, province = str)&lt;/em&gt;&lt;/p&gt;
 
-&lt;p&gt;&lt;em&gt;*geo_level **: *str, default = ‘POPCNTR’&lt;/em&gt;. This parameter defines how to subdivide the province/territory or the country. This can be bases on population centers, voting regions, economic regions and many other.
+&lt;p&gt;&lt;strong&gt;geo_level&lt;/strong&gt;: &lt;em&gt;str, default = ‘POPCNTR’&lt;/em&gt;. This parameter defines how to subdivide the province/territory or the country. This can be bases on population centers, voting regions, economic regions and many other.
 &lt;em&gt;regions_slicer.geo_levels&lt;/em&gt; lists all available geo_level values with description&lt;/p&gt;
 
-&lt;p&gt;&lt;em&gt;*province **: *str, default = ‘00’&lt;/em&gt;. This parameter defines which province or territory data to fetch. Default ‘00’ is for all of Canada.
+&lt;p&gt;&lt;strong&gt;province&lt;/strong&gt;: &lt;em&gt;str, default = ‘00’&lt;/em&gt;. This parameter defines which province or territory data to fetch. Default ‘00’ is for all of Canada.
 &lt;em&gt;regions_slicer.provincial_codes&lt;/em&gt; lists all available province codes with description&lt;/p&gt;
 
 &lt;p&gt;&lt;em&gt;region_slicer.get_data()&lt;/em&gt;&lt;/p&gt;

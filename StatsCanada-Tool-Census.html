@@ -197,8 +197,9 @@ into the {body} of the default.hbs template -->
 To make the access to the data easier, I wrote a small python tool that automates the gory details. It allows you to call the Statistics Canada api and retrieve any data for any region in just couple lines of code. Moreover, you can receive combined data from arbitrary number of regions at once. The data is returned in pandas DataFrame format for easy post-processing.</p>
 
 <h4 id="download-thepython-tool-from-github">Download thePython tool from GitHub</h4>
-<p>You can download the tool from <a href="https://github.com/datamadness/StatsCanada-API-Tool">this GitHub repo</a>. You’ll find two files:
-<code class="highlighter-rouge">geo_data.py</code><br />
+<p>You can download the tool from <a href="https://github.com/datamadness/StatsCanada-API-Tool">this GitHub repo</a>. You’ll find two files:</p>
+
+<p><code class="highlighter-rouge">geo_data.py</code><br />
 <code class="highlighter-rouge">census_data_retriever.py</code></p>
 
 <h4 id="region_slicer-class">region_slicer class</h4>
@@ -206,10 +207,10 @@ To make the access to the data easier, I wrote a small python tool that automate
 
 <p><em>region_slicer(geo_level = str, province = str)</em></p>
 
-<p><em>*geo_level **: *str, default = ‘POPCNTR’</em>. This parameter defines how to subdivide the province/territory or the country. This can be bases on population centers, voting regions, economic regions and many other.
+<p><strong>geo_level</strong>: <em>str, default = ‘POPCNTR’</em>. This parameter defines how to subdivide the province/territory or the country. This can be bases on population centers, voting regions, economic regions and many other.
 <em>regions_slicer.geo_levels</em> lists all available geo_level values with description</p>
 
-<p><em>*province **: *str, default = ‘00’</em>. This parameter defines which province or territory data to fetch. Default ‘00’ is for all of Canada.
+<p><strong>province</strong>: <em>str, default = ‘00’</em>. This parameter defines which province or territory data to fetch. Default ‘00’ is for all of Canada.
 <em>regions_slicer.provincial_codes</em> lists all available province codes with description</p>
 
 <p><em>region_slicer.get_data()</em></p>
@@ -419,7 +420,7 @@ Returns: pandas DataFrame</p>
     <article class="post-card post-template">
         
             <a class="post-card-image-link" href="/Custom-Transformer">
-                <div class="post-card-image" style="background-image: url(/assets/images/201905_census_tool/1280px-Canada_Federal_Ridings_Map.png)"></div>
+                <div class="post-card-image" style="background-image: url(/assets/images/custom_transformer/tailor_measurements.jpg)"></div>
             </a>
         
         <div class="post-card-content">
