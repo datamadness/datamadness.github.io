@@ -201,7 +201,7 @@ To make the access to the data easier, I wrote a small python tool that automate
 <code class="highlighter-rouge">geo_data.py</code><br />
 <code class="highlighter-rouge">census_data_retriever.py</code></p>
 
-<h4 id="region_slicer">region_slicer</h4>
+<h4 id="region_slicer-class">region_slicer class</h4>
 <p>The census data is mapped to the country’s regions and geographical locations. The region_slicer class serves for fetching the geo location data that will later allow you to retrieve the actual census data for the regions of your interest.</p>
 
 <p><em>region_slicer(geo_level = str, province = str)</em></p>
@@ -217,7 +217,7 @@ To make the access to the data easier, I wrote a small python tool that automate
 <p>Object method that calls the API and receives the geo data per the parameters stored in the region_slicer object.
 Returns: pandas DataFrame</p>
 
-<h4 id="census_data">census_data</h4>
+<h4 id="census_data-class">census_data class</h4>
 
 <p>This class takes an region_slicer object and returns the actual census data for all regions included in the region_slicer as one pandas DataFrame. DataFrames from region_slicer and census_data can be joined ‘GEO_ID’ primary key.</p>
 
@@ -263,8 +263,10 @@ Returns: pandas DataFrame</p>
 
 <p>That is it! You just called Statistics Canada API and received all the information about incomes in each population center in British Columbia. Here is small interactive visualization showing the average individual income in population centers across BC, highlighting the discrepancy between average income of males and females.</p>
 
-<p>Blue - smaller discrepancy
-Red - higher discrepancy</p>
+<ul>
+  <li>Blue: smaller discrepancy</li>
+  <li>Red: higher discrepancy</li>
+</ul>
 
 <iframe width="933" height="700" src="https://app.powerbi.com/view?r=eyJrIjoiNzU0YTJhZmUtYzY5Mi00MDYzLTk0ZDAtZjA2OWUzMTIzZWNjIiwidCI6ImZmZTRhZjdkLWIxODgtNDIzZi1iMmQ5LTUwZmIzYjQ2NjU2ZiJ9" frameborder="0" allowfullscreen="true"></iframe>
 

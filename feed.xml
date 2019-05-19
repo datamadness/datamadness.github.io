@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.6.2">Jekyll</generator><link href="/feed.xml" rel="self" type="application/atom+xml" /><link href="/" rel="alternate" type="text/html" /><updated>2019-05-19T12:12:27-07:00</updated><id>/</id><title type="html">DATAmadness</title><subtitle>Exploring the world through data analysis and machine learning</subtitle><entry><title type="html">API tool for an easy access to Statistics Canada census data in pandas format</title><link href="/StatsCanada-Tool-Census" rel="alternate" type="text/html" title="API tool for an easy access to Statistics Canada census data in pandas format" /><published>2019-05-16T03:00:00-07:00</published><updated>2019-05-16T03:00:00-07:00</updated><id>/StatsCanada-Tool-Census</id><content type="html" xml:base="/StatsCanada-Tool-Census">&lt;p&gt;The popular Canadian census in 2016 brought us access to wide range of socioeconomic data that can be sliced by geography and topics with high level of granularity. Moreover, the &lt;a href=&quot;https://www.statcan.gc.ca/eng/developers&quot;&gt;data is accessible through an API&lt;/a&gt;, allowing us to transform it and get insights from virtually any angle using your tool of choice.
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.6.2">Jekyll</generator><link href="/feed.xml" rel="self" type="application/atom+xml" /><link href="/" rel="alternate" type="text/html" /><updated>2019-05-19T12:19:49-07:00</updated><id>/</id><title type="html">DATAmadness</title><subtitle>Exploring the world through data analysis and machine learning</subtitle><entry><title type="html">API tool for an easy access to Statistics Canada census data in pandas format</title><link href="/StatsCanada-Tool-Census" rel="alternate" type="text/html" title="API tool for an easy access to Statistics Canada census data in pandas format" /><published>2019-05-16T03:00:00-07:00</published><updated>2019-05-16T03:00:00-07:00</updated><id>/StatsCanada-Tool-Census</id><content type="html" xml:base="/StatsCanada-Tool-Census">&lt;p&gt;The popular Canadian census in 2016 brought us access to wide range of socioeconomic data that can be sliced by geography and topics with high level of granularity. Moreover, the &lt;a href=&quot;https://www.statcan.gc.ca/eng/developers&quot;&gt;data is accessible through an API&lt;/a&gt;, allowing us to transform it and get insights from virtually any angle using your tool of choice.
 To make the access to the data easier, I wrote a small python tool that automates the gory details. It allows you to call the Statistics Canada api and retrieve any data for any region in just couple lines of code. Moreover, you can receive combined data from arbitrary number of regions at once. The data is returned in pandas DataFrame format for easy post-processing.&lt;/p&gt;
 
 &lt;h4 id=&quot;download-thepython-tool-from-github&quot;&gt;Download thePython tool from GitHub&lt;/h4&gt;
@@ -6,7 +6,7 @@ To make the access to the data easier, I wrote a small python tool that automate
 &lt;code class=&quot;highlighter-rouge&quot;&gt;geo_data.py&lt;/code&gt;&lt;br /&gt;
 &lt;code class=&quot;highlighter-rouge&quot;&gt;census_data_retriever.py&lt;/code&gt;&lt;/p&gt;
 
-&lt;h4 id=&quot;region_slicer&quot;&gt;region_slicer&lt;/h4&gt;
+&lt;h4 id=&quot;region_slicer-class&quot;&gt;region_slicer class&lt;/h4&gt;
 &lt;p&gt;The census data is mapped to the country’s regions and geographical locations. The region_slicer class serves for fetching the geo location data that will later allow you to retrieve the actual census data for the regions of your interest.&lt;/p&gt;
 
 &lt;p&gt;&lt;em&gt;region_slicer(geo_level = str, province = str)&lt;/em&gt;&lt;/p&gt;
@@ -22,7 +22,7 @@ To make the access to the data easier, I wrote a small python tool that automate
 &lt;p&gt;Object method that calls the API and receives the geo data per the parameters stored in the region_slicer object.
 Returns: pandas DataFrame&lt;/p&gt;
 
-&lt;h4 id=&quot;census_data&quot;&gt;census_data&lt;/h4&gt;
+&lt;h4 id=&quot;census_data-class&quot;&gt;census_data class&lt;/h4&gt;
 
 &lt;p&gt;This class takes an region_slicer object and returns the actual census data for all regions included in the region_slicer as one pandas DataFrame. DataFrames from region_slicer and census_data can be joined ‘GEO_ID’ primary key.&lt;/p&gt;
 
@@ -68,8 +68,10 @@ Returns: pandas DataFrame&lt;/p&gt;
 
 &lt;p&gt;That is it! You just called Statistics Canada API and received all the information about incomes in each population center in British Columbia. Here is small interactive visualization showing the average individual income in population centers across BC, highlighting the discrepancy between average income of males and females.&lt;/p&gt;
 
-&lt;p&gt;Blue - smaller discrepancy
-Red - higher discrepancy&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;Blue: smaller discrepancy&lt;/li&gt;
+  &lt;li&gt;Red: higher discrepancy&lt;/li&gt;
+&lt;/ul&gt;
 
 &lt;iframe width=&quot;933&quot; height=&quot;700&quot; src=&quot;https://app.powerbi.com/view?r=eyJrIjoiNzU0YTJhZmUtYzY5Mi00MDYzLTk0ZDAtZjA2OWUzMTIzZWNjIiwidCI6ImZmZTRhZjdkLWIxODgtNDIzZi1iMmQ5LTUwZmIzYjQ2NjU2ZiJ9&quot; frameborder=&quot;0&quot; allowfullscreen=&quot;true&quot;&gt;&lt;/iframe&gt;</content><author><name>DATAmadness</name></author><category term="Python" /><category term="Statistics" /><summary type="html">The popular Canadian census in 2016 brought us access to wide range of socioeconomic data that can be sliced by geography and topics with high level of granularity. Moreover, the data is accessible through an API, allowing us to transform it and get insights from virtually any angle using your tool of choice. To make the access to the data easier, I wrote a small python tool that automates the gory details. It allows you to call the Statistics Canada api and retrieve any data for any region in just couple lines of code. Moreover, you can receive combined data from arbitrary number of regions at once. The data is returned in pandas DataFrame format for easy post-processing.</summary></entry><entry><title type="html">Creating custom transformer for your scikit-learn pipeline</title><link href="/Custom-Transformer" rel="alternate" type="text/html" title="Creating custom transformer for your scikit-learn pipeline" /><published>2019-05-16T03:00:00-07:00</published><updated>2019-05-16T03:00:00-07:00</updated><id>/Custom-Transformer</id><content type="html" xml:base="/Custom-Transformer">&lt;p&gt;Having a pipeline to transform your data is an absolute must for any machine learning project. Besides speeding up the intake of new data and providing much cleaner code, well designed pipeline allows us to include the initial data transformation steps in hyperparameter tuning.
 While packages like scikit-learn include many data transformers out of the box, you will always need to include some custom transformations. In this case, it is highly recommended to build a custom transformer based on the underlying framework so it can be included in the final pipeline.&lt;/p&gt;
