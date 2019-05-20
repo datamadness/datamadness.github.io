@@ -1,7 +1,7 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.6.2">Jekyll</generator><link href="/feed.xml" rel="self" type="application/atom+xml" /><link href="/" rel="alternate" type="text/html" /><updated>2019-05-19T12:24:39-07:00</updated><id>/</id><title type="html">DATAmadness</title><subtitle>Exploring the world through data analysis and machine learning</subtitle><entry><title type="html">API tool for an easy access to Statistics Canada census data in pandas format</title><link href="/StatsCanada-Tool-Census" rel="alternate" type="text/html" title="API tool for an easy access to Statistics Canada census data in pandas format" /><published>2019-05-16T03:00:00-07:00</published><updated>2019-05-16T03:00:00-07:00</updated><id>/StatsCanada-Tool-Census</id><content type="html" xml:base="/StatsCanada-Tool-Census">&lt;p&gt;The popular Canadian census in 2016 brought us access to wide range of socioeconomic data that can be sliced by geography and topics with high level of granularity. Moreover, the &lt;a href=&quot;https://www.statcan.gc.ca/eng/developers&quot;&gt;data is accessible through an API&lt;/a&gt;, allowing us to transform it and get insights from virtually any angle using your tool of choice.
-To make the access to the data easier, I wrote a small python tool that automates the gory details. It allows you to call the Statistics Canada api and retrieve any data for any region in just couple lines of code. Moreover, you can receive combined data from arbitrary number of regions at once. The data is returned in pandas DataFrame format for easy post-processing.&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.6.2">Jekyll</generator><link href="/feed.xml" rel="self" type="application/atom+xml" /><link href="/" rel="alternate" type="text/html" /><updated>2019-05-19T22:47:52-07:00</updated><id>/</id><title type="html">DATAmadness</title><subtitle>Exploring the world through data analysis and machine learning</subtitle><entry><title type="html">API tool for an easy access to Statistics Canada census data in pandas format</title><link href="/StatsCanada-Tool-Census" rel="alternate" type="text/html" title="API tool for an easy access to Statistics Canada census data in pandas format" /><published>2019-05-16T03:00:00-07:00</published><updated>2019-05-16T03:00:00-07:00</updated><id>/StatsCanada-Tool-Census</id><content type="html" xml:base="/StatsCanada-Tool-Census">&lt;p&gt;The popular Canadian census in 2016 brought us access to wide range of socioeconomic data that can be sliced by geography and topics with high level of granularity. Moreover, the &lt;a href=&quot;https://www.statcan.gc.ca/eng/developers&quot;&gt;data is accessible through an API&lt;/a&gt;, allowing us to transform, slice, and get insights into the datasets from virtually any angle using your tool of choice.
+To make the access to the data easier, this article shares a small python tool that automates the gory details on your behalf. It allows you to call the Statistics Canada API and retrieve any data for any region in just couple lines of code. Moreover, you can receive combined data from arbitrary number of regions at once. To top it off, the data is returned in pandas DataFrame format for an easy post-processing.&lt;/p&gt;
 
-&lt;h4 id=&quot;download-thepython-tool-from-github&quot;&gt;Download thePython tool from GitHub&lt;/h4&gt;
+&lt;h4 id=&quot;download-the-python-tool-from-github&quot;&gt;Download the Python tool from GitHub&lt;/h4&gt;
 &lt;p&gt;You can download the tool from &lt;a href=&quot;https://github.com/datamadness/StatsCanada-API-Tool&quot;&gt;this GitHub repo&lt;/a&gt;. You’ll find two files:&lt;/p&gt;
 
 &lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;geo_data.py&lt;/code&gt;&lt;br /&gt;
@@ -12,11 +12,17 @@ To make the access to the data easier, I wrote a small python tool that automate
 
 &lt;p&gt;&lt;em&gt;region_slicer(geo_level = str, province = str)&lt;/em&gt;&lt;/p&gt;
 
-&lt;p&gt;&lt;strong&gt;geo_level&lt;/strong&gt;: &lt;em&gt;str, default = ‘POPCNTR’&lt;/em&gt;. This parameter defines how to subdivide the province/territory or the country. This can be bases on population centers, voting regions, economic regions and many other.
-&lt;em&gt;regions_slicer.geo_levels&lt;/em&gt; lists all available geo_level values with description&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;geo_level&lt;/strong&gt;: &lt;em&gt;str, default = ‘POPCNTR’&lt;/em&gt;. This parameter defines how to subdivide the province/territory or the country. This can be bases on population centers, voting regions, economic regions and many other.&lt;/p&gt;
 
-&lt;p&gt;&lt;strong&gt;province&lt;/strong&gt;: &lt;em&gt;str, default = ‘00’&lt;/em&gt;. This parameter defines which province or territory data to fetch. Default ‘00’ is for all of Canada.
-&lt;em&gt;regions_slicer.provincial_codes&lt;/em&gt; lists all available province codes with description&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;regions_slicer.geo_levels&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;lists all available geo_level values with description&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;province&lt;/strong&gt;: &lt;em&gt;str, default = ‘00’&lt;/em&gt;. This parameter defines which province or territory data to fetch. Default ‘00’ is for all of Canada.&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;regions_slicer.provincial_codes&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;lists all available province codes with description&lt;/p&gt;
 
 &lt;p&gt;&lt;em&gt;region_slicer.get_data()&lt;/em&gt;&lt;/p&gt;
 
@@ -31,14 +37,20 @@ Returns: pandas DataFrame&lt;/p&gt;
 
 &lt;p&gt;&lt;strong&gt;geo_uids&lt;/strong&gt;: &lt;em&gt;region_slicer object or str or list of str, default = ‘2016A000011124’&lt;/em&gt;. Value that specifies all geo_uids for which to fetch the census data&lt;/p&gt;
 
-&lt;p&gt;&lt;strong&gt;topic&lt;/strong&gt;: &lt;em&gt;int, default = 7&lt;/em&gt;. Specifies census topic of interest. For example Education, Labour, Income, Housing and so on. 
-&lt;em&gt;census_data.topics&lt;/em&gt; lists all available census topic values with description&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;topic&lt;/strong&gt;: &lt;em&gt;int, default = 7&lt;/em&gt;. Specifies census topic of interest. For example Education, Labour, Income, Housing and so on.&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;census_data.topics&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;lists all available census topic values with description&lt;/p&gt;
 
 &lt;p&gt;&lt;em&gt;census_data.get_data()&lt;/em&gt;&lt;/p&gt;
 
 &lt;p&gt;Object method that calls the API and receives the geo data per the parameters stored in the census_data object.
-Returns: pandas DataFrame
-&lt;em&gt;census_data.data_description&lt;/em&gt; stores the description of all fetched data and their field_ids under given census topic&lt;/p&gt;
+Returns: pandas DataFrame&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;census_data.data_description&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;stores the description of all fetched data and their field_ids under given census topic&lt;/p&gt;
 
 &lt;p&gt;&lt;em&gt;census_data.describe_data()&lt;/em&gt;&lt;/p&gt;
 
@@ -55,26 +67,24 @@ Returns: pandas DataFrame&lt;/p&gt;
 &lt;span class=&quot;kn&quot;&gt;from&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;geo_data&lt;/span&gt; &lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;region_slicer&lt;/span&gt;
 &lt;span class=&quot;kn&quot;&gt;from&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;census_data_retriever&lt;/span&gt; &lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;census_data&lt;/span&gt;
 
-
 &lt;span class=&quot;n&quot;&gt;bc_regions&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;region_slicer&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;province&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;'59'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
 &lt;span class=&quot;n&quot;&gt;bc_regions&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;get_data&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
 
 &lt;span class=&quot;n&quot;&gt;income_data&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;census_data&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;bc_regions&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;topic&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;7&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-&lt;span class=&quot;c&quot;&gt;#income_data = census_data()&lt;/span&gt;
 &lt;span class=&quot;n&quot;&gt;income_data&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;get_data&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
 
 &lt;span class=&quot;n&quot;&gt;avgIncomeBC&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;income_data&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;field_filter&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;field_ids&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;12013&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
 &lt;span class=&quot;n&quot;&gt;avgIncomeBC&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;to_csv&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;'average_income_BC_pop_centers.csv'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-&lt;p&gt;That is it! You just called Statistics Canada API and received all the information about incomes in each population center in British Columbia. Here is small interactive visualization showing the average individual income in population centers across BC, highlighting the discrepancy between average income of males and females.&lt;/p&gt;
+&lt;p&gt;That is it! You just called Statistics Canada API and received all available statistical information about the incomes in each population center in British Columbia. Here is small interactive visualization showing the average individual income in population centers across BC, highlighting the discrepancy between average income of males and females.&lt;/p&gt;
 
 &lt;ul&gt;
   &lt;li&gt;Blue: smaller discrepancy&lt;/li&gt;
   &lt;li&gt;Red: higher discrepancy&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;iframe width=&quot;933&quot; height=&quot;700&quot; src=&quot;https://app.powerbi.com/view?r=eyJrIjoiNzU0YTJhZmUtYzY5Mi00MDYzLTk0ZDAtZjA2OWUzMTIzZWNjIiwidCI6ImZmZTRhZjdkLWIxODgtNDIzZi1iMmQ5LTUwZmIzYjQ2NjU2ZiJ9&quot; frameborder=&quot;0&quot; allowfullscreen=&quot;true&quot;&gt;&lt;/iframe&gt;</content><author><name>DATAmadness</name></author><category term="Python" /><category term="Statistics" /><summary type="html">The popular Canadian census in 2016 brought us access to wide range of socioeconomic data that can be sliced by geography and topics with high level of granularity. Moreover, the data is accessible through an API, allowing us to transform it and get insights from virtually any angle using your tool of choice. To make the access to the data easier, I wrote a small python tool that automates the gory details. It allows you to call the Statistics Canada api and retrieve any data for any region in just couple lines of code. Moreover, you can receive combined data from arbitrary number of regions at once. The data is returned in pandas DataFrame format for easy post-processing.</summary></entry><entry><title type="html">Creating custom transformer for your scikit-learn pipeline</title><link href="/Custom-Transformer" rel="alternate" type="text/html" title="Creating custom transformer for your scikit-learn pipeline" /><published>2019-05-16T03:00:00-07:00</published><updated>2019-05-16T03:00:00-07:00</updated><id>/Custom-Transformer</id><content type="html" xml:base="/Custom-Transformer">&lt;p&gt;Having a pipeline to transform your data is an absolute must for any machine learning project. Besides speeding up the intake of new data and providing much cleaner code, well designed pipeline allows us to include the initial data transformation steps in hyperparameter tuning.
+&lt;iframe width=&quot;1200&quot; height=&quot;900&quot; src=&quot;https://app.powerbi.com/view?r=eyJrIjoiNzU0YTJhZmUtYzY5Mi00MDYzLTk0ZDAtZjA2OWUzMTIzZWNjIiwidCI6ImZmZTRhZjdkLWIxODgtNDIzZi1iMmQ5LTUwZmIzYjQ2NjU2ZiJ9&quot; frameborder=&quot;0&quot; allowfullscreen=&quot;true&quot;&gt;&lt;/iframe&gt;</content><author><name>DATAmadness</name></author><category term="Python" /><category term="Statistics" /><summary type="html">The popular Canadian census in 2016 brought us access to wide range of socioeconomic data that can be sliced by geography and topics with high level of granularity. Moreover, the data is accessible through an API, allowing us to transform, slice, and get insights into the datasets from virtually any angle using your tool of choice. To make the access to the data easier, this article shares a small python tool that automates the gory details on your behalf. It allows you to call the Statistics Canada API and retrieve any data for any region in just couple lines of code. Moreover, you can receive combined data from arbitrary number of regions at once. To top it off, the data is returned in pandas DataFrame format for an easy post-processing.</summary></entry><entry><title type="html">Creating custom transformer for your scikit-learn pipeline</title><link href="/Custom-Transformer" rel="alternate" type="text/html" title="Creating custom transformer for your scikit-learn pipeline" /><published>2019-05-16T03:00:00-07:00</published><updated>2019-05-16T03:00:00-07:00</updated><id>/Custom-Transformer</id><content type="html" xml:base="/Custom-Transformer">&lt;p&gt;Having a pipeline to transform your data is an absolute must for any machine learning project. Besides speeding up the intake of new data and providing much cleaner code, well designed pipeline allows us to include the initial data transformation steps in hyperparameter tuning.
 While packages like scikit-learn include many data transformers out of the box, you will always need to include some custom transformations. In this case, it is highly recommended to build a custom transformer based on the underlying framework so it can be included in the final pipeline.&lt;/p&gt;
 
 &lt;p&gt;This example will demonstrate how to build a custom transformer for scikit-learn. Specifically, the transformer will take Pandas DataFrame and drop any columns that have more than x% of nan values. Afterwards, it drops any rows with nan values to clean up the full DataFrame.&lt;/p&gt;

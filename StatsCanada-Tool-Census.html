@@ -32,7 +32,7 @@
     <meta property="og:site_name" content="DATAmadness" />
     <meta property="og:type" content="website" />
     <meta property="og:title" content="API tool for an easy access to Statistics Canada census data in pandas format" />
-    <meta property="og:description" content="The popular Canadian census in 2016 brought us access to wide range of socioeconomic data that can be sliced by geography and topics with high level of granularity. Moreover, the data is accessible through an API, allowing us to transform it and get insights from virtually any angle using your" />
+    <meta property="og:description" content="The popular Canadian census in 2016 brought us access to wide range of socioeconomic data that can be sliced by geography and topics with high level of granularity. Moreover, the data is accessible through an API, allowing us to transform, slice, and get insights into the datasets from virtually any" />
     <meta property="og:url" content="/StatsCanada-Tool-Census" />
     <meta property="og:image" content="/assets/images/201905_census_tool/1280px-Canada_Federal_Ridings_Map.png" />
     <meta property="article:publisher" content="https://www.facebook.com/ghost" />
@@ -42,7 +42,7 @@
     <meta property="article:tag" content="Python" />
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content="API tool for an easy access to Statistics Canada census data in pandas format" />
-    <meta name="twitter:description" content="The popular Canadian census in 2016 brought us access to wide range of socioeconomic data that can be sliced by geography and topics with high level of granularity. Moreover, the data is accessible through an API, allowing us to transform it and get insights from virtually any angle using your" />
+    <meta name="twitter:description" content="The popular Canadian census in 2016 brought us access to wide range of socioeconomic data that can be sliced by geography and topics with high level of granularity. Moreover, the data is accessible through an API, allowing us to transform, slice, and get insights into the datasets from virtually any" />
     <meta name="twitter:url" content="/" />
     <meta name="twitter:image" content="/assets/images/201905_census_tool/1280px-Canada_Federal_Ridings_Map.png" />
     <meta name="twitter:label1" content="Written by" />
@@ -74,7 +74,7 @@
         "@type": "WebPage",
         "@id": "/StatsCanada-Tool-Census"
     },
-    "description": "The popular Canadian census in 2016 brought us access to wide range of socioeconomic data that can be sliced by geography and topics with high level of granularity. Moreover, the data is accessible through an API, allowing us to transform it and get insights from virtually any angle using your"
+    "description": "The popular Canadian census in 2016 brought us access to wide range of socioeconomic data that can be sliced by geography and topics with high level of granularity. Moreover, the data is accessible through an API, allowing us to transform, slice, and get insights into the datasets from virtually any"
 }
     </script>
 
@@ -193,10 +193,10 @@ into the {body} of the default.hbs template -->
 
             <section class="post-full-content">
                 <div class="kg-card-markdown">
-                    <p>The popular Canadian census in 2016 brought us access to wide range of socioeconomic data that can be sliced by geography and topics with high level of granularity. Moreover, the <a href="https://www.statcan.gc.ca/eng/developers">data is accessible through an API</a>, allowing us to transform it and get insights from virtually any angle using your tool of choice.
-To make the access to the data easier, I wrote a small python tool that automates the gory details. It allows you to call the Statistics Canada api and retrieve any data for any region in just couple lines of code. Moreover, you can receive combined data from arbitrary number of regions at once. The data is returned in pandas DataFrame format for easy post-processing.</p>
+                    <p>The popular Canadian census in 2016 brought us access to wide range of socioeconomic data that can be sliced by geography and topics with high level of granularity. Moreover, the <a href="https://www.statcan.gc.ca/eng/developers">data is accessible through an API</a>, allowing us to transform, slice, and get insights into the datasets from virtually any angle using your tool of choice.
+To make the access to the data easier, this article shares a small python tool that automates the gory details on your behalf. It allows you to call the Statistics Canada API and retrieve any data for any region in just couple lines of code. Moreover, you can receive combined data from arbitrary number of regions at once. To top it off, the data is returned in pandas DataFrame format for an easy post-processing.</p>
 
-<h4 id="download-thepython-tool-from-github">Download thePython tool from GitHub</h4>
+<h4 id="download-the-python-tool-from-github">Download the Python tool from GitHub</h4>
 <p>You can download the tool from <a href="https://github.com/datamadness/StatsCanada-API-Tool">this GitHub repo</a>. You’ll find two files:</p>
 
 <p><code class="highlighter-rouge">geo_data.py</code><br />
@@ -207,11 +207,17 @@ To make the access to the data easier, I wrote a small python tool that automate
 
 <p><em>region_slicer(geo_level = str, province = str)</em></p>
 
-<p><strong>geo_level</strong>: <em>str, default = ‘POPCNTR’</em>. This parameter defines how to subdivide the province/territory or the country. This can be bases on population centers, voting regions, economic regions and many other.
-<em>regions_slicer.geo_levels</em> lists all available geo_level values with description</p>
+<p><strong>geo_level</strong>: <em>str, default = ‘POPCNTR’</em>. This parameter defines how to subdivide the province/territory or the country. This can be bases on population centers, voting regions, economic regions and many other.</p>
 
-<p><strong>province</strong>: <em>str, default = ‘00’</em>. This parameter defines which province or territory data to fetch. Default ‘00’ is for all of Canada.
-<em>regions_slicer.provincial_codes</em> lists all available province codes with description</p>
+<p><em>regions_slicer.geo_levels</em></p>
+
+<p>lists all available geo_level values with description</p>
+
+<p><strong>province</strong>: <em>str, default = ‘00’</em>. This parameter defines which province or territory data to fetch. Default ‘00’ is for all of Canada.</p>
+
+<p><em>regions_slicer.provincial_codes</em></p>
+
+<p>lists all available province codes with description</p>
 
 <p><em>region_slicer.get_data()</em></p>
 
@@ -226,14 +232,20 @@ Returns: pandas DataFrame</p>
 
 <p><strong>geo_uids</strong>: <em>region_slicer object or str or list of str, default = ‘2016A000011124’</em>. Value that specifies all geo_uids for which to fetch the census data</p>
 
-<p><strong>topic</strong>: <em>int, default = 7</em>. Specifies census topic of interest. For example Education, Labour, Income, Housing and so on. 
-<em>census_data.topics</em> lists all available census topic values with description</p>
+<p><strong>topic</strong>: <em>int, default = 7</em>. Specifies census topic of interest. For example Education, Labour, Income, Housing and so on.</p>
+
+<p><em>census_data.topics</em></p>
+
+<p>lists all available census topic values with description</p>
 
 <p><em>census_data.get_data()</em></p>
 
 <p>Object method that calls the API and receives the geo data per the parameters stored in the census_data object.
-Returns: pandas DataFrame
-<em>census_data.data_description</em> stores the description of all fetched data and their field_ids under given census topic</p>
+Returns: pandas DataFrame</p>
+
+<p><em>census_data.data_description</em></p>
+
+<p>stores the description of all fetched data and their field_ids under given census topic</p>
 
 <p><em>census_data.describe_data()</em></p>
 
@@ -250,26 +262,24 @@ Returns: pandas DataFrame</p>
 <span class="kn">from</span> <span class="nn">geo_data</span> <span class="kn">import</span> <span class="n">region_slicer</span>
 <span class="kn">from</span> <span class="nn">census_data_retriever</span> <span class="kn">import</span> <span class="n">census_data</span>
 
-
 <span class="n">bc_regions</span> <span class="o">=</span> <span class="n">region_slicer</span><span class="p">(</span><span class="n">province</span> <span class="o">=</span> <span class="s">'59'</span><span class="p">)</span>
 <span class="n">bc_regions</span><span class="o">.</span><span class="n">get_data</span><span class="p">()</span>
 
 <span class="n">income_data</span> <span class="o">=</span> <span class="n">census_data</span><span class="p">(</span><span class="n">bc_regions</span><span class="p">,</span> <span class="n">topic</span> <span class="o">=</span> <span class="mi">7</span><span class="p">)</span>
-<span class="c">#income_data = census_data()</span>
 <span class="n">income_data</span><span class="o">.</span><span class="n">get_data</span><span class="p">()</span>
 
 <span class="n">avgIncomeBC</span> <span class="o">=</span> <span class="n">income_data</span><span class="o">.</span><span class="n">field_filter</span><span class="p">(</span><span class="n">field_ids</span><span class="o">=</span><span class="mi">12013</span><span class="p">)</span>
 <span class="n">avgIncomeBC</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="s">'average_income_BC_pop_centers.csv'</span><span class="p">)</span>
 </code></pre></div></div>
 
-<p>That is it! You just called Statistics Canada API and received all the information about incomes in each population center in British Columbia. Here is small interactive visualization showing the average individual income in population centers across BC, highlighting the discrepancy between average income of males and females.</p>
+<p>That is it! You just called Statistics Canada API and received all available statistical information about the incomes in each population center in British Columbia. Here is small interactive visualization showing the average individual income in population centers across BC, highlighting the discrepancy between average income of males and females.</p>
 
 <ul>
   <li>Blue: smaller discrepancy</li>
   <li>Red: higher discrepancy</li>
 </ul>
 
-<iframe width="933" height="700" src="https://app.powerbi.com/view?r=eyJrIjoiNzU0YTJhZmUtYzY5Mi00MDYzLTk0ZDAtZjA2OWUzMTIzZWNjIiwidCI6ImZmZTRhZjdkLWIxODgtNDIzZi1iMmQ5LTUwZmIzYjQ2NjU2ZiJ9" frameborder="0" allowfullscreen="true"></iframe>
+<iframe width="1200" height="900" src="https://app.powerbi.com/view?r=eyJrIjoiNzU0YTJhZmUtYzY5Mi00MDYzLTk0ZDAtZjA2OWUzMTIzZWNjIiwidCI6ImZmZTRhZjdkLWIxODgtNDIzZi1iMmQ5LTUwZmIzYjQ2NjU2ZiJ9" frameborder="0" allowfullscreen="true"></iframe>
 
                 </div>
             </section>
