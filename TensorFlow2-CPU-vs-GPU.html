@@ -276,8 +276,8 @@ into the {body} of the default.hbs template -->
 <h3 id="training-the-cnn-on-cpu">Training the CNN on CPU</h3>
 <p>Using the CPU only, each Epoch took ~480 seconds with 3s/step. The resource monitor showed 80% CPU utilization while GPU utilization hovered around 1-2% with only 0.5 out of 8GB memory being used:</p>
 
-<p><img src="/assets/images/GPUvsCPU/CPU TF2_CPU_env.png" alt="image post" />
-<img src="/assets/images/GPUvsCPU/GPU TF2_CPU_env.png" alt="image post" /></p>
+<p><img src="/assets/images/GPUvsCPU/CPU TF2_CPU_env.png" width="800" />
+<img src="/assets/images/GPUvsCPU/GPU TF2_CPU_env.png" width="800" /></p>
 
 <p>Detailed training breakdown over 10 epochs:</p>
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">Epoch</span> <span class="mi">1</span><span class="o">/</span><span class="mi">10</span>
@@ -307,8 +307,8 @@ into the {body} of the default.hbs template -->
 
 <p>Using the GPU, it was immediately obvious that the training is much faster. Each Epoch took ~75 seconds with 0.5s/step. The resource monitor showed CPU utilization below 60% while GPU utilization hovered around 11% with the 8GB memory being fully used:</p>
 
-<p><img src="/assets/images/GPUvsCPU/CPU TF2_GPU_env.png" alt="image post" />
-<img src="/assets/images/GPUvsCPU/GPU TF2_GPU_env.png" alt="image post" /></p>
+<p><img src="/assets/images/GPUvsCPU/CPU TF2_GPU_env.png" width="800" />
+<img src="/assets/images/GPUvsCPU/GPU TF2_GPU_env.png" width="800" /></p>
 
 <p>Detailed training breakdown over 10 epochs:</p>
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">Epoch</span> <span class="mi">1</span><span class="o">/</span><span class="mi">10</span>
@@ -340,13 +340,14 @@ into the {body} of the default.hbs template -->
 
 <p><strong>Comparison summary</strong></p>
 
-<p>Package:           tensorflow 2.0          tensorflow-gpu 2.0
-Total Time [sec]:  4787                    745
-Seconds / Epoch:   480                     75
-Seconds / Step:    3                       0.5
-CPU Utilization:   80%                     60%
-GPU Utilization:   1%                      11%
-GPU Memory Used:   0.5GB                   8GB (full)</p>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">Package</span><span class="p">:</span>           <span class="n">tensorflow</span> <span class="mf">2.0</span>          <span class="n">tensorflow</span><span class="o">-</span><span class="n">gpu</span> <span class="mf">2.0</span>
+<span class="n">Total</span> <span class="n">Time</span> <span class="p">[</span><span class="n">sec</span><span class="p">]:</span>  <span class="mi">4787</span>                    <span class="mi">745</span>
+<span class="n">Seconds</span> <span class="o">/</span> <span class="n">Epoch</span><span class="p">:</span>   <span class="mi">480</span>                     <span class="mi">75</span>
+<span class="n">Seconds</span> <span class="o">/</span> <span class="n">Step</span><span class="p">:</span>    <span class="mi">3</span>                       <span class="mf">0.5</span>
+<span class="n">CPU</span> <span class="n">Utilization</span><span class="p">:</span>   <span class="mi">80</span><span class="o">%</span>                     <span class="mi">60</span><span class="o">%</span>
+<span class="n">GPU</span> <span class="n">Utilization</span><span class="p">:</span>   <span class="mi">1</span><span class="o">%</span>                      <span class="mi">11</span><span class="o">%</span>
+<span class="n">GPU</span> <span class="n">Memory</span> <span class="n">Used</span><span class="p">:</span>   <span class="mf">0.5</span><span class="n">GB</span>                   <span class="mi">8</span><span class="n">GB</span> <span class="p">(</span><span class="n">full</span><span class="p">)</span>
+</code></pre></div></div>
 
                 </div>
             </section>
