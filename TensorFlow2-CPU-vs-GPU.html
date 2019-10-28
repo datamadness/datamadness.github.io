@@ -202,6 +202,7 @@ into the {body} of the default.hbs template -->
 <p>The test will compare the speed of a fairly standard task of training a Convolutional Neural Network using tensorflow==2.0.0-rc1 and tensorflow-gpu==2.0.0-rc1. The neural network has a ~58 million parameters and I will benchmark the performance by running it for 10 epochs on a dataset with ~10k 256x256 images loaded via generator with image augmentation. The whole model is built using Keras, which offers considerably improved integration in TensorFLow 2.</p>
 
 <h3 id="cnn-model-used-for-the-benchmark">CNN Model Used for the Benchmark</h3>
+
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
 <span class="n">Layer</span> <span class="p">(</span><span class="nb">type</span><span class="p">)</span>                 <span class="n">Output</span> <span class="n">Shape</span>              <span class="n">Param</span> <span class="c">#   </span>
 <span class="o">=================================================================</span>
@@ -254,15 +255,16 @@ into the {body} of the default.hbs template -->
 </code></pre></div></div>
 
 <h3 id="creating-the-virtual-environments">Creating the Virtual Environments</h3>
+
 <p>To make the test fair, I created two new virtual environments for each version of TensorFlow 2.</p>
 
-<p>** Standard CPU based TensorFlow 2 **</p>
+<p><strong>Standard CPU based TensorFlow 2</strong></p>
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">conda</span> <span class="n">create</span> <span class="o">-</span><span class="n">n</span> <span class="n">TF2_CPU_env</span> <span class="n">python</span><span class="o">=</span><span class="mf">3.8</span> <span class="n">anaconda</span>
 <span class="n">source</span> <span class="n">activate</span> <span class="n">TF2_CPU_env</span>
 <span class="n">pip</span> <span class="n">install</span> <span class="n">tensorflow</span><span class="o">==</span><span class="mf">2.0</span><span class="o">.</span><span class="mi">0</span><span class="o">-</span><span class="n">rc1</span>
 </code></pre></div></div>
 
-<p>** GPU based TensorFlow 2 **</p>
+<p><strong>GPU based TensorFlow 2</strong></p>
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">conda</span> <span class="n">create</span> <span class="o">-</span><span class="n">n</span> <span class="n">TF2_CPU_env</span> <span class="n">python</span><span class="o">=</span><span class="mf">3.8</span> <span class="n">anaconda</span>
 <span class="n">source</span> <span class="n">activate</span> <span class="n">TF2_CPU_env</span>
 <span class="n">pip</span> <span class="n">install</span> <span class="n">tensorflow</span><span class="o">-</span><span class="n">gpu</span><span class="o">==</span><span class="mf">2.0</span><span class="o">.</span><span class="mi">0</span><span class="o">-</span><span class="n">rc1</span>
@@ -272,8 +274,9 @@ into the {body} of the default.hbs template -->
 <a href="https://www.tensorflow.org/install/gpu#windows_setup" title="https://www.tensorflow.org/install/gpu#windows_setup">https://www.tensorflow.org/install/gpu#windows_setup</a></p>
 
 <h3 id="training-the-cnn-on-cpu">Training the CNN on CPU</h3>
-<p>Using the CPU only, each Epoch took ~480 seconds with 3s/step. The resource monitor showed 80% CPU utilization while GPU utilization hovered around 1-2% with only 0.5 out of 8GB memory being used:
-<img src="/assets/images/GPUvsCPU/CPU TF2_CPU_env.png" alt="image post" />
+<p>Using the CPU only, each Epoch took ~480 seconds with 3s/step. The resource monitor showed 80% CPU utilization while GPU utilization hovered around 1-2% with only 0.5 out of 8GB memory being used:</p>
+
+<p><img src="/assets/images/GPUvsCPU/CPU TF2_CPU_env.png" alt="image post" />
 <img src="/assets/images/GPUvsCPU/GPU TF2_CPU_env.png" alt="image post" /></p>
 
 <p>Detailed training breakdown over 10 epochs:</p>
@@ -301,8 +304,10 @@ into the {body} of the default.hbs template -->
 </code></pre></div></div>
 
 <h3 id="training-the-cnn-on-gpu">Training the CNN on GPU</h3>
-<p>Using the GPU, it was immediately obvious that the training is much faster. Each Epoch took ~75 seconds with 0.5s/step. The resource monitor showed CPU utilization below 60% while GPU utilization hovered around 11% with the 8GB memory being fully used:
-<img src="/assets/images/GPUvsCPU/CPU TF2_GPU_env.png" alt="image post" />
+
+<p>Using the GPU, it was immediately obvious that the training is much faster. Each Epoch took ~75 seconds with 0.5s/step. The resource monitor showed CPU utilization below 60% while GPU utilization hovered around 11% with the 8GB memory being fully used:</p>
+
+<p><img src="/assets/images/GPUvsCPU/CPU TF2_GPU_env.png" alt="image post" />
 <img src="/assets/images/GPUvsCPU/GPU TF2_GPU_env.png" alt="image post" /></p>
 
 <p>Detailed training breakdown over 10 epochs:</p>
@@ -330,9 +335,10 @@ into the {body} of the default.hbs template -->
 </code></pre></div></div>
 
 <h3 id="the-conclusion">The Conclusion</h3>
+
 <p>While setting up the GPU is slightly more complex, the performance gain is well worth it. In this specific case, the 2080 rtx GPU CNN trainig was more than 6x faster than using the Ryzen 2700x CPU only. This becomes far more pronounced in a real life training scenarios where you can easily spend multiple days training a model. In this case, the GPU can allow you to train one model overnight while the CPU would be crunching the data for most of your week.</p>
 
-<p>** Comparison summary **</p>
+<p><strong>Comparison summary</strong></p>
 
 <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>               tensorflow==2.0.0-rc1   tensorflow-gpu==2.0.0-rc1 Total time:        4787                    745 Seconds / Epoch:   480                     75 Seconds / Step:    3                       0.5 CPU Utilization:   80%                     60% GPU Utilization:   1%                      11% GPU Memory Used:   0.5GB                   8GB (full)
 </code></pre></div></div>
