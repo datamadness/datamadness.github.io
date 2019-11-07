@@ -32,7 +32,7 @@
     <meta property="og:site_name" content="DATAmadness" />
     <meta property="og:type" content="website" />
     <meta property="og:title" content="TensorFlow 2 - CPU vs GPU Performance Comparison" />
-    <meta property="og:description" content="TensorFlow 2 has finally became available this fall and as expected, it offers support for standard CPU as well as GPU based deep learning. Since GPU based deep learning has became particularly popular topic after the release of NVIDIA’s RTX series, I was interested to have a closer look how" />
+    <meta property="og:description" content="TensorFlow 2 has finally became available this fall and as expected, it offers support for both standard CPU as well as GPU based deep learning. Since using GPU for deep learning task has became particularly popular topic after the release of NVIDIA’s Turing architecture, I was interested to have a" />
     <meta property="og:url" content="/TensorFlow2-CPU-vs-GPU" />
     <meta property="og:image" content="/assets/images/GPUvsCPU/2080vs2700x.png" />
     <meta property="article:publisher" content="https://www.facebook.com/ghost" />
@@ -42,7 +42,7 @@
     <meta property="article:tag" content="Python" />
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content="TensorFlow 2 - CPU vs GPU Performance Comparison" />
-    <meta name="twitter:description" content="TensorFlow 2 has finally became available this fall and as expected, it offers support for standard CPU as well as GPU based deep learning. Since GPU based deep learning has became particularly popular topic after the release of NVIDIA’s RTX series, I was interested to have a closer look how" />
+    <meta name="twitter:description" content="TensorFlow 2 has finally became available this fall and as expected, it offers support for both standard CPU as well as GPU based deep learning. Since using GPU for deep learning task has became particularly popular topic after the release of NVIDIA’s Turing architecture, I was interested to have a" />
     <meta name="twitter:url" content="/" />
     <meta name="twitter:image" content="/assets/images/GPUvsCPU/2080vs2700x.png" />
     <meta name="twitter:label1" content="Written by" />
@@ -74,7 +74,7 @@
         "@type": "WebPage",
         "@id": "/TensorFlow2-CPU-vs-GPU"
     },
-    "description": "TensorFlow 2 has finally became available this fall and as expected, it offers support for standard CPU as well as GPU based deep learning. Since GPU based deep learning has became particularly popular topic after the release of NVIDIA’s RTX series, I was interested to have a closer look how"
+    "description": "TensorFlow 2 has finally became available this fall and as expected, it offers support for both standard CPU as well as GPU based deep learning. Since using GPU for deep learning task has became particularly popular topic after the release of NVIDIA’s Turing architecture, I was interested to have a"
 }
     </script>
 
@@ -189,7 +189,7 @@ into the {body} of the default.hbs template -->
 
             <section class="post-full-content">
                 <div class="kg-card-markdown">
-                    <p>TensorFlow 2 has finally became available this fall and as expected, it offers support for standard CPU as well as GPU based deep learning. Since GPU based deep learning has became particularly popular topic after the release of NVIDIA’s RTX series, I was interested to have a closer look how the CPU training speed compares to GPU using the latest TF2 package.</p>
+                    <p>TensorFlow 2 has finally became available this fall and as expected, it offers support for both standard CPU as well as GPU based deep learning. Since using GPU for deep learning task has became particularly popular topic after the release of NVIDIA’s Turing architecture, I was interested to have a closer look how the CPU training speed compares to GPU using the latest TF2 package.</p>
 
 <p>In this test, I am using a local machine with:</p>
 <ul>
@@ -199,7 +199,7 @@ into the {body} of the default.hbs template -->
   <li>Win 10</li>
 </ul>
 
-<p>The test will compare the speed of a fairly standard task of training a Convolutional Neural Network using tensorflow==2.0.0-rc1 and tensorflow-gpu==2.0.0-rc1. The neural network has a ~58 million parameters and I will benchmark the performance by running it for 10 epochs on a dataset with ~10k 256x256 images loaded via generator with image augmentation. The whole model is built using Keras, which offers considerably improved integration in TensorFLow 2.</p>
+<p>The test will compare the speed of a fairly standard task of training a Convolutional Neural Network using tensorflow==2.0.0-rc1 and tensorflow-gpu==2.0.0-rc1. The neural network has ~58 million parameters and I will benchmark the performance by running it for 10 epochs on a dataset with ~10k 256x256 images loaded via generator with image augmentation. The whole model is built using Keras, which offers considerably improved integration in TensorFLow 2.</p>
 
 <h3 id="cnn-model-used-for-the-benchmark">CNN Model Used for the Benchmark</h3>
 
@@ -256,7 +256,7 @@ into the {body} of the default.hbs template -->
 
 <h3 id="creating-the-virtual-environments">Creating the Virtual Environments</h3>
 
-<p>To make the test fair, I created two new virtual environments for each version of TensorFlow 2.</p>
+<p>To make the test ubiased by a whole lot dependencies in a cluttered environment, I created two new virtual environments for each version of TensorFlow 2.</p>
 
 <p><strong>Standard CPU based TensorFlow 2</strong></p>
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">conda</span> <span class="n">create</span> <span class="o">-</span><span class="n">n</span> <span class="n">TF2_CPU_env</span> <span class="n">python</span><span class="o">=</span><span class="mf">3.8</span> <span class="n">anaconda</span>
@@ -274,7 +274,7 @@ into the {body} of the default.hbs template -->
 <a href="https://www.tensorflow.org/install/gpu#windows_setup" title="https://www.tensorflow.org/install/gpu#windows_setup">https://www.tensorflow.org/install/gpu#windows_setup</a></p>
 
 <h3 id="training-the-cnn-on-cpu">Training the CNN on CPU</h3>
-<p>Using the CPU only, each Epoch took ~480 seconds with 3s/step. The resource monitor showed 80% CPU utilization while GPU utilization hovered around 1-2% with only 0.5 out of 8GB memory being used:</p>
+<p>Using the CPU only, each Epoch took ~480 seconds or 3s per step. The resource monitor showed 80% CPU utilization while GPU utilization hovered around 1-2% with only 0.5 out of 8GB memory being used:</p>
 
 <p><img src="/assets/images/GPUvsCPU/CPU TF2_CPU_env.png" width="800" />
 <img src="/assets/images/GPUvsCPU/GPU TF2_CPU_env.png" width="800" /></p>
@@ -305,7 +305,7 @@ into the {body} of the default.hbs template -->
 
 <h3 id="training-the-cnn-on-gpu">Training the CNN on GPU</h3>
 
-<p>Using the GPU, it was immediately obvious that the training is much faster. Each Epoch took ~75 seconds with 0.5s/step. The resource monitor showed CPU utilization below 60% while GPU utilization hovered around 11% with the 8GB memory being fully used:</p>
+<p>In contrast, after enabling the GPU version, it was immediately obvious that the training is considerably faster. Each Epoch took ~75 seconds or about 0.5s per step. That is results in 85% less training time. While using the GPU, the resource monitor showed CPU utilization below 60% while GPU utilization hovered around 11% with the 8GB memory being fully used:</p>
 
 <p><img src="/assets/images/GPUvsCPU/CPU TF2_GPU_env.png" width="800" />
 <img src="/assets/images/GPUvsCPU/GPU TF2_GPU_env.png" width="800" /></p>
@@ -336,7 +336,8 @@ into the {body} of the default.hbs template -->
 
 <h3 id="the-conclusion">The Conclusion</h3>
 
-<p>While setting up the GPU is slightly more complex, the performance gain is well worth it. In this specific case, the 2080 rtx GPU CNN trainig was more than 6x faster than using the Ryzen 2700x CPU only. This becomes far more pronounced in a real life training scenarios where you can easily spend multiple days training a model. In this case, the GPU can allow you to train one model overnight while the CPU would be crunching the data for most of your week.</p>
+<p>While setting up the GPU is slightly more complex, the performance gain is well worth it. In this specific case, the 2080 rtx GPU CNN trainig was more than 6x faster than using the Ryzen 2700x CPU only. In other words, using the GPU reduced the required training time by 85%. This becomes far more pronounced in a real life training scenarios where you can easily spend multiple days training a single model. In this case, the GPU can allow you to train one model overnight while the CPU would be crunching the data for most of your week.<br />
+Moreover, it seems that the main limiting factor for the GPU training was the available memory. It seems fair to assume that by tweaking the code and/or using GPU with more memory would further improve the performance. It seems that GPU training needs to become the default option in my toolkit.</p>
 
 <p><strong>Comparison summary</strong></p>
 
